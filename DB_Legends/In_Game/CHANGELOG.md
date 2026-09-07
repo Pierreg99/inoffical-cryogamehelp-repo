@@ -2,6 +2,23 @@
 
 Alle Änderungen werden nach Inhaltstyp und Erstellungsstand dokumentiert.
 
+## v1.9.0 — 2026-09-07
+
+### Added
+- Bilinguale Repository-README im Root (`README.md`).
+- Deutsche In-Game-README (`README_DE.md`).
+- Englische In-Game-README (`README_EN.md`).
+- Bilinguale Repository-Profilseite (`PROFILE.md`).
+- Separate Profilseiten DE/EN (`PROFILE_DE.md`, `PROFILE_EN.md`).
+- Neues barriereärmeres Hero-SVG `Assets/repo-hero.svg` mit beschreibendem Alt-Text in den READMEs.
+- Visuelle Navigation zu Team-Core, Match-Flow, Six-Team-Overview und Rank-Roadmap.
+
+### Documentation
+- DE/EN-Navigation auf denselben strukturellen In-Game-Hub ausgerichtet.
+- Meta-Snapshots ausdrücklich von strategischen Bewertungen getrennt.
+- Fanprojekt-/Rechtehinweis im Repository-README ergänzt.
+- Relative Asset-Links auf GitHub-kompatible Nutzung ausgerichtet.
+
 ## v1.8.0 — 2026-09-07
 
 ### Added
