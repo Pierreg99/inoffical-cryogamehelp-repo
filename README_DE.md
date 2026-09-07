@@ -1,41 +1,44 @@
-# INOFFICAL CRYOGAMEHELP REPO
+# CRYOGAMEHELP · Universal Game Hub
 
-<p align="center"><img src="DB_Legends/In_Game/Assets/repo-hero-github.svg" alt="DB Legends Guide Hub" width="100%"></p>
+<p align="center"><img src="GAMES/Assets/universal-game-hub.svg" alt="CRYOGAMEHELP Universal Game Hub" width="100%"></p>
 
-<p align="center"><img src="DB_Legends/In_Game/Assets/book-cover.svg" alt="Bilderbuch-Cover des visuellen DB Legends Guides" width="72%"></p>
+<p align="center"><strong>Games · Guides · Builds · Decks · Meta · Progression · Events · Visuals</strong></p>
 
 ## Deutscher Einstieg
 
-Inoffizieller visueller **Dragon Ball Legends**-Hub für PvP-Teams, Equipment, Meta-Recherche, Bilderbücher und Community-Dokumentation.
+CRYOGAMEHELP ist jetzt als **universelles Gaming-Wissensrepository** aufgebaut. Das bestehende Dragon-Ball-Legends-Modul bleibt erhalten; neue eigenständige Module ergänzen Pokémon TCG Pocket, Pokémon TCG Live und Pokémon GO.
 
-### Visual Gallery
+### Game Hub
 
-<p align="center">
-  <img src="DB_Legends/In_Game/Assets/team-core.svg" alt="Kernteam mit Rollen und Farben" width="48%">
-  <img src="DB_Legends/In_Game/Assets/six-team-overview.svg" alt="Sechs Teamvarianten" width="48%">
-</p>
-<p align="center">
-  <img src="DB_Legends/In_Game/Assets/meta-flow.svg" alt="PvP-Matchplan von Opening bis Endgame" width="48%">
-  <img src="DB_Legends/In_Game/Assets/rank-roadmap.svg" alt="Rank-Fortschritt von Platinum bis Diamond" width="48%">
-</p>
+| Spiel | Schwerpunkt | Einstieg |
+|---|---|---|
+| **Dragon Ball Legends** | PvP · Teams · Equipment · Bilderbuch · Meta | [Modul](DB_Legends/) |
+| **Pokémon TCG Pocket** | Sammeln · 20-Karten-Decks · Kämpfe · Erweiterungen | [Modul](GAMES/Pokemon_TCG_Pocket/) |
+| **Pokémon TCG Live** | Deckbau · Legalität · Ladder · Strategie | [Modul](GAMES/Pokemon_TCG_Live/) |
+| **Pokémon GO** | Fangen · Raids · GO-Kampfliga · Events | [Modul](GAMES/Pokemon_GO/) |
 
-→ [Vollständiger Art Hub](DB_Legends/In_Game/Assets/ART_HUB.md)
+### Gemeinsame Struktur
+
+**Übersicht → Guides → Builds → Meta → Progression → Events → Assets → Reports**
+
+<p align="center"><img src="GAMES/Assets/universal-game-hub.svg" alt="Vier Spielmodule mit gemeinsamem Guide-, Build-, Meta-, Progressions-, Event- und Asset-System" width="100%"></p>
 
 ### Schnellzugriff
 
-- [In-Game Hub](DB_Legends/In_Game/README_DE.md)
-- [6 Team-Builds](DB_Legends/In_Game/PvP/TEAM_BUILDS_DE_S6.md)
-- [Equipment](DB_Legends/In_Game/PvP/EQUIPMENT_BUILDS_DE.md)
-- [Bilderbuch](DB_Legends/In_Game/Bilderbuch/README.md)
+- [Universal Game Hub](GAMES/README_DE.md)
+- [Game Module Template](GAMES/GAME_MODULE_TEMPLATE.md)
+- [Dragon Ball Legends](DB_Legends/In_Game/README_DE.md)
+- [Pokémon TCG Pocket](GAMES/Pokemon_TCG_Pocket/README_DE.md)
+- [Pokémon TCG Live](GAMES/Pokemon_TCG_Live/README_DE.md)
+- [Pokémon GO](GAMES/Pokemon_GO/README_DE.md)
 - [Visual Art](ART.md)
 - [Profil](PROFILE_DE.md)
 - [Lizenz](LICENSE.md)
-- [Changelog](DB_Legends/In_Game/CHANGELOG.md)
 
-### Leitidee
+## Dokumentationsstandard
 
-**Spielen → Analysieren → Bauen → Testen → Verbessern**
+**FAKTEN → QUELLEN → ANALYSE → BUILD → TEST → UPDATE**
 
-Meta-Daten sind zeitabhängig. Strategische Empfehlungen werden separat gekennzeichnet.
+Live-Service-Angaben werden mit Datum und Quelle geführt. Strategische Empfehlungen werden als Analyse gekennzeichnet und nicht als offizielle Rangliste dargestellt.
 
-**Snapshot:** 7. September 2026
+**Architektur-Snapshot:** 7. September 2026
