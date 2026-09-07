@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 420" role="img" aria-labelledby="title desc">
+<title id="title">DB Legends In-Game Guide Hub</title>
+<desc id="desc">A dark neon visual header for a German and English Dragon Ball Legends PvP guide, highlighting SPARKING and LEGEND LIMITED team building, equipment, picture books and meta documentation.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#090b16"/><stop offset=".55" stop-color="#17112c"/><stop offset="1" stop-color="#071b2d"/></linearGradient>
+  <linearGradient id="beam" x1="0" x2="1"><stop stop-color="#4bdcff"/><stop offset=".5" stop-color="#a56cff"/><stop offset="1" stop-color="#ff78b8"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1400" height="420" rx="28" fill="url(#bg)"/>
+<circle cx="1180" cy="80" r="180" fill="#5d4eff" opacity=".13" filter="url(#glow)"/>
+<circle cx="250" cy="350" r="210" fill="#3ad6ff" opacity=".08" filter="url(#glow)"/>
+<path d="M0 330 C260 230 420 430 650 300 S1080 150 1400 270" fill="none" stroke="url(#beam)" stroke-width="5" opacity=".8"/>
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+  <text x="72" y="86" fill="#8eeaff" font-size="22" font-weight="700" letter-spacing="5">CRYOGAMEHELP · DB LEGENDS</text>
+  <text x="72" y="154" fill="#fff" font-size="58" font-weight="900">IN-GAME GUIDE HUB</text>
+  <text x="74" y="195" fill="#cdd5ee" font-size="23">DE / EN · PvP · EQUIPMENT · BILDERBUCH · META</text>
+  <g transform="translate(74 240)">
+    <rect width="230" height="62" rx="16" fill="#161c30" stroke="#4bdcff" stroke-width="2"/>
+    <text x="20" y="26" fill="#8eeaff" font-size="14" font-weight="700">CORE</text>
+    <text x="20" y="49" fill="#fff" font-size="17" font-weight="700">17/GF · KAIOKEN · TOPPO</text>
+  </g>
+  <g transform="translate(324 240)">
+    <rect width="220" height="62" rx="16" fill="#161c30" stroke="#a56cff" stroke-width="2"/>
+    <text x="20" y="26" fill="#d1b8ff" font-size="14" font-weight="700">BUILDS</text>
+    <text x="20" y="49" fill="#fff" font-size="17" font-weight="700">6 TEAM VARIANTS</text>
+  </g>
+  <g transform="translate(564 240)">
+    <rect width="220" height="62" rx="16" fill="#161c30" stroke="#ff78b8" stroke-width="2"/>
+    <text x="20" y="26" fill="#ffacd0" font-size="14" font-weight="700">BOOK</text>
+    <text x="20" y="49" fill="#fff" font-size="17" font-weight="700">MANGA · EPUB · PDF</text>
+  </g>
+  <g transform="translate(1000 72)">
+    <circle cx="140" cy="120" r="108" fill="#0f1530" stroke="url(#beam)" stroke-width="5"/>
+    <circle cx="140" cy="120" r="83" fill="none" stroke="#fff" opacity=".16"/>
+    <path d="M76 160 L115 96 L145 132 L188 75" fill="none" stroke="#8eeaff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="76" cy="160" r="10" fill="#8eeaff"/>
+    <circle cx="188" cy="75" r="10" fill="#ff78b8"/>
+    <text x="140" y="270" fill="#fff" font-size="20" text-anchor="middle" font-weight="800">PLATINUM → DIAMOND</text>
+  </g>
+  <text x="74" y="370" fill="#8a94b4" font-size="16">Unofficial fan documentation · Live-service snapshots are time-dependent · Strategy is separated from source-backed facts</text>
+</g>
+</svg>
