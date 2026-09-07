@@ -1,29 +1,32 @@
-# CRYOGAMEHELP · Universal Changelog
+# CRYOGAMEHELP Changelog
 
-## v3.0.0 — 2026-09-07
+## 2026-09-07 — Universal Interactive Hub
 
-### Architecture
-- Repository upgraded from a DB Legends-focused hub to a universal multi-game knowledge base.
-- Added `GAMES/` as the standardized home for new game modules.
-- Added reusable `GAME_MODULE_TEMPLATE.md`.
-- Added shared layers: Overview, Guides, Builds, Meta, Progression, Events, Assets, Reports.
+### Added
+- Multi-game architecture under `GAMES/`.
+- Pokémon TCG Pocket module.
+- Pokémon TCG Live module.
+- Pokémon GO module.
+- Universal game data model and reusable module template.
+- Interactive `docs/` web application.
+- Visual game-card gallery and universal dashboard SVG.
+- Game filtering for All / PvP / TCG / Mobile.
+- Interactive Team & Deck Builder with six slots.
+- Searchable builder picker and editable build slots.
+- Build stat preview for Offense / Defense / Support / Synergy.
+- Visual Guide / Meta / Collection / Assets modal tools.
+- Responsive layout and light/dark presentation switch.
+- GitHub Pages workflow for the `docs/` interface.
 
-### Games
-- Retained the complete `DB_Legends/` module.
-- Added Pokémon Trading Card Game Pocket.
-- Added Pokémon Trading Card Game Live.
-- Added Pokémon GO.
+### Changed
+- Root README promoted from DB-Legends-only presentation to Universal Game Hub.
+- Repository art direction expanded from a single-game system to shared multi-game visual standards.
+- Repository profile aligned with the universal game architecture.
 
-### Visuals
-- Added `GAMES/Assets/universal-game-hub.svg`.
-- Integrated the universal visual anchor into root README and profile pages.
-- Preserved the existing DB Legends hero, Bilderbuch cover and PvP visual system inside its module.
+## Existing DB Legends work
 
-### Documentation
-- Added DE/EN universal game indexes.
-- Added DE/EN entry pages for all three Pokémon modules.
-- Generalized repository rights language for multiple third-party game properties.
+The complete Dragon Ball Legends In-Game documentation remains under `DB_Legends/`, including PvP teams, equipment, Bilderbuch, reports and established visual assets.
 
-## Operating rule
+## Quality rule
 
-Live-service information is documented as dated snapshots. Strategic recommendations are labeled as analysis. Official claims and community evidence remain distinct.
+Live-service facts remain dated and source-backed. Strategic recommendations are labeled as analysis rather than official ranking.
