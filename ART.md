@@ -2,34 +2,40 @@
 
 ## Deutsch
 
-Die Repository-Art folgt einer einheitlichen **Cyber-Anime / Sci-Fi-Guide**-Ästhetik: dunkle Hintergründe, starke Lichtkanten, Blau/Violett als Energieakzente und Gold als LEGEND-LIMITED-Signal. Visuals sollen Orientierung geben, nicht nur dekorieren.
+Die Repository-Art folgt einer einheitlichen **Cyber-Anime / Sci-Fi-Guide**-Ästhetik: dunkle Hintergründe, starke Lichtkanten, Blau/Violett als Energieakzente und Gold als LEGEND-LIMITED-Signal. Visuals dienen der Orientierung und Informationsvermittlung.
 
-### Art-Paket
+### Integriertes Art-Paket
 
-- `DB_Legends/In_Game/Assets/repo-hero.svg` — GitHub-Hero
-- `DB_Legends/In_Game/Assets/team-core.svg` — Kernteam
-- `DB_Legends/In_Game/Assets/six-team-overview.svg` — sechs Teamvarianten
-- `DB_Legends/In_Game/Assets/meta-flow.svg` — Matchablauf
-- `DB_Legends/In_Game/Assets/rank-roadmap.svg` — Platinum → Diamond
-- `DB_Legends/In_Game/Assets/book-cover.svg` — Bilderbuch-Cover
-- `DB_Legends/In_Game/Assets/README.md` — Asset-Dokumentation
+| Asset | Funktion |
+|---|---|
+| `DB_Legends/In_Game/Assets/repo-hero-github.svg` | Repository-Hero |
+| `DB_Legends/In_Game/Assets/book-cover.svg` | Bilderbuch-/Guide-Cover |
+| `DB_Legends/In_Game/Assets/repo-hero.svg` | In-Game-Hero |
+| `DB_Legends/In_Game/Assets/repo-architecture.svg` | Repository-Architektur |
+| `DB_Legends/In_Game/Assets/pipeline.svg` | Research → Build → Visualize → Publish |
+| `DB_Legends/In_Game/Assets/team-core.svg` | Kernteam |
+| `DB_Legends/In_Game/Assets/six-team-overview.svg` | sechs Teamvarianten |
+| `DB_Legends/In_Game/Assets/meta-flow.svg` | Matchablauf |
+| `DB_Legends/In_Game/Assets/rank-roadmap.svg` | Platinum → Diamond → Legends League |
+| `DB_Legends/In_Game/Assets/ART_HUB.md` | zentrale Visual-Galerie |
 
-### Gestaltungsregeln
+### Einbindungsregeln
 
-1. Hoher Kontrast und kurze Beschriftungen.
-2. Relative Pfade für GitHub-Kompatibilität.
-3. SVG bevorzugen, wenn ein Asset diagrammatisch oder UI-artig ist.
-4. Keine fremden Marken als eigene Projektidentität darstellen.
-5. Charakter- und Spielmarken nur als Fan-/Dokumentationskontext verwenden.
+1. Hero und Cover stehen an den wichtigsten Einstiegspunkten.
+2. Team-, Flow- und Roadmap-Visuals erscheinen direkt bei den passenden Inhalten.
+3. Repository-Architektur und Pipeline erklären die Struktur und den Dokumentationsprozess.
+4. Alle Einbindungen verwenden relative Pfade und descriptive Alt-Texte.
+5. Visuals dürfen keine wesentlichen Informationen ausschließlich bildlich vermitteln.
+6. SVG wird für diagrammatische, UI-artige und dokumentarische Assets bevorzugt.
 
 ## English
 
-The repository uses a consistent **cyber-anime / sci-fi guide** visual language: dark backgrounds, luminous edges, blue/purple energy accents, and gold as the LEGEND LIMITED signal. Visuals are intended to improve navigation and comprehension, not merely decoration.
+The repository uses a consistent **cyber-anime / sci-fi guide** visual language: dark backgrounds, luminous edges, blue/purple energy accents, and gold for LEGEND LIMITED emphasis. Visuals are integrated as navigation and documentation components, not decoration alone.
 
-### Art package
+### Integrated art package
 
-See the SVG assets under `DB_Legends/In_Game/Assets/` for the hero, team core, six-team overview, match flow, rank roadmap, and book cover.
+The repository-wide hero, book cover, In-Game hero, architecture, pipeline, team core, six-team overview, match flow, and rank roadmap are documented and referenced from the main README, DE/EN entry points, and the Art Hub.
 
 ### Rights
 
-Original diagrams and layouts are repository artwork. Dragon Ball Legends names, characters, logos, and game assets remain with their respective rights holders. See `LICENSE.md` for repository licensing and third-party rights notes.
+Original diagrams, layouts, and repository SVG artwork are project documentation assets. Dragon Ball Legends names, characters, logos, screenshots, and game assets remain with their respective rights holders. This is an unofficial fan project. See `LICENSE.md` for licensing and third-party rights notes.
