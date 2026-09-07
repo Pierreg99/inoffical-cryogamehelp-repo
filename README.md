@@ -10,6 +10,10 @@
   <a href="PROFILE.md">Profile</a> · <a href="LICENSE.md">License</a> · <a href="ART.md">Art</a>
 </p>
 
+<p align="center">
+  <img src="DB_Legends/In_Game/Assets/book-cover.svg" alt="Bilderbuch cover for the DB Legends visual guide" width="72%">
+</p>
+
 ## Deutsch
 
 Ein inoffizieller, visuell aufgebauter **Dragon Ball Legends**-Guide für Team-Building, PvP-Strategie, Equipment, Bilderbuch/Manga und Meta-Dokumentation.
@@ -24,6 +28,19 @@ Ein inoffizieller, visuell aufgebauter **Dragon Ball Legends**-Guide für Team-B
 | `DB_Legends/In_Game/Assets/` | visuelles SVG-Art-System und Asset-Doku |
 | `reports/` | ausführliche DE/EN Meta-Reports |
 
+### Visual System
+
+<p align="center">
+  <img src="DB_Legends/In_Game/Assets/team-core.svg" alt="Visualisierte Kernteam-Zusammensetzung" width="48%">
+  <img src="DB_Legends/In_Game/Assets/rank-roadmap.svg" alt="Fortschritt von Platinum über Diamond zur Legends League" width="48%">
+</p>
+<p align="center">
+  <img src="DB_Legends/In_Game/Assets/meta-flow.svg" alt="PvP-Matchablauf von Opening bis Endgame" width="48%">
+  <img src="DB_Legends/In_Game/Assets/six-team-overview.svg" alt="Übersicht über sechs SPARKING und LEGEND LIMITED Teamvarianten" width="48%">
+</p>
+
+→ [Vollständiger Art Hub](DB_Legends/In_Game/Assets/ART_HUB.md)
+
 ### Referenz-Build
 
 **SPARKING + LEGEND LIMITED · keine ULTRA-Battle-Members**
@@ -31,11 +48,6 @@ Ein inoffizieller, visuell aufgebauter **Dragon Ball Legends**-Guide für Team-B
 `Android #17 & Golden Frieza` · `SSGSS Kaioken Goku` · `God of Destruction Toppo`
 
 Bench: `Goku & Final Form Frieza` · `Super Saiyan 2 Kefla` · `Jiren: Full Power`
-
-<p align="center">
-  <img src="DB_Legends/In_Game/Assets/team-core.svg" alt="Visualisiertes Kernteam" width="48%">
-  <img src="DB_Legends/In_Game/Assets/rank-roadmap.svg" alt="Platinum zu Diamond Roadmap" width="48%">
-</p>
 
 ### Dokumentationsprinzip
 
@@ -52,6 +64,12 @@ An unofficial visual **Dragon Ball Legends** guide repository covering team buil
 `Android #17 & Golden Frieza` · `SSGSS Kaioken Goku` · `God of Destruction Toppo`
 
 Bench: `Goku & Final Form Frieza` · `Super Saiyan 2 Kefla` · `Jiren: Full Power`
+
+### Visual system
+
+The repository now presents the hero, book cover, team core, six-team overview, match flow, rank roadmap, architecture, and publishing pipeline as one integrated visual language.
+
+→ [Open the full Art Hub](DB_Legends/In_Game/Assets/ART_HUB.md)
 
 ### Navigation
 
