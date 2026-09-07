@@ -1,41 +1,43 @@
-# Visual Art Direction
+# Visual Art Direction · Universal Game Hub
 
 ## Deutsch
 
-Die Repository-Art folgt einer einheitlichen **Cyber-Anime / Sci-Fi-Guide**-Ästhetik: dunkle Hintergründe, starke Lichtkanten, Blau/Violett als Energieakzente und Gold als LEGEND-LIMITED-Signal. Visuals dienen der Orientierung und Informationsvermittlung.
+CRYOGAMEHELP now uses a **universal visual system** while allowing every game module to retain its own identity. Visuals serve navigation, explanation, comparison and storytelling.
 
-### Integriertes Art-Paket
+### Repository-wide art
 
-| Asset | Funktion |
+| Asset | Function |
 |---|---|
-| `DB_Legends/In_Game/Assets/repo-hero-github.svg` | Repository-Hero |
-| `DB_Legends/In_Game/Assets/book-cover.svg` | Bilderbuch-/Guide-Cover |
-| `DB_Legends/In_Game/Assets/repo-hero.svg` | In-Game-Hero |
-| `DB_Legends/In_Game/Assets/repo-architecture.svg` | Repository-Architektur |
-| `DB_Legends/In_Game/Assets/pipeline.svg` | Research → Build → Visualize → Publish |
-| `DB_Legends/In_Game/Assets/team-core.svg` | Kernteam |
-| `DB_Legends/In_Game/Assets/six-team-overview.svg` | sechs Teamvarianten |
-| `DB_Legends/In_Game/Assets/meta-flow.svg` | Matchablauf |
-| `DB_Legends/In_Game/Assets/rank-roadmap.svg` | Platinum → Diamond → Legends League |
-| `DB_Legends/In_Game/Assets/ART_HUB.md` | zentrale Visual-Galerie |
+| `GAMES/Assets/universal-game-hub.svg` | multi-game repository hero / architecture |
+| `DB_Legends/In_Game/Assets/repo-hero-github.svg` | Dragon Ball Legends hero |
+| `DB_Legends/In_Game/Assets/book-cover.svg` | Dragon Ball Legends Bilderbuch cover |
+| `DB_Legends/In_Game/Assets/repo-architecture.svg` | DB Legends architecture |
+| `DB_Legends/In_Game/Assets/pipeline.svg` | research → build → visualize → publish |
 
-### Einbindungsregeln
+### Game-specific visuals
 
-1. Hero und Cover stehen an den wichtigsten Einstiegspunkten.
-2. Team-, Flow- und Roadmap-Visuals erscheinen direkt bei den passenden Inhalten.
-3. Repository-Architektur und Pipeline erklären die Struktur und den Dokumentationsprozess.
-4. Alle Einbindungen verwenden relative Pfade und descriptive Alt-Texte.
-5. Visuals dürfen keine wesentlichen Informationen ausschließlich bildlich vermitteln.
-6. SVG wird für diagrammatische, UI-artige und dokumentarische Assets bevorzugt.
+- `DB_Legends/In_Game/Assets/` — DB Legends diagrams and guide art
+- `GAMES/Pokemon_TCG_Pocket/` — dedicated future collection/deck visuals
+- `GAMES/Pokemon_TCG_Live/` — dedicated future deck/competitive visuals
+- `GAMES/Pokemon_GO/` — dedicated future raid/GBL/progression visuals
+
+### Visual rules
+
+1. Shared shell, individual game identity.
+2. Relative paths for GitHub portability.
+3. Descriptive alt text on consuming pages.
+4. Important information must also exist as text or tables.
+5. Prefer SVG for diagrams, matrices, roadmaps and UI-like documentation.
+6. Do not present fan art or generated artwork as official game assets.
 
 ## English
 
-The repository uses a consistent **cyber-anime / sci-fi guide** visual language: dark backgrounds, luminous edges, blue/purple energy accents, and gold for LEGEND LIMITED emphasis. Visuals are integrated as navigation and documentation components, not decoration alone.
+CRYOGAMEHELP uses one **universal visual language** while preserving game-specific presentation. The visual layer is designed for navigation, explanation, comparison and storytelling.
 
-### Integrated art package
+### Universal visual system
 
-The repository-wide hero, book cover, In-Game hero, architecture, pipeline, team core, six-team overview, match flow, and rank roadmap are documented and referenced from the main README, DE/EN entry points, and the Art Hub.
+`GAMES/Assets/universal-game-hub.svg` is the repository-wide visual anchor. Existing DB Legends artwork remains inside its module, while future game modules can introduce their own diagrams and covers under the same accessibility and licensing rules.
 
 ### Rights
 
-Original diagrams, layouts, and repository SVG artwork are project documentation assets. Dragon Ball Legends names, characters, logos, screenshots, and game assets remain with their respective rights holders. This is an unofficial fan project. See `LICENSE.md` for licensing and third-party rights notes.
+Original repository diagrams, layouts and SVG artwork are project documentation assets. Game names, logos, characters, screenshots and proprietary assets remain with their respective rights holders. See `LICENSE.md`.
