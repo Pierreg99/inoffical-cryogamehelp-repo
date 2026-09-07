@@ -20,11 +20,18 @@
 - [Profil DE](../../PROFILE_DE.md)
 - [Profile EN](../../PROFILE_EN.md)
 - [Bilingual Profile](../../PROFILE.md)
+- [Repository README DE](../../README_DE.md)
+- [Repository README EN](../../README_EN.md)
+- [License](../../LICENSE.md)
+- [Art Direction](../../ART.md)
 
-## Visuals
+## Visual Art
 
-- [Assets](./Assets/README.md)
+- [Art Hub](./Assets/ART_HUB.md)
 - [Repository Hero SVG](./Assets/repo-hero.svg)
+- [GitHub Hero SVG](./Assets/repo-hero-github.svg)
+- [Repository Architecture SVG](./Assets/repo-architecture.svg)
+- [Research Pipeline SVG](./Assets/pipeline.svg)
 - [Six-Team Overview SVG](./Assets/six-team-overview.svg)
 - [Team Core SVG](./Assets/team-core.svg)
 - [Match Flow SVG](./Assets/meta-flow.svg)
@@ -38,7 +45,7 @@
 
 ## Veröffentlichungsstatus
 
-**Version:** 1.9.0  
+**Version:** 2.0.0  
 **Sprachen:** Deutsch + English  
 **Bereich:** DB Legends / In-Game  
 **Snapshot:** 7. September 2026
