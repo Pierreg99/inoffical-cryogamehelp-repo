@@ -1,76 +1,70 @@
-# DB Legends — In-Game Guide Hub
-
 <p align="center">
-  <img src="DB_Legends/In_Game/Assets/repo-hero.svg" alt="DB Legends PvP guide hero showing the SPARKING and LEGEND LIMITED team strategy hub" width="100%">
+  <img src="DB_Legends/In_Game/Assets/repo-hero-github.svg" alt="DB Legends In-Game Guide Hub" width="100%">
 </p>
 
+<h1 align="center">inoffical-cryogamehelp-repo</h1>
+<p align="center"><strong>DB Legends Guides · Builds · PvP · Equipment · Bilderbuch · Visual Arts</strong></p>
+
 <p align="center">
-  <a href="DB_Legends/In_Game/README.md">In-Game Hub</a> ·
-  <a href="DB_Legends/In_Game/PvP/README.md">PvP</a> ·
-  <a href="DB_Legends/In_Game/Bilderbuch/README.md">Bilderbuch</a> ·
-  <a href="PROFILE.md">Repository Profile</a>
+  <a href="README_DE.md">Deutsch</a> · <a href="README_EN.md">English</a> ·
+  <a href="PROFILE.md">Profile</a> · <a href="LICENSE.md">License</a> · <a href="ART.md">Art</a>
 </p>
 
 ## Deutsch
 
-Ein visuell aufgebauter, inoffizieller **Dragon Ball Legends**-Guide für Team-Building, PvP-Strategie, Equipment, Bilderbuch-Ausgaben und Meta-Dokumentation.
-
-### Aktueller Fokus
-
-**SPARKING + LEGEND LIMITED ohne ULTRA-Battle-Members**
-
-Empfohlener Kern im dokumentierten Snapshot:
-
-`Android #17 & Golden Frieza` + `SSGSS Kaioken Goku` + `God of Destruction Toppo`
-
-Bench:
-
-`Goku & Final Form Frieza` · `Super Saiyan 2 Kefla` · `Jiren: Full Power`
+Ein inoffizieller, visuell aufgebauter **Dragon Ball Legends**-Guide für Team-Building, PvP-Strategie, Equipment, Bilderbuch/Manga und Meta-Dokumentation.
 
 ### Bereiche
 
 | Bereich | Inhalt |
 |---|---|
-| `DB_Legends/In_Game/` | zentraler In-Game-Hub |
-| `DB_Legends/In_Game/PvP/` | Team-Builds und Equipment-Konfigurationen |
-| `DB_Legends/In_Game/Bilderbuch/` | deutsche Manga-/Bilderbuch-Dokumentation |
-| `DB_Legends/In_Game/Assets/` | SVG-Visuals und Asset-Manifest |
-| `reports/` | ausführliche Meta-Reports DE/EN |
+| `DB_Legends/In_Game/` | zentraler In-Game-Wissenshub |
+| `DB_Legends/In_Game/PvP/` | Team-Builds, Matchpläne und Equipment |
+| `DB_Legends/In_Game/Bilderbuch/` | illustrierte Buch- und Manga-Kapitel |
+| `DB_Legends/In_Game/Assets/` | visuelles SVG-Art-System und Asset-Doku |
+| `reports/` | ausführliche DE/EN Meta-Reports |
+
+### Referenz-Build
+
+**SPARKING + LEGEND LIMITED · keine ULTRA-Battle-Members**
+
+`Android #17 & Golden Frieza` · `SSGSS Kaioken Goku` · `God of Destruction Toppo`
+
+Bench: `Goku & Final Form Frieza` · `Super Saiyan 2 Kefla` · `Jiren: Full Power`
+
+<p align="center">
+  <img src="DB_Legends/In_Game/Assets/team-core.svg" alt="Visualisiertes Kernteam" width="48%">
+  <img src="DB_Legends/In_Game/Assets/rank-roadmap.svg" alt="Platinum zu Diamond Roadmap" width="48%">
+</p>
 
 ### Dokumentationsprinzip
 
-Offizielle Live-Service-Daten, Featured-Tiers und externe Nutzungsdaten werden von **strategischen Bewertungen** getrennt. Meta-Aussagen sind zeitabhängig und können sich nach einem Banner, Zenkai, Equipment-Update oder PvP-Reset ändern.
-
-### Schnellzugriff
-
-- [6 Team-Builds DE](DB_Legends/In_Game/PvP/TEAM_BUILDS_DE_S6.md)
-- [Equipment Builds DE](DB_Legends/In_Game/PvP/EQUIPMENT_BUILDS_DE.md)
-- [6-Team-Bilderbuchkapitel](DB_Legends/In_Game/Bilderbuch/Kapitel_02_Sechs_Teams_DE.md)
-- [In-Game Index](DB_Legends/In_Game/INDEX.md)
-- [Changelog](DB_Legends/In_Game/CHANGELOG.md)
+Live-Service-Fakten werden mit Datum und Quelle geführt. Strategische Bewertungen, Builds und Tier-Einschätzungen sind davon getrennt und ausdrücklich als Analyse gekennzeichnet.
 
 ## English
 
-An unofficial, visual **Dragon Ball Legends** guide hub for team building, PvP strategy, equipment planning, picture-book editions, and meta documentation.
+An unofficial visual **Dragon Ball Legends** guide repository covering team building, PvP strategy, equipment, illustrated books, manga-style documentation, and meta snapshots.
 
-### Current focus
+### Core reference
 
-**SPARKING + LEGEND LIMITED without ULTRA Battle Members**
+**SPARKING + LEGEND LIMITED · no ULTRA Battle Members**
 
-Documented core snapshot:
+`Android #17 & Golden Frieza` · `SSGSS Kaioken Goku` · `God of Destruction Toppo`
 
-`Android #17 & Golden Frieza` + `SSGSS Kaioken Goku` + `God of Destruction Toppo`
+Bench: `Goku & Final Form Frieza` · `Super Saiyan 2 Kefla` · `Jiren: Full Power`
 
-Bench:
+### Navigation
 
-`Goku & Final Form Frieza` · `Super Saiyan 2 Kefla` · `Jiren: Full Power`
+- [`DB_Legends/In_Game/`](DB_Legends/In_Game/) — in-game hub
+- [`PvP`](DB_Legends/In_Game/PvP/README.md) — teams and equipment
+- [`Bilderbuch`](DB_Legends/In_Game/Bilderbuch/README.md) — illustrated guides
+- [`Assets`](DB_Legends/In_Game/Assets/ART_HUB.md) — visual system
+- [`PROFILE.md`](PROFILE.md) — repository profile
 
-### Documentation model
+## Art & rights
 
-Live-service facts, featured tiers, and external usage evidence are kept separate from **strategic evaluation**. Meta claims are snapshots, not permanent rankings.
+The project uses original diagrams, SVG layouts, and repository artwork for documentation and navigation. Dragon Ball Legends, Dragon Ball, character names, logos, screenshots, and game assets remain with their respective rights holders. This is an unofficial fan project.
 
-## Project note
-
-This is an unofficial fan-created guide. Character and game marks belong to their respective rights holders. The repository documents strategy and visuals; it is not an official Bandai Namco or Dragon Ball project.
+See [LICENSE.md](LICENSE.md) and [ART.md](ART.md).
 
 **Snapshot:** 7 September 2026
