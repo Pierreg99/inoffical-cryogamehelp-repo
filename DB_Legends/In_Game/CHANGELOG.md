@@ -2,6 +2,19 @@
 
 Alle Änderungen werden nach Inhaltstyp und Erstellungsstand dokumentiert.
 
+## v1.8.0 — 2026-09-07
+
+### Added
+- `PvP/EQUIPMENT_BUILDS_DE.md` mit rollenbasierten optimalen Equipment-Presets.
+- Burst-, Balanced- und Fortress-Konfigurationen.
+- Konkrete aktuelle Equipment-Empfehlungen für #17 & Golden Frieza, Kaioken Goku, Toppo, Trunks & Gohan, Pan, Shallet und Goku/Bardock.
+- Slot-Prioritäten für Offense, HP, Defense, Special Move und Utility.
+- Qualitätskontrolle für Ranked-Einsatz und schlechte Slot-Rolls.
+
+### Meta Snapshot
+- Equipment-Daten gegen aktuelle DBZ-Space-Einträge geprüft.
+- Strategische Build-Empfehlungen ausdrücklich von offiziellen Meta-/Tier-Aussagen getrennt.
+
 ## v1.7.0 — 2026-09-07
 
 ### Added
