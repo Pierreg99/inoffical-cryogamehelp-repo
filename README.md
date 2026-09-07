@@ -1,88 +1,66 @@
 <p align="center">
-  <img src="DB_Legends/In_Game/Assets/repo-hero-github.svg" alt="DB Legends In-Game Guide Hub" width="100%">
+  <img src="GAMES/Assets/universal-game-hub.svg" alt="CRYOGAMEHELP Universal Game Hub" width="100%">
 </p>
 
-<h1 align="center">inoffical-cryogamehelp-repo</h1>
-<p align="center"><strong>DB Legends Guides · Builds · PvP · Equipment · Bilderbuch · Visual Arts</strong></p>
+<h1 align="center">CRYOGAMEHELP · Universal Game Hub</h1>
+<p align="center"><strong>Guides · Builds · Decks · PvP/PvE · Meta · Progression · Events · Visual Documentation</strong></p>
 
 <p align="center">
   <a href="README_DE.md">Deutsch</a> · <a href="README_EN.md">English</a> ·
-  <a href="PROFILE.md">Profile</a> · <a href="LICENSE.md">License</a> · <a href="ART.md">Art</a>
+  <a href="GAMES/README.md">Games</a> · <a href="PROFILE.md">Profile</a> ·
+  <a href="LICENSE.md">License</a> · <a href="ART.md">Art</a>
 </p>
 
 <p align="center">
-  <img src="DB_Legends/In_Game/Assets/book-cover.svg" alt="Bilderbuch cover for the DB Legends visual guide" width="72%">
+  <img src="DB_Legends/In_Game/Assets/book-cover.svg" alt="Bilderbuch-Cover aus dem Dragon Ball Legends Modul" width="55%">
 </p>
 
-## Deutsch
+## Universal hub
 
-Ein inoffizieller, visuell aufgebauter **Dragon Ball Legends**-Guide für Team-Building, PvP-Strategie, Equipment, Bilderbuch/Manga und Meta-Dokumentation.
+CRYOGAMEHELP is evolving from a single-game guide into a **multi-game knowledge repository**. Existing Dragon Ball Legends research remains intact while dedicated modules are added for Pokémon TCG Pocket, Pokémon TCG Live and Pokémon GO.
 
-### Bereiche
+### Game matrix
 
-| Bereich | Inhalt |
-|---|---|
-| `DB_Legends/In_Game/` | zentraler In-Game-Wissenshub |
-| `DB_Legends/In_Game/PvP/` | Team-Builds, Matchpläne und Equipment |
-| `DB_Legends/In_Game/Bilderbuch/` | illustrierte Buch- und Manga-Kapitel |
-| `DB_Legends/In_Game/Assets/` | visuelles SVG-Art-System und Asset-Doku |
-| `reports/` | ausführliche DE/EN Meta-Reports |
+| Game | Module | Main focus |
+|---|---|---|
+| **Dragon Ball Legends** | [`DB_Legends/`](DB_Legends/) | PvP · Teams · Equipment · Bilderbuch · Meta |
+| **Pokémon TCG Pocket** | [`GAMES/Pokemon_TCG_Pocket/`](GAMES/Pokemon_TCG_Pocket/) | Collection · 20-card decks · Battles · Expansions |
+| **Pokémon TCG Live** | [`GAMES/Pokemon_TCG_Live/`](GAMES/Pokemon_TCG_Live/) | Deck building · Legality · Ladder · Strategy |
+| **Pokémon GO** | [`GAMES/Pokemon_GO/`](GAMES/Pokemon_GO/) | Catching · Raids · GO Battle League · Events |
 
-### Visual System
+### Shared documentation architecture
+
+`Overview → Guides → Builds → Meta → Progression → Events → Assets → Reports`
 
 <p align="center">
-  <img src="DB_Legends/In_Game/Assets/team-core.svg" alt="Visualisierte Kernteam-Zusammensetzung" width="48%">
-  <img src="DB_Legends/In_Game/Assets/rank-roadmap.svg" alt="Fortschritt von Platinum über Diamond zur Legends League" width="48%">
+  <img src="GAMES/Assets/universal-game-hub.svg" alt="Four game modules connected to shared guides, builds, meta, progression, events and asset layers" width="100%">
 </p>
+
+### Current modules
+
+- [`GAMES/`](GAMES/README.md) — universal game index and reusable module standard
+- [`Pokémon TCG Pocket`](GAMES/Pokemon_TCG_Pocket/README.md) — mobile TCG collection and battle module
+- [`Pokémon TCG Live`](GAMES/Pokemon_TCG_Live/README.md) — digital TCG deck and competitive module
+- [`Pokémon GO`](GAMES/Pokemon_GO/README.md) — location-based collection, raid and PvP module
+- [`Dragon Ball Legends`](DB_Legends/In_Game/README.md) — established full guide hub
+
+## Quality model
+
+**FACTS → SOURCES → ANALYSIS → BUILD → TEST → UPDATE**
+
+Live-service facts are dated and sourced. Strategic recommendations are marked as analysis and are not presented as official rankings.
+
+## Existing DB Legends visual system
+
 <p align="center">
-  <img src="DB_Legends/In_Game/Assets/meta-flow.svg" alt="PvP-Matchablauf von Opening bis Endgame" width="48%">
-  <img src="DB_Legends/In_Game/Assets/six-team-overview.svg" alt="Übersicht über sechs SPARKING und LEGEND LIMITED Teamvarianten" width="48%">
+  <img src="DB_Legends/In_Game/Assets/team-core.svg" alt="Dragon Ball Legends team core" width="48%">
+  <img src="DB_Legends/In_Game/Assets/rank-roadmap.svg" alt="Dragon Ball Legends rank roadmap" width="48%">
 </p>
 
-→ [Vollständiger Art Hub](DB_Legends/In_Game/Assets/ART_HUB.md)
+→ [DB Legends Art Hub](DB_Legends/In_Game/Assets/ART_HUB.md)
 
-### Referenz-Build
+## Rights
 
-**SPARKING + LEGEND LIMITED · keine ULTRA-Battle-Members**
+CRYOGAMEHELP is an unofficial fan/documentation project. Game names, characters, logos, screenshots and proprietary game assets remain with their respective rights holders. Original repository documentation and original SVG layouts are covered by `LICENSE.md` unless otherwise stated.
 
-`Android #17 & Golden Frieza` · `SSGSS Kaioken Goku` · `God of Destruction Toppo`
-
-Bench: `Goku & Final Form Frieza` · `Super Saiyan 2 Kefla` · `Jiren: Full Power`
-
-### Dokumentationsprinzip
-
-Live-Service-Fakten werden mit Datum und Quelle geführt. Strategische Bewertungen, Builds und Tier-Einschätzungen sind davon getrennt und ausdrücklich als Analyse gekennzeichnet.
-
-## English
-
-An unofficial visual **Dragon Ball Legends** guide repository covering team building, PvP strategy, equipment, illustrated books, manga-style documentation, and meta snapshots.
-
-### Core reference
-
-**SPARKING + LEGEND LIMITED · no ULTRA Battle Members**
-
-`Android #17 & Golden Frieza` · `SSGSS Kaioken Goku` · `God of Destruction Toppo`
-
-Bench: `Goku & Final Form Frieza` · `Super Saiyan 2 Kefla` · `Jiren: Full Power`
-
-### Visual system
-
-The repository now presents the hero, book cover, team core, six-team overview, match flow, rank roadmap, architecture, and publishing pipeline as one integrated visual language.
-
-→ [Open the full Art Hub](DB_Legends/In_Game/Assets/ART_HUB.md)
-
-### Navigation
-
-- [`DB_Legends/In_Game/`](DB_Legends/In_Game/) — in-game hub
-- [`PvP`](DB_Legends/In_Game/PvP/README.md) — teams and equipment
-- [`Bilderbuch`](DB_Legends/In_Game/Bilderbuch/README.md) — illustrated guides
-- [`Assets`](DB_Legends/In_Game/Assets/ART_HUB.md) — visual system
-- [`PROFILE.md`](PROFILE.md) — repository profile
-
-## Art & rights
-
-The project uses original diagrams, SVG layouts, and repository artwork for documentation and navigation. Dragon Ball Legends, Dragon Ball, character names, logos, screenshots, and game assets remain with their respective rights holders. This is an unofficial fan project.
-
-See [LICENSE.md](LICENSE.md) and [ART.md](ART.md).
-
-**Snapshot:** 7 September 2026
+**Architecture snapshot:** 7 September 2026
