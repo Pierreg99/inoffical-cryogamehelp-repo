@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" role="img" aria-labelledby="t d">
+<title id="t">DB Legends In-Game Guide Hub</title><desc id="d">Visual sci-fi banner for the unofficial CryoGameHelp DB Legends repository.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" x2="1"><stop stop-color="#050816"/><stop offset=".5" stop-color="#101942"/><stop offset="1" stop-color="#18051e"/></linearGradient>
+  <linearGradient id="beam" x1="0" x2="1"><stop stop-color="#36a8ff"/><stop offset=".5" stop-color="#9b5cff"/><stop offset="1" stop-color="#ffd24a"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" fill="none" stroke="#87a8ff" stroke-opacity=".09"/></pattern>
+</defs>
+<rect width="1600" height="520" fill="url(#bg)"/>
+<rect width="1600" height="520" fill="url(#grid)"/>
+<path d="M0 420 C300 280 510 470 780 310 S1260 120 1600 250" fill="none" stroke="url(#beam)" stroke-width="10" opacity=".9" filter="url(#glow)"/>
+<circle cx="250" cy="250" r="140" fill="#2b8dff" opacity=".12"/><circle cx="1350" cy="230" r="170" fill="#be54ff" opacity=".12"/>
+<g font-family="Arial, Helvetica, sans-serif" fill="#fff">
+  <text x="80" y="88" font-size="24" letter-spacing="5" fill="#74c7ff">INOFFICIAL CRYOGAMEHELP REPO</text>
+  <text x="80" y="175" font-size="64" font-weight="800">DB LEGENDS</text>
+  <text x="80" y="232" font-size="34" fill="#d8e7ff">IN-GAME GUIDE HUB · PvP · BUILDS · ART · BOOKS</text>
+  <text x="80" y="300" font-size="23" fill="#a8b9db">DEUTSCH · ENGLISH · META SNAPSHOTS · STRATEGY</text>
+  <text x="80" y="382" font-size="22" fill="#ffe38a">SPARKING + LEGEND LIMITED</text>
+</g>
+<g transform="translate(1050 105)">
+ <rect x="0" y="0" width="430" height="270" rx="28" fill="#0c1230" stroke="#65bfff" stroke-width="3"/>
+ <text x="30" y="52" font-family="Arial" font-size="24" font-weight="700" fill="#fff">GUIDE SYSTEM</text>
+ <g font-family="Arial" font-size="20" fill="#d9e6ff">
+  <text x="32" y="92">◆ Teams &amp; Builds</text><text x="32" y="132">◆ Equipment Presets</text><text x="32" y="172">◆ PvP Strategy</text><text x="32" y="212">◆ Bilderbuch / Manga</text><text x="32" y="252">◆ PDF / EPUB</text>
+ </g>
+</g>
+<g fill="#fff" opacity=".8"><circle cx="960" cy="70" r="3"/><circle cx="1000" cy="455" r="4"/><circle cx="1520" cy="90" r="3"/><circle cx="720" cy="55" r="2"/></g>
+</svg>
