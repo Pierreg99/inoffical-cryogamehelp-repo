@@ -1,6 +1,6 @@
 # Pokémon Trading Card Game Pocket
 
-Officially documented mobile Pokémon TCG experience focused on collecting and streamlined battles. The official game page describes 20-card decks, Wonder Pick, Auto-Battle, Auto-Build and Rental Decks; it is available on iOS and Android. citeturn810788search2turn810788search0
+Official mobile Pokémon TCG experience focused on collecting and streamlined battles. The official game page describes 20-card decks, Wonder Pick, Auto-Battle, Auto-Build and Rental Decks; it is available on iOS and Android.
 
 ## Module scope
 
@@ -14,7 +14,7 @@ Officially documented mobile Pokémon TCG experience focused on collecting and s
 
 ## Current documentation anchors
 
-The official Pokémon site published the Paradox Drive expansion for 27 May 2026 and announced further October 2026 additions including dual-type cards. citeturn810788search17turn810788search13
+The official Pokémon site published the Paradox Drive expansion for 27 May 2026 and announced further October 2026 additions including dual-type cards.
 
 ## Navigation
 
