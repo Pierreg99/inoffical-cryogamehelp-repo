@@ -62,4 +62,4 @@ Every integrated image uses descriptive `alt` text. Visuals supplement the surro
 
 ## Rights
 
-These SVGs are original repository documentation artwork. They are not official game assets and do not replace official Dragon Ball Legends artwork. Character names, logos, screenshots, and game assets remain with their respective rights holders. See `../../../../LICENSE.md` and `../../../..//ART.md` for project rights guidance.
+These SVGs are original repository documentation artwork. They are not official game assets and do not replace official Dragon Ball Legends artwork. Character names, logos, screenshots, and game assets remain with their respective rights holders. See `../../../LICENSE.md` and `../../../ART.md` for project rights guidance.
