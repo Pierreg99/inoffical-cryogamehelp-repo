@@ -2,6 +2,10 @@
 
 A modular gaming knowledge base for guides, builds, decks, teams, PvP/PvE strategy, collection systems, events, progression, assets, reports, and visual documentation.
 
+## Interactive dashboard
+
+Open the [CRYOGAMEHELP Interactive Hub](../docs/) for game filters, visual cards, Team & Deck Builder, search, stat previews, guide modals and direct module navigation.
+
 ## Supported game modules
 
 | Game | Module | Core documentation |
@@ -21,7 +25,7 @@ Every game follows the same documentation layers:
 4. **Meta** — dated snapshots, usage/evidence, strategic evaluation.
 5. **Progression** — ranks, collections, resources and milestones.
 6. **Events** — time-limited activities and rewards.
-7. **Assets** — original diagrams, covers and game-specific visual systems.
+7. **Assets** — original diagrams, covers, dashboards and game-specific visual systems.
 8. **Reports** — DE/EN research and change history.
 
 ## Shared quality model
@@ -39,4 +43,4 @@ Live-service claims must carry an explicit date. Strategic judgement is labeled 
 
 ## Adding another game
 
-Copy `GAME_MODULE_TEMPLATE.md`, create `GAMES/<Game_Name>/`, then add DE/EN landing pages, guides, build/meta sections, source links and a visual identity.
+Copy `GAME_MODULE_TEMPLATE.md`, create `GAMES/<Game_Name>/`, then add DE/EN landing pages, guides, build/meta sections, source links, data fields and a visual identity. Register the module in the Universal Hub and Builder data model.
