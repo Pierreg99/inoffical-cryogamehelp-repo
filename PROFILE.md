@@ -1,58 +1,52 @@
 # Repository Profile · DB Legends
 
 <p align="center">
-  <img src="DB_Legends/In_Game/Assets/repo-hero.svg" alt="Visuelle Übersicht des DB Legends In-Game Guide Hubs" width="100%">
+  <img src="DB_Legends/In_Game/Assets/repo-hero-github.svg" alt="DB Legends In-Game Guide Hub" width="100%">
 </p>
 
 ## DE · Profil
 
 **Projekt:** Inoffizieller DB Legends In-Game Guide Hub  
 **Schwerpunkt:** SPARKING + LEGEND LIMITED PvP · Platinum → Diamond  
-**Dokumentation:** Team-Builds · Equipment · Bilderbuch · Meta-Snapshots · Visuals
+**Dokumentation:** Teams · Equipment · Bilderbuch · Meta-Snapshots · Visual Arts
 
 ### Kernteam
 
-```text
-Android #17 & Golden Frieza   →   SSGSS Kaioken Goku   →   God of Destruction Toppo
-     Leader / Control                  Carry                    Tank / Disruption
-          BLU/GRN                        PUR                           RED
-```
+`Android #17 & Golden Frieza` → `SSGSS Kaioken Goku` → `God of Destruction Toppo`
 
-### Dokumentationsqualität
+### Projektstruktur
 
-- klare Trennung von **Fakten** und **strategischer Bewertung**
-- zeitgestempelter Live-Service-Kontext
-- deutsche und englische Reports
-- visuelle SVG-Navigation ohne externe CDN-Abhängigkeiten
-- Equipment-Konfigurationen für Burst, Balanced und Fortress
+<p align="center"><img src="DB_Legends/In_Game/Assets/repo-architecture.svg" alt="Visualisierte Repository-Architektur" width="100%"></p>
 
-### Visuelle Navigation
+### Qualitätsprinzipien
 
-<p align="center">
-  <img src="DB_Legends/In_Game/Assets/team-core.svg" alt="Diagramm des empfohlenen Team-Cores" width="48%">
-  <img src="DB_Legends/In_Game/Assets/meta-flow.svg" alt="Diagramm des PvP-Match-Flows von Opening bis Endgame" width="48%">
-</p>
+- Fakten und strategische Bewertung getrennt
+- Live-Service-Snapshots datiert
+- DE/EN Dokumentation
+- Visual-first Navigation
+- SVG-first für reproduzierbare Diagramme
+- keine Behauptung offizieller Zugehörigkeit
 
 ## EN · Profile
 
 **Project:** Unofficial DB Legends In-Game Guide Hub  
 **Focus:** SPARKING + LEGEND LIMITED PvP · Platinum → Diamond  
-**Documentation:** Team builds · Equipment · Picture book · Meta snapshots · Visuals
+**Documentation:** teams · equipment · illustrated books · meta snapshots · visual art
 
-### Core philosophy
+### Content pipeline
 
-The guide treats current meta information as a **time-dependent snapshot** and keeps it separate from strategic judgement. It is designed for quick navigation, reproducible build decisions, and readable documentation.
+<p align="center"><img src="DB_Legends/In_Game/Assets/pipeline.svg" alt="Guide workflow from research to publication" width="100%"></p>
 
 ### Repository map
 
-- `DB_Legends/In_Game/` — in-game documentation hub
-- `DB_Legends/In_Game/PvP/` — team and equipment guides
-- `DB_Legends/In_Game/Bilderbuch/` — German picture-book / manga chapters
-- `DB_Legends/In_Game/Assets/` — accessible SVG visual system
-- `reports/` — detailed DE/EN research reports
+- `DB_Legends/In_Game/` — guide hub
+- `DB_Legends/In_Game/PvP/` — team and equipment research
+- `DB_Legends/In_Game/Bilderbuch/` — illustrated book chapters
+- `DB_Legends/In_Game/Assets/` — visual documentation art
+- `reports/` — detailed DE/EN reports
 
-## Maintainer notes
+## Rights
 
-This profile page is a repository-facing project overview, not a GitHub personal profile README. GitHub personal profile READMEs require a public repository matching the username. citehttps://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme
+This is a fan-created project. Dragon Ball Legends names, characters, logos, screenshots, and game assets remain property of their respective rights holders. See `LICENSE.md`.
 
 **Snapshot:** 7 September 2026
