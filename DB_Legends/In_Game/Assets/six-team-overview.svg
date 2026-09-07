@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+<defs>
+ <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#080b18"/><stop offset="1" stop-color="#141a35"/></linearGradient>
+ <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1400" height="900" fill="url(#bg)"/>
+<text x="70" y="80" fill="#fff" font-family="sans-serif" font-size="42" font-weight="800">DB LEGENDS — 6 SP/LL PVP TEAMS</text>
+<text x="70" y="120" fill="#a7b4ff" font-family="sans-serif" font-size="20">Platinum → Diamond • Research snapshot: 07.09.2026 • No ULTRA Battle Members</text>
+
+<g font-family="sans-serif">
+ <rect x="60" y="165" width="400" height="210" rx="24" fill="#111c35" stroke="#57a9ff" stroke-width="3"/>
+ <text x="85" y="205" fill="#57a9ff" font-size="24" font-weight="700">TEAM 01 • S+</text>
+ <text x="85" y="245" fill="#fff" font-size="22" font-weight="700">17/GF + Kaioken + Toppo</text>
+ <text x="85" y="280" fill="#cbd4ef" font-size="17">Control • Carry • Defense</text>
+ <text x="85" y="315" fill="#cbd4ef" font-size="17">Universe Rep • Core benchmark</text>
+ <text x="85" y="350" fill="#7dffac" font-size="17" font-weight="700">S+ • 10/10 synergy</text>
+
+ <rect x="500" y="165" width="400" height="210" rx="24" fill="#111c35" stroke="#ff63bc" stroke-width="3"/>
+ <text x="525" y="205" fill="#ff63bc" font-size="24" font-weight="700">TEAM 02 • S</text>
+ <text x="525" y="245" fill="#fff" font-size="22" font-weight="700">Trunks/Gohan + Pan + Flex</text>
+ <text x="525" y="280" fill="#cbd4ef" font-size="17">Switch pressure • Support</text>
+ <text x="525" y="315" fill="#cbd4ef" font-size="17">Hybrid Saiyan • Future</text>
+ <text x="525" y="350" fill="#7dffac" font-size="17" font-weight="700">S • 9.3/10 synergy</text>
+
+ <rect x="940" y="165" width="400" height="210" rx="24" fill="#111c35" stroke="#c58cff" stroke-width="3"/>
+ <text x="965" y="205" fill="#c58cff" font-size="24" font-weight="700">TEAM 03 • S</text>
+ <text x="965" y="245" fill="#fff" font-size="22" font-weight="700">Shallet + Kaioken + God Ki</text>
+ <text x="965" y="280" fill="#cbd4ef" font-size="17">Endurance • Burst • Utility</text>
+ <text x="965" y="315" fill="#cbd4ef" font-size="17">God Ki • Fusion Warrior</text>
+ <text x="965" y="350" fill="#7dffac" font-size="17" font-weight="700">S • 9.5/10 synergy</text>
+
+ <rect x="60" y="420" width="400" height="210" rx="24" fill="#111c35" stroke="#4dc9ff" stroke-width="3"/>
+ <text x="85" y="460" fill="#4dc9ff" font-size="24" font-weight="700">TEAM 04 • A+</text>
+ <text x="85" y="500" fill="#fff" font-size="22" font-weight="700">Goku/Bardock + Kaioken</text>
+ <text x="85" y="535" fill="#cbd4ef" font-size="17">Switch anchor • Finisher</text>
+ <text x="85" y="570" fill="#cbd4ef" font-size="17">Saiyan • Son Family</text>
+ <text x="85" y="605" fill="#7dffac" font-size="17" font-weight="700">A+ • flexible</text>
+
+ <rect x="500" y="420" width="400" height="210" rx="24" fill="#111c35" stroke="#ff8c62" stroke-width="3"/>
+ <text x="525" y="460" fill="#ff8c62" font-size="24" font-weight="700">TEAM 05 • A+</text>
+ <text x="525" y="500" fill="#fff" font-size="22" font-weight="700">Trunks/Gohan + Future + Pan</text>
+ <text x="525" y="535" fill="#cbd4ef" font-size="17">Control • Hand disruption</text>
+ <text x="525" y="570" fill="#cbd4ef" font-size="17">Hybrid/Future coverage</text>
+ <text x="525" y="605" fill="#7dffac" font-size="17" font-weight="700">A+ • control-oriented</text>
+
+ <rect x="940" y="420" width="400" height="210" rx="24" fill="#111c35" stroke="#ffd05c" stroke-width="3"/>
+ <text x="965" y="460" fill="#ffd05c" font-size="24" font-weight="700">TEAM 06 • A</text>
+ <text x="965" y="500" fill="#fff" font-size="22" font-weight="700">17/GF + Shallet + Toppo</text>
+ <text x="965" y="535" fill="#cbd4ef" font-size="17">Defense • Safe trades • Utility</text>
+ <text x="965" y="570" fill="#cbd4ef" font-size="17">Universe Rep hybrid</text>
+ <text x="965" y="605" fill="#7dffac" font-size="17" font-weight="700">A • defensive variant</text>
+</g>
+
+<rect x="60" y="690" width="1280" height="145" rx="24" fill="#0b1022" stroke="#4b5f91"/>
+<text x="90" y="735" fill="#fff" font-family="sans-serif" font-size="23" font-weight="700">Bench-Prinzip</text>
+<text x="90" y="770" fill="#bfc9e7" font-family="sans-serif" font-size="18">Z-Ability, Zenkai-Level, Sterne und Equipment immer an den eigenen Account anpassen.</text>
+<text x="90" y="800" fill="#bfc9e7" font-family="sans-serif" font-size="18">Featured-Tier ≠ Usage-Tier. Meta-Bewertungen sind zeitabhängig und werden nach Tier-Reset/Patch neu geprüft.</text>
+</svg>
