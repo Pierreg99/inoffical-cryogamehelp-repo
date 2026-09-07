@@ -2,7 +2,7 @@
 
 Digital Pokémon TCG module for deck construction, card legality, ladder/competitive play, practice, collection management and strategic analysis.
 
-Pokémon Support maintains a dedicated TCG Live support section and states that the app is available across iOS, Android, PC and Mac. citeturn810788search15turn810788search18
+Pokémon Support maintains a dedicated TCG Live support section. The official support documentation states that the app is available across iOS, Android, PC and Mac.
 
 ## Module scope
 
