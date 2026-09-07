@@ -1,52 +1,45 @@
-# Repository Profile · DB Legends
+# CRYOGAMEHELP · Repository Profile
 
-<p align="center">
-  <img src="DB_Legends/In_Game/Assets/repo-hero-github.svg" alt="DB Legends In-Game Guide Hub" width="100%">
-</p>
+<p align="center"><img src="GAMES/Assets/universal-game-hub.svg" alt="Universal multi-game CRYOGAMEHELP architecture" width="100%"></p>
 
-## DE · Profil
+## Projektidentität / Project identity
 
-**Projekt:** Inoffizieller DB Legends In-Game Guide Hub  
-**Schwerpunkt:** SPARKING + LEGEND LIMITED PvP · Platinum → Diamond  
-**Dokumentation:** Teams · Equipment · Bilderbuch · Meta-Snapshots · Visual Arts
+**CRYOGAMEHELP** is a modular, unofficial gaming knowledge repository. It standardizes research and documentation across multiple live-service and competitive games without forcing every game into the same strategy model.
 
-### Kernteam
+## Active game modules
 
-`Android #17 & Golden Frieza` → `SSGSS Kaioken Goku` → `God of Destruction Toppo`
+- `DB_Legends/` — Dragon Ball Legends PvP, teams, equipment, Bilderbuch and meta research
+- `GAMES/Pokemon_TCG_Pocket/` — collection, 20-card decks, battles and expansions
+- `GAMES/Pokemon_TCG_Live/` — deck building, legality, ladder and competitive strategy
+- `GAMES/Pokemon_GO/` — catching, raids, GO Battle League, events and progression
 
-### Projektstruktur
+## Universal content pipeline
 
-<p align="center"><img src="DB_Legends/In_Game/Assets/repo-architecture.svg" alt="Visualisierte Repository-Architektur" width="100%"></p>
+<p align="center"><img src="DB_Legends/In_Game/Assets/pipeline.svg" alt="Research, build, visualize and publish documentation pipeline" width="100%"></p>
 
-### Qualitätsprinzipien
+`FACTS → SOURCES → ANALYSIS → BUILD → TEST → UPDATE`
 
-- Fakten und strategische Bewertung getrennt
-- Live-Service-Snapshots datiert
-- DE/EN Dokumentation
-- Visual-first Navigation
-- SVG-first für reproduzierbare Diagramme
-- keine Behauptung offizieller Zugehörigkeit
+## Universal documentation layers
 
-## EN · Profile
+`Overview → Guides → Builds → Meta → Progression → Events → Assets → Reports`
 
-**Project:** Unofficial DB Legends In-Game Guide Hub  
-**Focus:** SPARKING + LEGEND LIMITED PvP · Platinum → Diamond  
-**Documentation:** teams · equipment · illustrated books · meta snapshots · visual art
+Each game module keeps its own mechanics, terminology and evidence while sharing the repository-level structure, quality controls, DE/EN navigation and visual documentation standards.
 
-### Content pipeline
+## Quality principles
 
-<p align="center"><img src="DB_Legends/In_Game/Assets/pipeline.svg" alt="Guide workflow from research to publication" width="100%"></p>
+- Source-backed facts separated from strategic judgement.
+- Time-sensitive information carries a snapshot date.
+- DE/EN entry points for major modules.
+- Original SVG diagrams for navigation and explanation.
+- Accessibility through descriptive alternative text and non-image-only information.
+- No claim of official affiliation.
 
-### Repository map
+## Growth model
 
-- `DB_Legends/In_Game/` — guide hub
-- `DB_Legends/In_Game/PvP/` — team and equipment research
-- `DB_Legends/In_Game/Bilderbuch/` — illustrated book chapters
-- `DB_Legends/In_Game/Assets/` — visual documentation art
-- `reports/` — detailed DE/EN reports
+The architecture is intentionally expandable: new games can be added through `GAMES/GAME_MODULE_TEMPLATE.md` without restructuring existing modules.
 
 ## Rights
 
-This is a fan-created project. Dragon Ball Legends names, characters, logos, screenshots, and game assets remain property of their respective rights holders. See `LICENSE.md`.
+This is an unofficial fan/documentation project. Game names, characters, logos, screenshots and proprietary assets remain with their respective rights holders. Repository-authored documentation and original SVG layouts follow `LICENSE.md` unless stated otherwise.
 
-**Snapshot:** 7 September 2026
+**Architecture snapshot:** 7 September 2026
