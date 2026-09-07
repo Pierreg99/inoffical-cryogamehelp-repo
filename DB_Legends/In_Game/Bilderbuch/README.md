@@ -1,8 +1,21 @@
 # DB Legends — In-Game Bilderbuch
 
+<p align="center">
+  <img src="../Assets/book-cover.svg" alt="Bilderbuch cover for the DB Legends visual guide" width="72%">
+</p>
+
 ## Das perfekte SPARKING + LEGEND LIMITED Team
 
 Deutsche Bilderbuch-/Manga-Dokumentation für die Platinum-/Diamond-PvP-Analyse.
+
+### Visuelle Kapitel-Navigation
+
+<p align="center">
+  <img src="../Assets/team-core.svg" alt="Visualisiertes Team-Core" width="48%">
+  <img src="../Assets/six-team-overview.svg" alt="Sechs visuelle Teamvarianten" width="48%">
+</p>
+
+→ [Art Hub](../Assets/ART_HUB.md) · [Visual Assets](../Assets/README.md)
 
 ### Team-Core
 
@@ -25,6 +38,7 @@ Deutsche Bilderbuch-/Manga-Dokumentation für die Platinum-/Diamond-PvP-Analyse.
 - Druckfertige A4-Fassung
 - EPUB-Ausgaben
 - Montage / Cover-Art
+- Repository-native SVG-Cover unter `../Assets/book-cover.svg`
 
 ### Dokumentationsprinzip
 
