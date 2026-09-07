@@ -4,7 +4,7 @@
 
 Deckbau, Kartenlegalität, Ladder/Competitive Play, Interaktionen, Crafting, Rotation, Sammlung und Turniervorbereitung.
 
-Pokémon Support führt einen eigenen TCG-Live-Bereich; die offizielle Supportdokumentation nennt iOS, Android, PC und Mac als Plattformen. citeturn810788search15turn810788search18
+Pokémon Support führt einen eigenen TCG-Live-Bereich; die offizielle Supportdokumentation nennt iOS, Android, PC und Mac als Plattformen.
 
 ## Bereiche
 
@@ -16,3 +16,7 @@ Pokémon Support führt einen eigenen TCG-Live-Bereich; die offizielle Supportdo
 - Reports & Visual Decklists
 
 → [English](README_EN.md) · [Universal Game Hub](../README_DE.md)
+
+### Offizielle Quelle
+
+https://support.pokemon.com/hc/en-us/categories/360005098131
