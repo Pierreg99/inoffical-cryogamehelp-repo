@@ -1,0 +1,13 @@
+{
+  "name": "cryogamehelp",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Multilingual, independent game help for Dragon Ball Legends and Pokémon",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "check": "node --check docs/app.js && node --check docs/data.js && node --check docs/i18n.js",
+    "test": "playwright test"
+  },
+  "devDependencies": { "@playwright/test": "^1.58.0" }
+}
