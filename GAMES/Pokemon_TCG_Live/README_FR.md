@@ -1,6 +1,6 @@
 # Pokémon TCG Live · Français
 
-[Ouvrir la bibliothèque en français →](https://cryogamehelp.pierrepriv99.chatgpt.site/?lang=fr#games)
+[Ouvrir la bibliothèque en français →](https://pierreg99.github.io/inoffical-cryogamehelp-repo/?lang=fr#games)
 
 Deux guides présentent les bases d’un deck régulier et la gestion des échanges de cartes. Un deck compte 60 cartes. La plupart sont limitées à quatre exemplaires par nom ; les Énergies de base font exception et certaines cartes ont des restrictions supplémentaires.
 

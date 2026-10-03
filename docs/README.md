@@ -1,8 +1,8 @@
 # CRYOGAMEHELP website
 
-The production website is the self-contained `docs/` directory, published with Sites:
+The production website is the self-contained `docs/` directory, published with GitHub Pages:
 
-**https://cryogamehelp.pierrepriv99.chatgpt.site/**
+**https://pierreg99.github.io/inoffical-cryogamehelp-repo/**
 
 - Complete English, German, and French interfaces and eight practical guides.
 - Four game modules with real publisher artwork, screenshots, and source links.
@@ -43,8 +43,8 @@ The planner is a planning aid, not a complete database or legality checker. Exac
 
 The GitHub Pages workflow checks and tests the website, then publishes `docs/` after every push to `main`. No repository variable or build step is required.
 
-One-time setup: open [repository Pages settings](https://github.com/Pierreg99/inoffical-cryogamehelp-repo/settings/pages), set **Build and deployment → Source → GitHub Actions**, and save. The connected GitHub app can update source and workflows but cannot activate Pages itself (`403 Resource not accessible by integration`). After enabling Pages, run **Test and deploy CRYOGAMEHELP** from the Actions tab using **Run workflow**.
+For a new repository, select **GitHub Actions** as the source in [Pages settings](https://github.com/Pierreg99/inoffical-cryogamehelp-repo/settings/pages). This repository already has Pages enabled. You can also publish manually through **Test and deploy CRYOGAMEHELP → Run workflow**.
 
-GitHub Pages address after a successful deployment: **https://pierreg99.github.io/inoffical-cryogamehelp-repo/**. The existing public Sites publication remains at the URL above until this migration completes.
+The workflow publishes the self-contained `docs/` directory at the repository’s root Pages URL. A root `index.html` and `.nojekyll` also support the existing branch-based Pages setting by forwarding to `docs/` while preserving language and section links.
 
 `Website/index.html` redirects the older duplicate entrypoint to the maintained `docs/` website.

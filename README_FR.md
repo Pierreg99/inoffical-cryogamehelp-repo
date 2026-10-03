@@ -2,7 +2,7 @@
 
 **Jouez mieux. Allez plus loin.**
 
-[Ouvrir les guides de jeux en français →](https://cryogamehelp.pierrepriv99.chatgpt.site/?lang=fr)
+[Ouvrir les guides de jeux en français →](https://pierreg99.github.io/inoffical-cryogamehelp-repo/?lang=fr)
 
 Un portail de fans adapté au mobile pour Dragon Ball Legends, Pokémon TCG Pocket, Pokémon TCG Live et Pokémon GO, avec de véritables illustrations et captures des éditeurs.
 
