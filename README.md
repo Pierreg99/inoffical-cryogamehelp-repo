@@ -27,7 +27,7 @@ npm ci
 npm start
 ```
 
-Open **http://localhost:4173**. For content, translation, asset, and test instructions, see [the website README](docs/README.md). The live website is hosted with Sites. GitHub Actions tests desktop and mobile behavior; GitHub Pages is available as an optional additional deployment target.
+Open **http://localhost:4173**. For content, translation, asset, and test instructions, see [the website README](docs/README.md). The current live website is hosted with Sites. GitHub Actions checks the responsive layouts and deploys to GitHub Pages on `main`; the repository owner must enable Pages once with **GitHub Actions** as its source. See [deployment setup](docs/README.md#deployment).
 
 Contributions are welcome: improve a guide, add a source, correct a translation, or report a problem through [GitHub Issues](https://github.com/Pierreg99/inoffical-cryogamehelp-repo/issues).
 
