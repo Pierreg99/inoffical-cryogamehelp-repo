@@ -1,44 +1,18 @@
-# CRYOGAMEHELP · Universal Game Hub
+# CRYOGAMEHELP · English
 
-<p align="center"><img src="GAMES/Assets/universal-game-hub.svg" alt="CRYOGAMEHELP Universal Game Hub" width="100%"></p>
+**Play smarter. Go further.**
 
-<p align="center"><strong>Games · Guides · Builds · Decks · Meta · Progression · Events · Visuals</strong></p>
+[Open the game help website in English →](https://cryogamehelp.pierrepriv99.chatgpt.site/?lang=en)
 
-## English entry point
+A complete, responsive fan-made hub for Dragon Ball Legends, Pokémon TCG Pocket, Pokémon TCG Live, and Pokémon GO, with genuine game artwork and publisher screenshots.
 
-CRYOGAMEHELP is now structured as a **universal gaming knowledge repository**. The established Dragon Ball Legends module remains intact while dedicated modules are added for Pokémon TCG Pocket, Pokémon TCG Live and Pokémon GO.
+- Eight practical guides: team cores, resources, Pocket decks and collections, Live deck building and crafting, GO raids and leagues.
+- Search and filters, guide bookmarks, and separate plans for each game.
+- Six-member teams and 20-/60-card deck targets, quantities, custom entries, and text export.
+- Automatic browser-local saving, light/dark themes, and English/German/French language switching.
 
-### Game Hub
+The planner organizes your ideas. Check exact card editions, legality, abilities, equipment, and current game rules before using a plan.
 
-| Game | Focus | Entry |
-|---|---|---|
-| **Dragon Ball Legends** | PvP · Teams · Equipment · Picture Book · Meta | [Module](DB_Legends/) |
-| **Pokémon TCG Pocket** | Collection · 20-card decks · Battles · Expansions | [Module](GAMES/Pokemon_TCG_Pocket/) |
-| **Pokémon TCG Live** | Deck building · Legality · Ladder · Strategy | [Module](GAMES/Pokemon_TCG_Live/) |
-| **Pokémon GO** | Catching · Raids · GO Battle League · Events | [Module](GAMES/Pokemon_GO/) |
+[Full project README](README.md) · [Development](docs/README.md) · [Deutsch](README_DE.md) · [Français](README_FR.md)
 
-### Shared architecture
-
-**Overview → Guides → Builds → Meta → Progression → Events → Assets → Reports**
-
-<p align="center"><img src="GAMES/Assets/universal-game-hub.svg" alt="Four game modules connected to shared guide, build, meta, progression, event and asset systems" width="100%"></p>
-
-### Quick access
-
-- [Universal Game Hub](GAMES/README_EN.md)
-- [Game Module Template](GAMES/GAME_MODULE_TEMPLATE.md)
-- [Dragon Ball Legends](DB_Legends/In_Game/README_EN.md)
-- [Pokémon TCG Pocket](GAMES/Pokemon_TCG_Pocket/README_EN.md)
-- [Pokémon TCG Live](GAMES/Pokemon_TCG_Live/README_EN.md)
-- [Pokémon GO](GAMES/Pokemon_GO/README_EN.md)
-- [Visual Art](ART.md)
-- [Profile](PROFILE_EN.md)
-- [License](LICENSE.md)
-
-## Documentation standard
-
-**FACTS → SOURCES → ANALYSIS → BUILD → TEST → UPDATE**
-
-Live-service information is dated and sourced. Strategic recommendations are labeled as analysis and are not presented as official rankings.
-
-**Architecture snapshot:** 7 September 2026
+Unofficial and unaffiliated. Game artwork and screenshots belong to their respective rights holders. [Sources](docs/assets/sources.json) · [License](LICENSE.md)

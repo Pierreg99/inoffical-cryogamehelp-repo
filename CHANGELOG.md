@@ -30,3 +30,12 @@ The complete Dragon Ball Legends In-Game documentation remains under `DB_Legends
 ## Quality rule
 
 Live-service facts remain dated and source-backed. Strategic recommendations are labeled as analysis rather than official ranking.
+
+## 2.0 — Multilingual website redesign (3 October 2026)
+
+- Replaced the prototype dashboard with a complete responsive game-help website.
+- Added English, German, and French UI and eight practical guides.
+- Added genuine official game artwork and publisher screenshots with a source manifest.
+- Repaired deployed asset and repository links; consolidated the older Website entrypoint.
+- Added persistent bookmarks and per-game team/deck plans, custom entries, copy limits, and export.
+- Added desktop/mobile browser checks before GitHub Pages deployment.
