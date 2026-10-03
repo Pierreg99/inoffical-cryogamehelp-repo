@@ -88,6 +88,8 @@ test('all artwork loads, no browser errors, and layout fits viewport',async({pag
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/?lang=de');
  await page.locator('#news').scrollIntoViewIfNeeded();
+ // Check every asset, including intentionally off-screen lazy images.
+ await page.evaluate(()=>document.querySelectorAll('img').forEach(img=>img.loading='eager'));
  await page.waitForFunction(()=>[...document.images].every(i=>i.complete&&i.naturalWidth>0));
  expect(errors).toEqual([]);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);

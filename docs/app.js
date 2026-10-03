@@ -6,6 +6,7 @@ const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;',
 const icons = {
  bolt:'<path d="m13 2-9 11h7l-1 9 10-12h-7z"/>',home:'<path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-7h6v7"/>',games:'<rect x="3" y="5" width="18" height="14" rx="4"/><path d="M7 12h6m-3-3v6m7-4h.01m2 3h.01"/>',book:'<path d="M12 5v16m0-16C8 2 3 3 3 3v16s5-1 9 2c4-3 9-2 9-2V3s-5-1-9 2Z"/>',grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',bookmark:'<path d="M6 3h12v19l-6-4-6 4z"/>',search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',external:'<path d="M14 3h7v7m0-7L10 14M10 3H3v18h18v-7"/>',moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1 1m12 12 1 1M5 19l1-1M18 6l1-1"/>',menu:'<path d="M3 6h18M3 12h18M3 18h18"/>',close:'<path d="m5 5 14 14M19 5 5 19"/>',plus:'<path d="M12 5v14M5 12h14"/>',minus:'<path d="M5 12h14"/>',download:'<path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/>',check:'<path d="m4 12 5 5L20 6"/>',globe:'<circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/>',github:'<path d="M9 19c-4 1-4-2-6-2m15 5v-4c0-1-.3-1.6-.8-2 3-.3 5.8-1.5 5.8-6a5 5 0 0 0-1.5-3.5c.2-.8.2-2-.3-3.5 0 0-1.2-.4-3.7 1.3a13 13 0 0 0-7 0C8 2.6 6.8 3 6.8 3c-.5 1.5-.5 2.7-.3 3.5A5 5 0 0 0 5 10c0 4.5 2.8 5.7 5.8 6-.5.4-.8 1-.8 2v4"/>',shield:'<path d="m12 3 9 4v5c0 5-9 10-9 10S3 17 3 12V7z"/><path d="m8 12 3 3 5-6"/>'
 };
+const mobileNavigation = matchMedia('(max-width: 1023px)');
 const icon = (name, cls = '') => `<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name] || icons.grid}</svg>`;
 let storageOK = true;
 function read(key, fallback) { try { return JSON.parse(localStorage.getItem('cryo-'+key)) ?? fallback; } catch { return fallback; } }
@@ -37,7 +38,7 @@ const currentGame = () => games.find(g => g.id === activeGame);
 const entryName = entry => entry.names?.[lang] || entry.name;
 const image = (name, alt = '', cls = '', eager = false) => `<img class="${cls}" src="assets/games/${name}.webp" alt="${esc(alt)}" ${eager?'fetchpriority="high"':'loading="lazy"'} decoding="async">`;
 const repoModule = game => `${REPO}/blob/main/${game.module}/README_${lang==='de'?'DE':lang==='fr'?'FR':'EN'}.md`;
-const link = (url, label, cls = '') => `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${label}${icon('external')}</a>`;
+const link = (url, label, cls = '') => `<a class="${cls}" ${cls==='github-button'?`aria-label="${t('viewRepo')}"`:''} href="${esc(url)}" target="_blank" rel="noopener noreferrer">${label}${icon('external')}</a>`;
 
 function render() {
  document.documentElement.lang = lang;
@@ -48,6 +49,7 @@ function render() {
  <a class="skip-link" href="#main">${t('skip')}</a>
  <div class="nav-scrim" data-action="menu-close"></div>
  <aside class="sidebar" id="sidebar">
+  <button class="icon-button sidebar-close" data-action="menu-close" aria-label="${t('close')}">${icon('close')}</button>
   <a class="brand" href="#overview"><span class="brand-logo">${icon('bolt')}</span><span>CRYO<span class="brand-green">GAMEHELP</span><small>${t('tagline')}</small></span></a>
   <nav aria-label="${t('navLabel')}"><p class="nav-label">${t('explore')}</p>
    ${[['overview','home','overview'],['games','games','games'],['guides','book','guides']].map(([id,i,label])=>`<a class="nav-link ${id==='overview'?'active':''}" href="#${id}" data-nav="${id}">${icon(i)}<span>${t(label)}</span>${id==='games'?'<small>04</small>':''}</a>`).join('')}
@@ -77,8 +79,10 @@ function render() {
   <section class="section" id="news"><div class="section-head"><div><p class="eyebrow">${t('officialKicker')}</p><h2>${t('officialHeading')}</h2><p class="section-description">${t('officialText')}</p></div></div><div class="official-grid">${games.map(g=>link(g.official,`<span class="game-dot" style="--game-color:${g.color}"></span><span><strong>${g.name}</strong><small>${t('official')}</small></span>`,'official-link')).join('')}</div></section>
   <section class="contribute"><div class="contribute-mark">${icon('github')}</div><div><h2>${t('repoHeading')}</h2><p>${t('repoText')}</p></div>${link(REPO,t('contribute'),'button primary')}</section>
   <footer class="footer"><div><a class="footer-brand" href="#overview">CRYO<span>GAMEHELP</span></a><p>${t('footer')}</p></div><div class="footer-links"><button data-action="credits">${t('credits')}</button>${link(REPO+'/blob/main/LICENSE.md',t('license'))}<a href="#overview">${t('backTop')} ↑</a></div><small>${t('copyright')}</small></footer>
- </main></div><dialog id="detailDialog" aria-labelledby="dialogTitle"><button class="dialog-close icon-button" data-action="close" aria-label="${t('close')}">${icon('close')}</button><div id="dialogContent"></div></dialog><div class="toast" role="status" aria-live="polite" id="toast"></div>`;
+ </main></div><dialog id="detailDialog" aria-labelledby="dialogTitle"><div class="dialog-toolbar"><button class="dialog-close icon-button" data-action="close" aria-label="${t('close')}">${icon('close')}</button></div><div id="dialogContent"></div></dialog><div class="toast" role="status" aria-live="polite" id="toast"></div>`;
  renderGames(); renderGuides(); renderPlanner(); bind();
+ closeMenu(false);
+ $('#detailDialog').addEventListener('close',()=>document.body.classList.remove('dialog-open'));
  observer?.disconnect();
  observer = new IntersectionObserver(entries => {
   const visible = entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
@@ -101,7 +105,7 @@ function renderGuides() {
  $('#guidesHeading').textContent=t(savedOnly?'savedHeading':'guideHeading');
  $('#guideGrid').innerHTML = filtered.length ? filtered.map(g=>{
   const game = games.find(x=>x.id===g.game), saved=bookmarks.includes(g.id);
-  return `<article class="guide-card" style="--game-color:${game.color}"><button class="guide-image" data-guide="${g.id}" aria-label="${t('readGuide')}: ${esc(g[lang].title)}">${image(g.image,'')}<span class="guide-game">${game.name}</span></button><button class="bookmark-button ${saved?'is-saved':''}" data-save="${g.id}" aria-label="${t(saved?'unsaveGuide':'saveGuide')}: ${esc(g[lang].title)}" aria-pressed="${saved}">${icon('bookmark')}</button><div class="guide-copy"><div class="guide-meta"><span>${t(g.category)}</span><small>${g.minutes} ${t('minute')}</small></div><h3><button data-guide="${g.id}">${esc(g[lang].title)}</button></h3><p>${esc(g[lang].intro)}</p><button class="text-button" data-guide="${g.id}">${t('readGuide')}${icon('arrow')}</button></div></article>`;
+  return `<article class="guide-card" style="--game-color:${game.color}"><button class="guide-image ${['pocket-pikachu','pocket-charizard','live-battle'].includes(g.image)?'guide-image--portrait':''}" data-guide="${g.id}" aria-label="${t('readGuide')}: ${esc(g[lang].title)}">${image(g.image,'')}<span class="guide-game">${game.name}</span></button><button class="bookmark-button ${saved?'is-saved':''}" data-save="${g.id}" aria-label="${t(saved?'unsaveGuide':'saveGuide')}: ${esc(g[lang].title)}" aria-pressed="${saved}">${icon('bookmark')}</button><div class="guide-copy"><div class="guide-meta"><span>${t(g.category)}</span><small>${g.minutes} ${t('minute')}</small></div><h3><button data-guide="${g.id}">${esc(g[lang].title)}</button></h3><p>${esc(g[lang].intro)}</p><button class="text-button" data-guide="${g.id}">${t('readGuide')}${icon('arrow')}</button></div></article>`;
  }).join('') : `<div class="empty-state">${icon('bookmark')}<p>${t(savedOnly?'savedEmpty':'noGuides')}</p></div>`;
 }
 function renderPicker() {
@@ -140,7 +144,12 @@ function addEntry(entry) {
  if(same) same.qty++;else entries.push({...entry,qty:1});
  persistPlan();toast(t('added'));
 }
-function openDialog(html) {$('#dialogContent').innerHTML=html;$('#detailDialog').showModal();}
+function openDialog(html) {
+ $('#dialogContent').innerHTML=html;
+ document.body.classList.add('dialog-open');
+ $('#detailDialog').showModal();
+ $('#detailDialog').scrollTop=0;
+}
 function openGame(id) {
  const game=games.find(g=>g.id===id);
  openDialog(`<div class="dialog-game-art game-${game.id}" style="--game-color:${game.color}">${gameArtwork(game)}</div><div class="dialog-body"><p class="eyebrow">${t(game.id+'Label')}</p><h2 id="dialogTitle">${game.name}</h2><p>${t(game.id+'Desc')}</p><h3>${t('learn')}</h3><div class="dialog-guide-links">${guides.filter(g=>g.game===id).map(g=>`<button data-guide="${g.id}">${esc(g[lang].title)}${icon('arrow')}</button>`).join('')}</div><h3>${t('screenshots')}</h3><div class="screenshot-gallery">${game.gallery.map((name,i)=>`<a href="assets/games/${name}.webp" target="_blank" rel="noopener noreferrer" aria-label="${t('screenshots')}: ${game.name} ${i+1}">${image(name,game.name+' — '+t('screenshots'))}</a>`).join('')}</div><div class="dialog-actions"><button class="button primary" data-plan="${id}">${t('openBuilder')}${icon('arrow')}</button>${link(game.official,t('openOfficial'),'button secondary')}</div>${link(repoModule(game),t('openModule'),'source-link')}<p class="small-note">${t('sourceLanguage')}</p></div>`);
@@ -151,7 +160,24 @@ function openGuide(id) {
  openDialog(`<div class="dialog-body guide-detail"><p class="eyebrow">${game.name} · ${guide.minutes} ${t('minute')}</p><h2 id="dialogTitle">${esc(copy.title)}</h2><p class="dialog-intro">${esc(copy.intro)}</p><div class="guide-steps">${copy.steps.map(([title,body],i)=>`<section><span>0${i+1}</span><div><h3>${esc(title)}</h3><p>${esc(body)}</p></div></section>`).join('')}</div><div class="guide-source"><h4>${t('source')}</h4><p>${t('guideSource')}</p>${link(game.official,t('openOfficial'))}${link(repoModule(game),t('openModule'))}</div><div class="dialog-actions"><button class="button primary" data-plan="${game.id}">${t('openBuilder')}${icon('arrow')}</button><button class="button secondary" data-save="${guide.id}" aria-pressed="${bookmarks.includes(id)}">${icon('bookmark')}${t(bookmarks.includes(id)?'unsaveGuide':'saveGuide')}</button></div></div>`);
 }
 function toast(message) {clearTimeout(toastTimer);$('#toast').textContent=message;$('#toast').classList.add('visible');toastTimer=setTimeout(()=>$('#toast')?.classList.remove('visible'),2600);}
-function closeMenu() {document.body.classList.remove('menu-open');$('[data-action="menu"]')?.setAttribute('aria-expanded','false');}
+function closeMenu(restoreFocus = true) {
+ const wasOpen=document.body.classList.contains('menu-open');
+ document.body.classList.remove('menu-open');
+ $('.main-wrap').inert=false;
+ $('#sidebar').inert=mobileNavigation.matches;
+ $('#sidebar').setAttribute('aria-hidden',String(mobileNavigation.matches));
+ $('[data-action="menu"]')?.setAttribute('aria-expanded','false');
+ if(wasOpen&&restoreFocus&&mobileNavigation.matches)$('[data-action="menu"]').focus();
+}
+function openMenu() {
+ document.body.classList.add('menu-open');
+ $('#sidebar').inert=false;
+ $('#sidebar').setAttribute('aria-hidden','false');
+ $('.main-wrap').inert=true;
+ $('[data-action="menu"]').setAttribute('aria-expanded','true');
+ $('.sidebar-close').focus();
+}
+mobileNavigation.addEventListener('change',()=>closeMenu(false));
 function bind() {
  $('#language').addEventListener('change',e=>{lang=e.target.value;store('lang',lang);const url=new URL(location.href);url.searchParams.set('lang',lang);history.replaceState(null,'',url);render();});
  $('#globalSearch').addEventListener('input',e=>{query=e.target.value;renderGames();renderGuides();});
@@ -183,7 +209,8 @@ $('#app').addEventListener('click',e=>{
  if(el.dataset.increase) {addEntry(plans[activeGame].find(i=>i.id===el.dataset.increase));return;}
  if(el.dataset.remove) {const entries=plans[activeGame],item=entries.find(i=>i.id===el.dataset.remove);if(item){item.qty--;plans[activeGame]=entries.filter(i=>i.qty>0);persistPlan();toast(t('removed'));}return;}
  switch(el.dataset.action) {
-  case 'menu': document.body.classList.toggle('menu-open');el.setAttribute('aria-expanded',String(document.body.classList.contains('menu-open')));break;
+  case 'menu': openMenu();break;
+  case 'menu-close': closeMenu();break;
   case 'theme': theme=theme==='dark'?'light':'dark';store('theme',theme);document.documentElement.dataset.theme=theme;el.innerHTML=icon(theme==='dark'?'sun':'moon');break;
   case 'saved': savedOnly=true;renderGuides();closeMenu();break;
   case 'all-guides': savedOnly=false;query='';$('#globalSearch').value='';renderGames();renderGuides();break;
@@ -201,7 +228,14 @@ $('#app').addEventListener('click',e=>{
 document.addEventListener('click',e=>{if(e.target.classList.contains('nav-scrim'))closeMenu();});
 document.addEventListener('keydown',e=>{
  if(e.key==='Escape')closeMenu();
+ if(e.key==='Tab'&&document.body.classList.contains('menu-open')) {
+  const controls=[...$('#sidebar').querySelectorAll('a[href],button:not([disabled])')].filter(el=>el.getBoundingClientRect().height>0);
+  const first=controls[0],last=controls.at(-1);
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+ }
  if(e.key==='/'&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)&&!$('#detailDialog').open){e.preventDefault();$('#globalSearch').focus();}
 });
 render();
+if(location.hash)requestAnimationFrame(()=>document.getElementById(location.hash.slice(1))?.scrollIntoView());
 $('#app').addEventListener('click',e=>{if(e.target===$('#detailDialog')){const box=e.target.getBoundingClientRect();if(e.clientX<box.left||e.clientX>box.right||e.clientY<box.top||e.clientY>box.bottom)e.target.close();}});

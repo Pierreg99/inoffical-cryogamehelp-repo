@@ -27,7 +27,7 @@ npx playwright install chromium
 npm test
 ```
 
-The browser suite covers all languages, search/filter combinations, bookmarks, saved plans, copy/capacity limits, safe custom entry rendering, export, theme persistence, image loading, dialogs, and mobile overflow.
+The browser suite covers all languages, search/filter combinations, bookmarks, saved plans, copy/capacity limits, safe custom entry rendering, export, theme persistence, image loading, and dialogs. Layout regression checks cover seven viewport widths from 320 to 1440 pixels, 200% text enlargement, long custom names, readable text, non-overlapping hero content, sticky dialog controls, and keyboard navigation in the mobile drawer.
 
 ## Edit content
 
@@ -41,6 +41,10 @@ The planner is a planning aid, not a complete database or legality checker. Exac
 
 ## Deployment
 
-The live site is hosted with Sites. GitHub Pages is an optional additional target: enable Pages with **GitHub Actions** as its source, then set the repository variable `ENABLE_GITHUB_PAGES` to `true`. The workflow checks and tests the website before publishing `docs/`. Without that opt-in, the workflow runs tests only. The connected GitHub app cannot enable Pages on this repository.
+The GitHub Pages workflow checks and tests the website, then publishes `docs/` after every push to `main`. No repository variable or build step is required.
+
+One-time setup: open [repository Pages settings](https://github.com/Pierreg99/inoffical-cryogamehelp-repo/settings/pages), set **Build and deployment → Source → GitHub Actions**, and save. The connected GitHub app can update source and workflows but cannot activate Pages itself (`403 Resource not accessible by integration`). After enabling Pages, run **Test and deploy CRYOGAMEHELP** from the Actions tab using **Run workflow**.
+
+GitHub Pages address after a successful deployment: **https://pierreg99.github.io/inoffical-cryogamehelp-repo/**. The existing public Sites publication remains at the URL above until this migration completes.
 
 `Website/index.html` redirects the older duplicate entrypoint to the maintained `docs/` website.
