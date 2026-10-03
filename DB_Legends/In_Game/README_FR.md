@@ -1,6 +1,6 @@
 # Dragon Ball Legends · Français
 
-[Ouvrir la bibliothèque en français →](https://cryogamehelp.pierrepriv99.chatgpt.site/?lang=fr#games)
+[Ouvrir la bibliothèque en français →](https://pierreg99.github.io/inoffical-cryogamehelp-repo/?lang=fr#games)
 
 Deux guides expliquent les noyaux d’équipe et la gestion des ressources. Préparez trois combattants autour de tags compatibles et utilisez les trois places de banc pour les capacités Z adaptées.
 

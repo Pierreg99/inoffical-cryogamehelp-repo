@@ -2,7 +2,7 @@
 
 **Spiel smarter. Komm weiter.**
 
-[Die fertige Spielhilfe auf Deutsch öffnen →](https://cryogamehelp.pierrepriv99.chatgpt.site/?lang=de)
+[Die fertige Spielhilfe auf Deutsch öffnen →](https://pierreg99.github.io/inoffical-cryogamehelp-repo/?lang=de)
 
 Ein responsiver Fan-Hub für Dragon Ball Legends, Pokémon TCG Pocket, Pokémon TCG Live und Pokémon GO mit echten Spielgrafiken und Publisher-Screenshots.
 

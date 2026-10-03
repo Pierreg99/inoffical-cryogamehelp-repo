@@ -1,6 +1,6 @@
 # Pokémon TCG Pocket · Français
 
-[Ouvrir la bibliothèque en français →](https://cryogamehelp.pierrepriv99.chatgpt.site/?lang=fr#games)
+[Ouvrir la bibliothèque en français →](https://pierreg99.github.io/inoffical-cryogamehelp-repo/?lang=fr#games)
 
 Deux guides expliquent la construction d’un premier deck et la collecte ciblée. Un deck Pocket compte 20 cartes, avec deux exemplaires maximum par nom. L’Énergie vient de la zone Énergie.
 

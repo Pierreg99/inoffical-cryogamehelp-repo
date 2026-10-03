@@ -51,3 +51,5 @@ Live-service facts remain dated and source-backed. Strategic recommendations are
 - Added an accessible mobile drawer with focus containment and resize recovery, a scrollable sidebar, and sticky dialog close controls.
 - Enabled the Pages deployment job without an extra repository variable; documented the one-time owner setup.
 - Added browser layout regression checks across seven widths and all three languages.
+
+- GitHub Pages publication verified; repository links now point to the live Pages site, with a root entrypoint for branch-based Pages configurations.

@@ -1,6 +1,6 @@
 # Pokémon GO · Français
 
-[Ouvrir la bibliothèque en français →](https://cryogamehelp.pierrepriv99.chatgpt.site/?lang=fr#games)
+[Ouvrir la bibliothèque en français →](https://pierreg99.github.io/inoffical-cryogamehelp-repo/?lang=fr#games)
 
 La bibliothèque propose deux guides pratiques : préparer une équipe de raid et construire pour la Ligue Combat GO. Le planificateur permet de sauvegarder une équipe de raid de six Pokémon et de l’exporter.
 

@@ -1,8 +1,8 @@
-<p align="center"><a href="https://cryogamehelp.pierrepriv99.chatgpt.site/"><img src="docs/assets/games/legends-cover.webp" width="800" alt="Dragon Ball Legends — official game artwork"></a></p>
+<p align="center"><a href="https://pierreg99.github.io/inoffical-cryogamehelp-repo/"><img src="docs/assets/games/legends-cover.webp" width="800" alt="Dragon Ball Legends — official game artwork"></a></p>
 
 <h1 align="center">CRYOGAMEHELP</h1>
 <p align="center"><strong>Your next level starts here.</strong><br>Independent game guides, teams, decks, and strategies.</p>
-<p align="center"><a href="https://cryogamehelp.pierrepriv99.chatgpt.site/"><strong>OPEN THE GAME HELP WEBSITE →</strong></a></p>
+<p align="center"><a href="https://pierreg99.github.io/inoffical-cryogamehelp-repo/"><strong>OPEN THE GAME HELP WEBSITE →</strong></a></p>
 <p align="center"><a href="README_DE.md">Deutsch</a> · <a href="README_EN.md">English</a> · <a href="README_FR.md">Français</a> · <a href="docs/README.md">Website development</a> · <a href="LICENSE.md">License</a> · <a href="docs/assets/README.md">Image credits</a></p>
 
 ## Four games. One place to improve.
@@ -16,7 +16,7 @@
 
 ## Ready to use
 
-The [website](https://cryogamehelp.pierrepriv99.chatgpt.site/) includes a fully translated **English / German / French** interface, eight practical guides, authentic game images and screenshots, search, category filters, saved guides, and independent plans for each game.
+The [website](https://pierreg99.github.io/inoffical-cryogamehelp-repo/) includes a fully translated **English / German / French** interface, eight practical guides, authentic game images and screenshots, search, category filters, saved guides, and independent plans for each game.
 
 Build a six-member team or a 20-/60-card deck, add your own entries, edit quantities, and export the result. Plans and preferences stay in your browser on the current device. The planner helps organize ideas; exact card editions, format legality, abilities, and team synergy still need review in game.
 
@@ -27,7 +27,7 @@ npm ci
 npm start
 ```
 
-Open **http://localhost:4173**. For content, translation, asset, and test instructions, see [the website README](docs/README.md). The current live website is hosted with Sites. GitHub Actions checks the responsive layouts and deploys to GitHub Pages on `main`; the repository owner must enable Pages once with **GitHub Actions** as its source. See [deployment setup](docs/README.md#deployment).
+Open **http://localhost:4173**. For content, translation, asset, and test instructions, see [the website README](docs/README.md). The live website is hosted on GitHub Pages. GitHub Actions checks the responsive layouts and publishes `docs/` on every push to `main`. See [deployment details](docs/README.md#deployment).
 
 Contributions are welcome: improve a guide, add a source, correct a translation, or report a problem through [GitHub Issues](https://github.com/Pierreg99/inoffical-cryogamehelp-repo/issues).
 
