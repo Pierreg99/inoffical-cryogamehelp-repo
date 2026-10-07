@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="./assets/readme-banner.svg" alt="inoffical-cryogamehelp-repo" width="100%">
+
 # inoffical-cryogamehelp-repo
 
 <p><strong>Inoffizielle Spielhilfe für vier Spiele mit Guides und Lernmodulen an einem Ort.</strong></p>
@@ -15,10 +17,38 @@
 <p><a href="#schnellstart">Schnellstart</a> · <a href="#projektstruktur">Projektstruktur</a> · <a href="#english-summary">English</a></p>
 </div>
 
+<table>
+<tr>
+<td width="58%" valign="top">
+
+### Bestand
+
+Keine Beschreibung im Repo-Metadatum. Dieses README erfindet deshalb keine Funktionen, Releases oder Laufzeiten.
+
+Der Default-Branch `main` ist die Fläche, die zählt. Was nicht in diesem Baum liegt, ist kein Feature dieses Repos.
+
+</td>
+<td width="42%" valign="top">
+
+### Fakten
+
+| Feld | Wert |
+| --- | --- |
+| Owner | Pierreg99 |
+| Branch | `main` |
+| Sichtbarkeit | öffentlich |
+| Sprache | JavaScript |
+| Archiv | nein |
+
+</td>
+</tr>
+</table>
+
 ---
 
 ## Inhaltsverzeichnis
 
+- [Bestand und Fakten](#bestand)
 - [Überblick](#überblick)
 - [Features](#features)
 - [Schnellstart](#schnellstart)
@@ -36,7 +66,7 @@ Inoffizielle Spielhilfe für vier Spiele mit Guides und Lernmodulen an einem Ort
 | Merkmal | Wert |
 | --- | --- |
 | Sprachen | JavaScript (93%), HTML (7%) |
-| Dateien im Repository | 123 |
+| Dateien im Repository | 124 |
 | Einstiegspunkte | `index.html` |
 | Version (`package.json`) | 2.0.0 |
 | CI-Workflows | 1 |
@@ -50,7 +80,7 @@ Inoffizielle Spielhilfe für vier Spiele mit Guides und Lernmodulen an einem Ort
 - Automatisierung über GitHub Actions: `pages.yml`
 - Veröffentlichung über GitHub Pages
 - 2 Testdateien im Repository
-- 17 SVG-Grafiken
+- 18 SVG-Grafiken
 - 51 Markdown-Dokumente
 
 ## Schnellstart
@@ -93,7 +123,8 @@ flowchart LR
     R --> D3["reports/<br/>3 Dateien"]
     R --> D4["Website/<br/>2 Dateien"]
     R --> D5["tests/<br/>2 Dateien"]
-    R --> D6["scripts/<br/>1 Datei"]
+    R --> D6["assets/<br/>1 Datei"]
+    R --> D7["scripts/<br/>1 Datei"]
     E{{"Einstieg: index.html"}}
     E -.-> R
     CI[["GitHub Actions<br/>1 Workflows"]] -.-> R
@@ -105,6 +136,8 @@ flowchart LR
 inoffical-cryogamehelp-repo/
 ├── .github/  (1 Datei)
 │   └── workflows/
+├── assets/  (1 Datei)
+│   └── readme-banner.svg
 ├── DB_Legends/  (25 Dateien)
 │   ├── Bilderbuch/
 │   └── In_Game/
@@ -149,8 +182,7 @@ inoffical-cryogamehelp-repo/
 ├── PROFILE_EN.md
 ├── README.md
 ├── README_DE.md
-├── README_EN.md
-└── … (1 weitere Einträge)
+└── … (2 weitere Einträge)
 ```
 
 ## Dokumentation
