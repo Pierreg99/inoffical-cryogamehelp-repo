@@ -1,3 +1,60 @@
+<div align="center">
+
+<img src="./assets/readme-banner.svg" alt="inoffical-cryogamehelp-repo" width="100%">
+
+# inoffical-cryogamehelp-repo
+
+Eigenes Repository. GitHub hat noch keine Beschreibung gesetzt.
+
+[![branch](https://img.shields.io/badge/branch-main-7EB8C9?style=flat-square)](https://github.com/Pierreg99/inoffical-cryogamehelp-repo)
+[![sichtbarkeit](https://img.shields.io/badge/sichtbarkeit-öffentlich-141414?style=flat-square&labelColor=0A0A0A)](https://github.com/Pierreg99/inoffical-cryogamehelp-repo)
+[![sprache](https://img.shields.io/badge/sprache-JavaScript-2A2A28?style=flat-square&labelColor=0A0A0A)](https://github.com/Pierreg99/inoffical-cryogamehelp-repo)
+
+</div>
+
+<table>
+<tr>
+<td width="58%" valign="top">
+
+### Bestand
+
+Keine Beschreibung im Repo-Metadatum. Dieses README erfindet deshalb keine Funktionen, Releases oder Laufzeiten.
+
+Der Default-Branch `main` ist die Fläche, die zählt. Was nicht in diesem Baum liegt, ist kein Feature dieses Repos.
+
+</td>
+<td width="42%" valign="top">
+
+### Fakten
+
+| Feld | Wert |
+| --- | --- |
+| Owner | Pierreg99 |
+| Branch | `main` |
+| Sichtbarkeit | öffentlich |
+| Sprache | JavaScript |
+| Archiv | nein |
+
+</td>
+</tr>
+</table>
+
+## Lesen
+
+1. Default-Branch öffnen.
+2. Nur Dateien in diesem Baum als Beleg nehmen.
+3. Issues und Diskussionen nur nutzen, wenn sie im Repo eingeschaltet sind.
+
+## Grenze
+
+Keine Qualitätszahl, kein Paketstand und keine Runtime, die nicht als Datei in diesem Repo steht.
+
+<p align="center"><sub>Fläche nach Cryo Core Lite v1.5 · Tokens #0A0A0A / #141414 / #7EB8C9</sub></p>
+
+
+<details>
+<summary>Bisheriger README-Text</summary>
+
 <p align="center"><a href="https://pierreg99.github.io/inoffical-cryogamehelp-repo/"><img src="docs/assets/games/legends-cover.webp" width="800" alt="Dragon Ball Legends — official game artwork"></a></p>
 
 <h1 align="center">CRYOGAMEHELP</h1>
@@ -40,3 +97,5 @@ The original game modules, diagrams, equipment notes, and [research reports](rep
 ## Credits and rights
 
 CRYOGAMEHELP is an **unofficial fan project**, independent of game publishers. Dragon Ball and Pokémon names, artwork, screenshots, and trademarks belong to their respective rights holders. Third-party game images are not relicensed under MIT; [every image source is recorded](docs/assets/sources.json). Original code and repository documentation use the [MIT license](LICENSE.md). Self-hosted fonts include their SIL Open Font License notices.
+
+</details>
