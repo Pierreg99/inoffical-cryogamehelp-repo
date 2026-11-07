@@ -17,6 +17,12 @@ let theme = read('theme','dark') === 'light' ? 'light' : 'dark';
 let bookmarks = read('bookmarks',[]);
 if (!Array.isArray(bookmarks)) bookmarks = [];
 bookmarks = bookmarks.filter(id => guides.some(g => g.id === id));
+// Checklist state stays separate from game team and deck plans.
+const legendsStepCount = guides.find(g => g.id === 'legends-core')?.en.steps.length ?? 0;
+const storedLegendsProgress = read('legends-progress', []);
+const legendsProgress = new Set(Array.isArray(storedLegendsProgress)
+ ? storedLegendsProgress.filter(n => Number.isInteger(n) && n >= 0 && n < legendsStepCount)
+ : []);
 let plans = read('plans',{});
 if (!plans || typeof plans !== 'object' || Array.isArray(plans)) plans = {};
 // Only restore well-formed, bounded plans from browser storage.
@@ -156,8 +162,30 @@ function openGame(id) {
 }
 function openGuide(id) {
  const guide=guides.find(g=>g.id===id), game=games.find(g=>g.id===guide.game), copy=guide[lang];
+ const isLegends=id==='legends-core', completed=legendsProgress.size, total=copy.steps.length;
+ const learningPanel=isLegends ? `<div class="learning-panel" data-learning-panel="legends-core">
+  <div class="learning-heading"><strong>${t('learningProgress')}</strong><span id="learningStatus" role="status" aria-live="polite">${completed} / ${total} ${t('stepsComplete')}</span></div>
+  <progress id="learningMeter" max="${total}" value="${completed}" aria-label="${t('learningProgress')}"></progress>
+  <button class="text-button" type="button" data-action="reset-learning" ${completed?'':'disabled'}>${t('resetLearning')}</button>
+  <p class="learning-note">${t(storageOK?'learningSavedNote':'learningStorageError')}</p>
+ </div>` : '';
+ const steps=copy.steps.map(([title,body],i)=>`<section ${isLegends ? `data-learning-step="${i}" class="${legendsProgress.has(i)?'is-complete':''}"` : ''}><span>0${i+1}</span><div><h3>${esc(title)}</h3><p>${esc(body)}</p>${isLegends ? `<label class="learning-toggle"><input type="checkbox" data-progress-step="${i}" ${legendsProgress.has(i)?'checked':''} aria-label="${t('markStepDone')}: ${esc(title)}"><span>${t(legendsProgress.has(i)?'stepDone':'markStepDone')}</span></label>` : ''}</div></section>`).join('');
  if($('#detailDialog').open) $('#detailDialog').close();
- openDialog(`<div class="dialog-body guide-detail"><p class="eyebrow">${game.name} · ${guide.minutes} ${t('minute')}</p><h2 id="dialogTitle">${esc(copy.title)}</h2><p class="dialog-intro">${esc(copy.intro)}</p><div class="guide-steps">${copy.steps.map(([title,body],i)=>`<section><span>0${i+1}</span><div><h3>${esc(title)}</h3><p>${esc(body)}</p></div></section>`).join('')}</div><div class="guide-source"><h4>${t('source')}</h4><p>${t('guideSource')}</p>${link(game.official,t('openOfficial'))}${link(repoModule(game),t('openModule'))}</div><div class="dialog-actions"><button class="button primary" data-plan="${game.id}">${t('openBuilder')}${icon('arrow')}</button><button class="button secondary" data-save="${guide.id}" aria-pressed="${bookmarks.includes(id)}">${icon('bookmark')}${t(bookmarks.includes(id)?'unsaveGuide':'saveGuide')}</button></div></div>`);
+ openDialog(`<div class="dialog-body guide-detail"><p class="eyebrow">${game.name} · ${guide.minutes} ${t('minute')}</p><h2 id="dialogTitle">${esc(copy.title)}</h2><p class="dialog-intro">${esc(copy.intro)}</p>${learningPanel}<div class="guide-steps">${steps}</div><div class="guide-source"><h4>${t('source')}</h4><p>${t('guideSource')}</p>${link(game.official,t('openOfficial'))}${link(repoModule(game),t('openModule'))}</div><div class="dialog-actions"><button class="button primary" data-plan="${game.id}">${t('openBuilder')}${icon('arrow')}</button><button class="button secondary" data-save="${guide.id}" aria-pressed="${bookmarks.includes(id)}">${icon('bookmark')}${t(bookmarks.includes(id)?'unsaveGuide':'saveGuide')}</button></div></div>`);
+}
+function updateLearningUI() {
+ const panel=$('#detailDialog [data-learning-panel="legends-core"]');
+ if(!panel) return;
+ const completed=legendsProgress.size;
+ $('#learningStatus').textContent=`${completed} / ${legendsStepCount} ${t('stepsComplete')}`;
+ $('#learningMeter').value=completed;
+ panel.querySelector('[data-action="reset-learning"]').disabled=completed===0;
+ panel.querySelector('.learning-note').textContent=t(storageOK?'learningSavedNote':'learningStorageError');
+ panel.querySelectorAll('[data-progress-step]').forEach(input=>{
+  input.checked=legendsProgress.has(Number(input.dataset.progressStep));
+  input.closest('[data-learning-step]').classList.toggle('is-complete',input.checked);
+  input.parentElement.querySelector('span').textContent=t(input.checked?'stepDone':'markStepDone');
+ });
 }
 function toast(message) {clearTimeout(toastTimer);$('#toast').textContent=message;$('#toast').classList.add('visible');toastTimer=setTimeout(()=>$('#toast')?.classList.remove('visible'),2600);}
 function closeMenu(restoreFocus = true) {
@@ -192,6 +220,15 @@ function bind() {
   addEntry(known||existing||{id:'custom-'+normalized,name,type,image:null,names:{}});form.elements.name.value='';
  });
 }
+$('#app').addEventListener('change',e=>{
+ const input=e.target.closest('[data-progress-step]');
+ if(!input || !$('#detailDialog').open || !$('#detailDialog [data-learning-panel="legends-core"]')) return;
+ const index=Number(input.dataset.progressStep);
+ if(!Number.isInteger(index)||index<0||index>=legendsStepCount) return;
+ if(input.checked) legendsProgress.add(index); else legendsProgress.delete(index);
+ store('legends-progress',[...legendsProgress].sort((a,b)=>a-b));
+ updateLearningUI();
+});
 $('#app').addEventListener('click',e=>{
  const el=e.target.closest('button,a');if(!el)return;
  if(el.dataset.nav) {if(el.dataset.nav==='guides'){savedOnly=false;renderGuides();}closeMenu();}
@@ -215,6 +252,7 @@ $('#app').addEventListener('click',e=>{
   case 'saved': savedOnly=true;renderGuides();closeMenu();break;
   case 'all-guides': savedOnly=false;query='';$('#globalSearch').value='';renderGames();renderGuides();break;
   case 'clear-search': query='';filter='all';render();break;
+  case 'reset-learning': legendsProgress.clear();store('legends-progress',[]);updateLearningUI();break;
   case 'reset': plans[activeGame]=[];persistPlan();toast(t('resetDone'));break;
   case 'export': {
    const game=currentGame(),text=[t('downloadTitle'),game.name,t(game.id+'Rule'),' ',...plans[activeGame].map(i=>`${i.qty} × ${entryName(i)} (${t(i.type)})`),' ',t('plannerNote')].join('\n');

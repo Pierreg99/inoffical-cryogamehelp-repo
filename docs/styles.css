@@ -479,3 +479,17 @@ dialog::backdrop { background: #080910cc; backdrop-filter: blur(5px); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* Dragon Ball Legends learning checklist: responsive, accessible and offline. */
+.learning-panel { margin-top: 1.5rem; padding: 1.1rem 1.25rem; border: 1px solid var(--border); border-radius: .65rem; background: var(--panel-alt); }
+.learning-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1rem; }
+.learning-heading strong { font-size: 1rem; }
+.learning-heading span { color: var(--muted); font-size: .875rem; }
+.learning-panel progress { display: block; width: 100%; height: .5rem; margin: 1rem 0; accent-color: var(--green); }
+.learning-panel .text-button { padding: .35rem 0; min-height: 2.75rem; }
+.learning-panel .text-button:disabled { opacity: .5; cursor: not-allowed; }
+.learning-note { font-size: .8rem; color: var(--muted); line-height: 1.6; }
+.guide-steps > section.is-complete { padding: .75rem; border-radius: .55rem; background: color-mix(in srgb, var(--green) 9%, transparent); }
+.learning-toggle { display: inline-flex; align-items: center; gap: .65rem; min-height: 2.75rem; margin-top: .75rem; cursor: pointer; color: var(--text); font-size: .875rem; font-weight: 600; }
+.learning-toggle input { width: 1.15rem; height: 1.15rem; flex: 0 0 auto; accent-color: var(--green); cursor: pointer; }
+@media (max-width: 480px) { .learning-panel { padding: 1rem; } }
