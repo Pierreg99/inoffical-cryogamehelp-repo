@@ -10,6 +10,7 @@ The production website is the self-contained `docs/` directory, published with G
 - Separate team/deck plans per game, editable quantities, custom entries, and text export.
 - Six-member Legends/GO raid plans; 20-card Pocket and 60-card Live deck targets with basic copy limits.
 - Browser-local saving, color theme preferences, responsive navigation, keyboard access, native dialogs, and reduced motion support.
+- Dragon Ball Legends `legends-core` guide: interactive 3-step learning checklist with progress meter and reset, saved as `cryo-legends-progress` only on this browser (not a live gameplay verifier).
 - Locally hosted WebP images and fonts; no external service is needed for the website to run.
 
 ## Preview and checks
@@ -27,7 +28,7 @@ npx playwright install chromium
 npm test
 ```
 
-The browser suite covers all languages, search/filter combinations, bookmarks, saved plans, copy/capacity limits, safe custom entry rendering, export, theme persistence, image loading, and dialogs. Layout regression checks cover seven viewport widths from 320 to 1440 pixels, 200% text enlargement, long custom names, readable text, non-overlapping hero content, sticky dialog controls, and keyboard navigation in the mobile drawer.
+The browser suite covers all languages, search/filter combinations, bookmarks, saved plans, copy/capacity limits, safe custom entry rendering, export, theme persistence, image loading, dialogs, and Legends checklist persistence, invalid storage and reset. Layout regression checks cover seven viewport widths from 320 to 1440 pixels, 200% text enlargement, long custom names, readable text, non-overlapping hero content, sticky dialog controls, and keyboard navigation in the mobile drawer.
 
 ## Edit content
 

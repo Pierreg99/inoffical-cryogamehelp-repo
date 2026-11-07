@@ -102,3 +102,44 @@ test('all artwork loads, no browser errors, and layout fits viewport',async({pag
  await page.locator('[data-plan="db"]').click();
  await expect(page.locator('dialog')).not.toBeVisible();
 });
+
+test('Legends checklist persists across reload, language changes, and reset', async ({page})=>{
+ await page.goto('/?lang=en');
+ await page.locator('[data-guide="legends-core"]').first().click();
+ await expect(page.locator('#learningStatus')).toHaveText('0 / 3 steps complete');
+ await expect(page.locator('[data-action="reset-learning"]')).toBeDisabled();
+ await page.locator('[data-progress-step="0"]').check();
+ await page.locator('[data-progress-step="2"]').check();
+ await expect(page.locator('#learningStatus')).toHaveText('2 / 3 steps complete');
+ await expect(page.locator('#learningMeter')).toHaveJSProperty('value',2);
+ await expect(page.locator('[data-learning-step="0"]')).toHaveClass(/is-complete/);
+ await page.reload();
+ await page.locator('[data-guide="legends-core"]').first().click();
+ await expect(page.locator('[data-progress-step="0"]')).toBeChecked();
+ await expect(page.locator('[data-progress-step="1"]')).not.toBeChecked();
+ await expect(page.locator('[data-progress-step="2"]')).toBeChecked();
+ await page.keyboard.press('Escape');
+ await page.locator('#language').selectOption('de');
+ await page.locator('[data-guide="legends-core"]').first().click();
+ await expect(page.locator('#learningStatus')).toHaveText('2 / 3 Schritte abgeschlossen');
+ await page.locator('[data-action="reset-learning"]').click();
+ await expect(page.locator('#learningStatus')).toHaveText('0 / 3 Schritte abgeschlossen');
+ await expect(page.locator('[data-progress-step="0"]')).not.toBeChecked();
+ await page.reload();
+ await page.locator('[data-guide="legends-core"]').first().click();
+ await expect(page.locator('#learningStatus')).toHaveText('0 / 3 Schritte abgeschlossen');
+});
+
+test('Legends checklist ignores malformed and out-of-range localStorage values',async({page})=>{
+ await page.goto('/?lang=en');
+ await page.evaluate(()=>localStorage.setItem('cryo-legends-progress',JSON.stringify([0,0,99,-1,'1',null])));
+ await page.reload();
+ await page.locator('[data-guide="legends-core"]').first().click();
+ await expect(page.locator('#learningStatus')).toHaveText('1 / 3 steps complete');
+ await expect(page.locator('[data-progress-step="0"]')).toBeChecked();
+ await expect(page.locator('[data-progress-step="1"]')).not.toBeChecked();
+ await page.evaluate(()=>localStorage.setItem('cryo-legends-progress','{"corrupt":true}'));
+ await page.reload();
+ await page.locator('[data-guide="legends-core"]').first().click();
+ await expect(page.locator('#learningStatus')).toHaveText('0 / 3 steps complete');
+});
