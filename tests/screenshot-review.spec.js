@@ -26,7 +26,9 @@ test('consented local screenshot exports JSON without image bytes',async({page})
  expect(report).toMatchObject({schemaVersion:1,source:'local-user-annotation',screenshot:{embedded:false,uploaded:false},evidence:{modelUsed:null,aiInferencePerformed:false,metaVerified:false}});
  expect(json).not.toContain('secret.png');
  expect(json).not.toContain('data:image/');
- expect(requests.every(u=>u.startsWith('http://127.0.0.1:4173/'))).toBe(true);
+ // A local preview is loaded via a same-origin blob: URL; external requests are forbidden.
+ const unexpected=requests.filter(u=>!u.startsWith('http://127.0.0.1:4173/') && !u.startsWith('blob:http://127.0.0.1:4173/'));
+ expect(unexpected).toEqual([]);
 });
 test('invalid image content and SVG are rejected',async({page})=>{
  await page.goto('/screenshot-review.html');await page.locator('#consent').check();
