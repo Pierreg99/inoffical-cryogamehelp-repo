@@ -63,3 +63,8 @@ It uses an original abstract Precision-Neon design rather than new third-party i
 [Deutscher Screenshot Review](screenshot-review.html) — optional, lokale Bildvorschau nach Einwilligung, nur manuelle Texteingaben, JSON ohne Bilddaten. Kein AI-Modell oder Upload. [Sicherheitsgrenzen](SCREENSHOT_REVIEW.md).
 
 \`npm run release:audit\` validiert das Publisher-Bildquellenverzeichnis mit allen lokalen WebP-Spielgrafiken sowie Font-Lizenzhinweisen. [Manuelle Release-Hürden](RELEASE_GATE.md). Credits allein liefern keine Nutzungserlaubnis.
+
+
+### Review hardening and verification
+
+Screenshot Review now has local CSS/JS and a restrictive CSP (notably `connect-src 'none'`). `npm run test:audit` exercises valid and intentionally broken metadata inventories in isolated temporary directories. These checks do not establish publisher image rights or release readiness.

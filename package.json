@@ -6,9 +6,10 @@
   "description": "Multilingual, independent game help for Dragon Ball Legends and Pokémon",
   "scripts": {
     "start": "node scripts/serve.mjs",
-    "check": "node --check docs/app.js && node --check docs/data.js && node --check docs/i18n.js && node --check scripts/release-audit.mjs",
+    "check": "node --check docs/app.js && node --check docs/data.js && node --check docs/i18n.js && node --check docs/screenshot-review.js && node --check scripts/release-audit.mjs",
     "test": "playwright test",
-    "release:audit": "node scripts/release-audit.mjs"
+    "release:audit": "node scripts/release-audit.mjs",
+    "test:audit": "node --test tests/release-audit.node.test.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.0"

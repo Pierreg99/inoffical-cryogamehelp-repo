@@ -79,3 +79,15 @@ test('revoking consent while header is pending prevents late preview',async({pag
  await expect(page.locator('#imageInput')).toBeDisabled();
  await expect(page.locator('#feedback')).toContainText('entfernt');
 });
+
+test('review page enforces local-only CSP and externalizes executable assets',async({page})=>{
+ await page.goto('/screenshot-review.html');
+ const policy=page.locator('meta[http-equiv="Content-Security-Policy"]');
+ await expect(policy).toHaveAttribute('content',/connect-src 'none'/);
+ await expect(policy).toHaveAttribute('content',/script-src 'self'/);
+ await expect(page.locator('script:not([src])')).toHaveCount(0);
+ await expect(page.locator('style')).toHaveCount(0);
+ await expect(page.locator('script[src="screenshot-review.js"]')).toHaveCount(1);
+ await page.locator('#consent').check();
+ await expect(page.locator('#imageInput')).toBeEnabled();
+});
