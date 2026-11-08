@@ -51,3 +51,9 @@ For a new repository, select **GitHub Actions** as the source in [Pages settings
 The workflow publishes the self-contained `docs/` directory at the repository’s root Pages URL. A root `index.html` and `.nojekyll` also support the existing branch-based Pages setting by forwarding to `docs/` while preserving language and section links.
 
 `Website/index.html` redirects the older duplicate entrypoint to the maintained `docs/` website.
+
+## Omega Build Review Lab — experimental DE-only workspace
+
+[Open the standalone Omega Review Lab](omega-lab.html). This optional German-language page complements, **does not replace or synchronize with**, the multilingual main planner. It supports four game profiles, simplified structural hints, local entry editing and JSON export with explicit `verifiedMeta: false` and `verifiedLegality: false`. Drafts stay in the separate `cryogamehelp-omega-lab-v1` browser storage key. This page does not validate current in-game rules.
+
+It uses an original abstract Precision-Neon design rather than new third-party images. Playwright test coverage is in `tests/omega-lab.spec.js`; see [scope and evidence](OMEGA_REVIEW.md).

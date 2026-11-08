@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080D26">
+  <meta name="description" content="CRYOGAMEHELP Omega Build Review Lab — lokaler Demonstrator für prüfbare Gaming-Strategiepläne.">
+  <title>CRYOGAMEHELP · Omega Build Review Lab</title>
+  <style>
+    :root { color-scheme: dark; --bg:#080D26; --surface:#151B38; --raised:#222A4F; --border:#55628C;
+      --text:#F4F7FF; --muted:#BDCAE8; --accent:#58F4EC; --secondary:#9898FF; --highlight:#EE84D6;
+      --good:#77E6BC; --warn:#FFC979; --danger:#FF8EAB; --focus:#FFFFFF; }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;color:var(--text);background:radial-gradient(ellipse 48rem 28rem at 88% -10%,#39357488,transparent 67%),radial-gradient(ellipse 40rem 27rem at -15% 40%,#1c618044,transparent 68%),var(--bg);font:16px/1.5 system-ui,-apple-system,'Segoe UI',sans-serif}
+    a{color:var(--accent)}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}
+    :focus-visible{outline:3px solid var(--focus);outline-offset:3px} .shell{max-width:1280px;margin:auto;padding:0 24px 56px}
+    .topbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;min-height:85px;border-bottom:1px solid #a8b5e22b}
+    .brand{display:flex;gap:12px;align-items:center;color:var(--text);font-weight:850;letter-spacing:.07em;text-decoration:none}
+    .brandmark{display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--accent);border-radius:12px;background:#1b4557;box-shadow:0 0 25px #58f4ec30;color:var(--accent);font-size:22px}
+    .brand small{display:block;font-size:11px;letter-spacing:.18em;color:var(--muted);font-weight:600}
+    .toplinks{display:flex;flex-wrap:wrap;gap:16px;font-size:14px}.toplinks a{text-underline-offset:4px}
+    .hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(245px,.7fr);gap:24px;align-items:center;padding:45px 0 32px}
+    .eyebrow{color:var(--accent);font-size:12px;letter-spacing:.19em;text-transform:uppercase;font-weight:800;margin:0 0 10px}
+    h1{font-size:clamp(2rem,4.5vw,3.35rem);line-height:1.06;letter-spacing:-.045em;max-width:650px;margin:0 0 18px}h1 span{color:var(--accent)}
+    .hero p:not(.eyebrow){color:var(--muted);max-width:680px;margin:0 0 16px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}.tag{padding:5px 11px;border:1px solid var(--border);border-radius:999px;font-size:12px;font-weight:650;background:#151d3d}
+    .visual{min-height:225px;position:relative;border:1px solid #7585b06f;border-radius:24px;overflow:hidden;background:radial-gradient(circle at center,#273E66,transparent 65%),linear-gradient(145deg,#151934,#20294c)}
+    .visual::before{content:"";position:absolute;inset:12px;background:linear-gradient(90deg,transparent 49.7%,#8a9ed924 50%,transparent 50.3%),linear-gradient(transparent 49.7%,#8a9ed924 50%,transparent 50.3%);background-size:35px 35px;border-radius:16px;opacity:.6}
+    .ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-24deg);width:168px;height:168px;border:2px solid var(--accent);border-radius:28px;box-shadow:0 0 40px #58f4ec35,inset 0 0 30px #58f4ec13}
+    .ring::before,.ring::after{content:"";position:absolute;inset:25px;border:2px solid var(--secondary);border-radius:50%;box-shadow:0 0 27px #9898ff66}.ring::after{inset:58px;border:6px solid var(--highlight)}
+    .visual-label{position:absolute;bottom:18px;left:18px;right:18px;display:flex;justify-content:space-between;gap:12px;font:700 11px/1.4 ui-monospace,SFMono-Regular,monospace;color:#DEEDFF}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+    .metric{background:#151B38c7;border:1px solid #7885b24d;border-radius:16px;padding:16px 18px}.metric span{display:block;color:var(--muted);font-size:13px}.metric strong{font-variant-numeric:tabular-nums;display:block;font-size:25px;margin-top:5px}
+    .section-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:20px 0 14px;flex-wrap:wrap}.section-heading h2{font-size:21px;letter-spacing:-.02em;margin:0}.section-heading p{margin:0;color:var(--muted);font-size:13px}
+    .games{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:20px}
+    .game-tab{min-height:75px;border:1px solid var(--border);border-radius:14px;background:var(--surface);color:var(--text);padding:14px;text-align:left;transition:transform .18s ease,background .18s ease}
+    .game-tab:hover{transform:translateY(-2px);background:var(--raised)}.game-tab[aria-selected="true"]{border-color:var(--accent);background:linear-gradient(135deg,#17465e,#26294a);box-shadow:inset 0 0 0 1px #58f4ec50}
+    .game-tab strong{display:block;font-size:14px}.game-tab small{color:var(--muted);display:block;margin-top:4px}
+    .workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(310px,.85fr);gap:16px;align-items:start}
+    .panel{background:var(--surface);border:1px solid #7783a751;border-radius:20px;padding:22px;min-width:0;box-shadow:0 16px 35px #05081b30}
+    .panel h3{margin:0 0 7px;font-size:20px}.panel .sub{color:var(--muted);font-size:14px;margin:0 0 20px}
+    .formgrid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr) 90px;gap:10px;align-items:end}
+    label{font-size:12px;font-weight:750;color:var(--muted);display:grid;gap:7px}
+    input,select{width:100%;border:1px solid var(--border);border-radius:10px;background:#0c1330;color:var(--text);min-height:46px;padding:10px 12px;min-width:0}
+    input::placeholder{color:#9BAACB}input:disabled,select:disabled{opacity:.65}
+    .buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:13px}
+    .btn{min-height:44px;border-radius:10px;border:1px solid #7c8bb5;background:var(--raised);color:var(--text);padding:10px 16px;font-weight:750}
+    .btn.primary{background:var(--accent);border-color:var(--accent);color:#052028}.btn:hover:not(:disabled){filter:brightness(1.14)}
+    .btn.danger{color:var(--danger);border-color:#ff8eab66}
+    #feedback{font-size:13px;min-height:28px;margin:11px 0 0;color:var(--muted)}#feedback[data-kind="error"]{color:var(--danger)}#feedback[data-kind="ok"]{color:var(--good)}
+    .lineup-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:14px 0}.lineup-head h4{margin:0;font-size:15px}.lineup-head span{color:var(--muted);font-size:13px}
+    .entry-list{display:grid;gap:8px;list-style:none;padding:0;margin:0}
+    .entry{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid #7b8aae48;padding:12px;border-radius:12px;background:#0d1531}
+    .entry strong{overflow-wrap:anywhere;font-size:14px}.entry small{display:block;color:var(--muted);margin-top:3px;font-size:12px}
+    .entry-controls{display:flex;align-items:center;gap:6px}.entry-controls button{display:grid;place-items:center;min-width:44px;height:44px;border-radius:9px;background:var(--raised);color:var(--text);border:1px solid #6d7ba2}
+    .entry-controls b{min-width:18px;text-align:center;font-variant-numeric:tabular-nums}
+    .empty{border:1px dashed #8a97c77c;color:var(--muted);border-radius:12px;padding:24px;text-align:center;font-size:14px}
+    .progress-head{display:flex;justify-content:space-between;gap:8px;font-size:14px;font-weight:750}.progress{height:10px;background:#0b112b;border-radius:20px;margin:12px 0 19px;overflow:hidden}
+    #progressBar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--secondary));transition:width .22s ease}
+    .checks{display:grid;gap:9px;list-style:none;padding:0;margin:0}
+    .check{border:1px solid #6b789b66;background:#111a38;padding:12px 14px;border-radius:12px;display:grid;grid-template-columns:24px 1fr;gap:9px;align-items:start}
+    .check .status{font-weight:850}.check[data-status="ok"] .status{color:var(--good)}.check[data-status="warn"] .status{color:var(--warn)}.check[data-status="info"] .status{color:var(--secondary)}
+    .check strong{font-size:14px}.check p{font-size:12px;color:var(--muted);margin:3px 0 0}
+    .evidence{background:#0e1838;border:1px solid #7b8aae6b;border-radius:14px;padding:16px;margin-top:16px}
+    .evidence h4{margin:0 0 8px}.evidence p{font-size:13px;color:var(--muted);margin:0 0 10px}
+    .notice{margin-top:20px;background:#101b39;border-left:3px solid var(--secondary);padding:12px 16px;color:var(--muted);border-radius:0 10px 10px 0;font-size:13px}
+    footer{color:var(--muted);font-size:12px;line-height:1.65;margin-top:24px}
+    @media(max-width:860px){.workspace{grid-template-columns:1fr}.hero{grid-template-columns:1fr}.visual{min-height:175px}.games{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:600px){.shell{padding:0 12px 35px}.topbar{padding:12px 0}.hero{padding:28px 0 24px}.stats{grid-template-columns:1fr 1fr}.stats .metric:last-child{grid-column:span 2}.panel{padding:15px}.formgrid{grid-template-columns:1fr 1fr}.formgrid label:first-child{grid-column:span 2}.formgrid label:last-child{grid-column:span 2}.game-tab{padding:12px}.entry{grid-template-columns:1fr}.entry-controls{justify-content:flex-end}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <a class="brand" href="https://github.com/Pierreg99/inoffical-cryogamehelp-repo" target="_blank" rel="noopener noreferrer"><span class="brandmark" aria-hidden="true">◇</span><span>CRYOGAMEHELP<small>OMEGA BUILD REVIEW LAB</small></span></a>
+    <nav class="toplinks" aria-label="Projektlinks"><a href="./" target="_blank" rel="noopener noreferrer">Bestehende Website</a><a href="https://github.com/Pierreg99/inoffical-cryogamehelp-repo" target="_blank" rel="noopener noreferrer">Repository</a></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div><p class="eyebrow">AITO × OmegaVisionAI / Offline-Demonstrator</p><h1>Dein Build. <span>Deine Strategie.</span> Klare Nachweise.</h1><p>Ein experimenteller Prüfarbeitsplatz für Teams und Decks. Er prüft einfache Strukturregeln, zeigt offene Punkte und speichert nur lokal. <strong>Keine KI-Liveanalyse, keine offizielle Spiellegalitätsprüfung.</strong></p><div class="tags"><span class="tag">4 Spielprofile</span><span class="tag">Lokal im Browser</span><span class="tag">JSON-Export</span><span class="tag">DE-Demo</span></div></div>
+      <div class="visual" role="img" aria-label="Abstraktes neonfarbenes holografisches Build-Analyse-Symbol"><div class="ring"></div><div class="visual-label"><span>REVIEW CONSOLE 01</span><span>NO LIVE DATA</span></div></div>
+    </section>
+    <section class="stats" aria-label="Übersicht"><div class="metric"><span>Spielprofile</span><strong>04</strong></div><div class="metric"><span>Gespeicherte Einträge im aktiven Profil</span><strong id="entryMetric">0</strong></div><div class="metric"><span>Strukturfortschritt</span><strong id="progressMetric">0%</strong></div></section>
+    <section aria-labelledby="gameHeading"><div class="section-heading"><h2 id="gameHeading">Spielprofil wählen</h2><p>Jedes Spiel hat unterschiedliche Grundregeln.</p></div><div class="games" id="gameTabs" role="tablist" aria-label="Spielprofil">
+      <button type="button" class="game-tab" role="tab" data-game="db" aria-selected="true"><strong>Dragon Ball Legends</strong><small>3 Core + 3 Bench</small></button>
+      <button type="button" class="game-tab" role="tab" data-game="pocket" aria-selected="false"><strong>Pokémon TCG Pocket</strong><small>20 Karten</small></button>
+      <button type="button" class="game-tab" role="tab" data-game="live" aria-selected="false"><strong>Pokémon TCG Live</strong><small>60 Karten</small></button>
+      <button type="button" class="game-tab" role="tab" data-game="go" aria-selected="false"><strong>Pokémon GO</strong><small>6 Raid-Mitglieder</small></button>
+    </div></section>
+    <div class="workspace">
+      <section class="panel" aria-labelledby="editorHeading"><h3 id="editorHeading">Build-Editor</h3><p class="sub" id="editorHint">Erstelle einen strukturierten Entwurf. Namen und Rollen werden von dir eingetragen.</p>
+        <form id="addForm"><div class="formgrid"><label>Name / Kartentitel<input id="entryName" maxlength="100" autocomplete="off" required placeholder="Eintrag eingeben"></label><label id="roleLabel">Typ / Position<select id="entryRole"><option value="core">Kämpfer (Core)</option><option value="bench">Bench</option></select></label><label>Anzahl<input type="number" id="entryQty" min="1" max="60" value="1" required inputmode="numeric"></label></div>
+          <div class="buttons"><button class="btn primary" type="submit">+ Zum Build hinzufügen</button><button class="btn" id="exportBtn" type="button">JSON exportieren</button><button class="btn danger" id="resetBtn" type="button">Profil zurücksetzen</button></div></form>
+        <p id="feedback" role="status" aria-live="polite"></p>
+        <div class="lineup-head"><h4>Aktueller Entwurf</h4><span id="countLabel">0 / 6</span></div><ul class="entry-list" id="entries" aria-live="polite"></ul><div class="notice">Entwürfe bleiben im Browser dieses Geräts. Kein Konto, keine Übertragung und keine automatische Veröffentlichung. Browserdaten können gelöscht werden.</div>
+      </section>
+      <aside class="panel" aria-labelledby="reviewHeading"><h3 id="reviewHeading">Struktur-Review</h3><p class="sub">Regelbasierte Orientierung statt erfundener Meta-Scores.</p><div class="progress-head"><span>Belegte Plätze</span><span id="progressLabel">0 von 6</span></div><div class="progress" aria-hidden="true"><div id="progressBar"></div></div>
+        <ul id="checks" class="checks" aria-live="polite"></ul>
+        <div class="evidence"><h4>Nachweisstatus</h4><p><strong>Geprüft:</strong> lokale Zähl- und Obergrenzen gegen die vereinfachten Profilregeln.</p><p><strong>Offen:</strong> Karteneditionen, Formatlegalität, Fähigkeiten, PvP-Meta, Synergien, Verfügbarkeit und Balance-Patches.</p><p><strong>Quellen:</strong> keine Live-Quellen abgerufen. Prüfe <a id="moduleLink" href="#" target="_blank" rel="noopener noreferrer">die Repository-Guides</a> und offizielle Spielregeln vor kompetitiver Nutzung.</p></div>
+      </aside>
+    </div>
+  </main>
+  <footer>Unabhängiges, inoffizielles Fanprojekt-Konzept. Dragon Ball und Pokémon sind Marken ihrer Rechteinhaber. Diese eigenständige Demo enthält keine fremden Spielgrafiken. Experimentelles Zusatzlabor von CRYOGAMEHELP. Unabhängige lokale Entwürfe; kein automatischer Austausch mit dem Hauptplaner.</footer>
+</div>
+<script>
+'use strict';
+const REPO = 'https://github.com/Pierreg99/inoffical-cryogamehelp-repo/blob/main/';
+const games = Object.freeze({
+  db:{name:'Dragon Ball Legends',limit:6,mode:'team',module:'DB_Legends/In_Game/README_EN.md',roles:[['core','Kämpfer (Core)'],['bench','Bench']],description:'3 aktive Kämpfer und 3 Bench-Slots sind ein Planungsziel dieser Demo.'},
+  pocket:{name:'Pokémon TCG Pocket',limit:20,mode:'deck',copy:2,module:'GAMES/Pokemon_TCG_Pocket/README_EN.md',roles:[['pokemon','Pokémon'],['trainer','Trainer']],description:'20 Karten; in dieser Demo maximal 2 Kopien je normalisiertem Kartennamen.'},
+  live:{name:'Pokémon TCG Live',limit:60,mode:'deck',copy:4,module:'GAMES/Pokemon_TCG_Live/README_EN.md',roles:[['pokemon','Pokémon'],['trainer','Trainer'],['energy','Basis-Energie']],description:'60 Karten; 4er-Grenze für Nicht-Basis-Energie. Andere Ausnahmen bleiben ungeprüft.'},
+  go:{name:'Pokémon GO',limit:6,mode:'team',module:'GAMES/Pokemon_GO/README_EN.md',roles:[['raid','Raid-Mitglied']],description:'6 Raid-Mitglieder. Nicht als GO-Battle-League-Teamprüfung verwenden.'}
+});
+const storageKey='cryogamehelp-omega-lab-v1';
+const $ = id => document.getElementById(id);
+let active='db', saved=true;
+const blank=()=>({db:[],pocket:[],live:[],go:[]});
+let plans=blank();
+try {
+ const parsed=JSON.parse(localStorage.getItem(storageKey));
+ if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed)){
+  for(const [key,game] of Object.entries(games)){
+   const candidates=Array.isArray(parsed[key])?parsed[key]:[];
+   let count=0;
+   for(const item of candidates.slice(0,60)){
+    if(!item||typeof item.name!=='string'||!Number.isInteger(item.qty)||item.qty<1)continue;
+    const name=item.name.trim().replace(/\s+/g,' ').slice(0,100),role=item.role;
+    if(!name||!game.roles.some(entry=>entry[0]===role))continue;
+    if(plans[key].some(entry=>entry.name.toLocaleLowerCase('de')===name.toLocaleLowerCase('de')))continue;
+    if(game.mode==='team'&&item.qty!==1)continue;
+    if(key==='db'&&plans.db.filter(entry=>entry.role===role).length>=3)continue;
+    const cap=game.mode==='team'?1:(key==='live'&&role==='energy'?game.limit:game.copy);
+    const qty=Math.min(item.qty,cap,game.limit-count);
+    if(qty<1)continue;
+    plans[key].push({name,role,qty});count+=qty;
+   }
+  }
+ }
+}catch{saved=false;}
+const announce=(message,kind='ok')=>{if(!saved&&kind==='ok'){message='Browser-Speicher blockiert: Änderungen gelten nur in dieser Sitzung.';kind='error';}$('feedback').textContent=message;$('feedback').dataset.kind=kind;};
+const normalize=name=>name.trim().replace(/\s+/g,' ').toLocaleLowerCase('de');
+const total=key=>plans[key].reduce((sum,e)=>sum+e.qty,0);
+const persist=()=>{try{localStorage.setItem(storageKey,JSON.stringify(plans));saved=true;}catch{saved=false;announce('Browser-Speicher nicht verfügbar: Änderungen gelten nur in dieser Sitzung.','error');}};
+const el=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
+const current=()=>games[active];
+function renderRoles(){const role=$('entryRole');role.replaceChildren();for(const [value,label] of current().roles){const opt=document.createElement('option');opt.value=value;opt.textContent=label;role.append(opt);} $('entryQty').disabled=current().mode==='team';$('entryQty').value='1';$('editorHint').textContent=current().description;}
+function renderEntries(){const list=$('entries');list.replaceChildren();const entries=plans[active];if(!entries.length){const item=el('li','empty','Noch keine Einträge. Ergänze deinen ersten Build-Baustein.');list.append(item);return;}
+entries.forEach((entry,index)=>{const item=el('li','entry'),meta=el('div');meta.append(el('strong','',entry.name),el('small','',current().roles.find(r=>r[0]===entry.role)?.[1]||entry.role));const controls=el('div','entry-controls');if(current().mode==='deck'){
+const decrease=el('button','','−');decrease.type='button';decrease.setAttribute('aria-label',`Eine Kopie von ${entry.name} entfernen`);decrease.onclick=()=>changeQty(index,-1);
+const qty=el('b','',String(entry.qty));const increase=el('button','','+');increase.type='button';increase.setAttribute('aria-label',`Eine Kopie von ${entry.name} hinzufügen`);increase.disabled=!canAdd(entry.name,entry.role,1);increase.onclick=()=>changeQty(index,1);controls.append(decrease,qty,increase);
+}
+const remove=el('button','','×');remove.type='button';remove.setAttribute('aria-label',`${entry.name} vollständig entfernen`);remove.onclick=()=>{entries.splice(index,1);persist();render();announce('Eintrag entfernt.')};controls.append(remove);item.append(meta,controls);list.append(item);});}
+function canAdd(name,role,qty){if(total(active)+qty>current().limit)return false;const same=plans[active].find(e=>normalize(e.name)===normalize(name));if(current().mode==='team'){if(same)return false;if(active==='db'&&plans.db.filter(e=>e.role===role).reduce((n,e)=>n+e.qty,0)+qty>3)return false;return qty===1;}
+if(same&&same.role!==role)return false;const max=active==='live'&&role==='energy'?60:current().copy;return (same?.qty||0)+qty<=max;}
+function changeQty(index,delta){const entry=plans[active][index];if(delta>0&&!canAdd(entry.name,entry.role,delta)){announce('Kopiengrenze oder Gesamtzahl erreicht.','error');return;}entry.qty+=delta;if(entry.qty<1)plans[active].splice(index,1);persist();render();announce('Menge aktualisiert.');}
+function check(title,body,status){const item=el('li','check');item.dataset.status=status;item.append(el('span','status',status==='ok'?'✓':status==='warn'?'!':'i'));const content=el('div');content.append(el('strong','',title),el('p','',body));item.append(content);return item;}
+function renderChecks(){const game=current(),num=total(active),target=game.limit,list=$('checks');list.replaceChildren();list.append(check('Platzkapazität',`${num} / ${target} genutzt.${num===target?' Zielzahl erreicht.':' Noch unvollständig.'}`,num===target?'ok':'warn'));
+if(active==='db'){const core=plans.db.filter(e=>e.role==='core').reduce((n,e)=>n+e.qty,0);const bench=num-core;list.append(check('3 Core + 3 Bench',`${core} Core, ${bench} Bench`,core===3&&bench===3?'ok':'warn'));}
+else if(game.mode==='deck'){const cap=game.copy;list.append(check('Basis-Kopiengrenze',`Maximal ${cap} gleichnamige Karten${active==='live'?' (Basis-Energie ausgenommen)':''}; die Demo prüft Namen, nicht Editionen.`, 'ok'));}
+else {list.append(check('Raid-Fokus','GO-Battle-League-Formate sind nicht Teil dieses vereinfachten Raid-Profils.','info'));}
+list.append(check('Meta und Synergien','Nicht geprüft: weder aktuelle Balance-Daten noch echte Team- oder Deckstärke.','info'));
+list.append(check('Quellen und Rechte','Offizielle Regeln, Erweiterungen und aktuelle Patches vor dem Einsatz manuell kontrollieren.','info'));
+}
+function render(){const num=total(active),game=current();document.querySelectorAll('[data-game]').forEach(button=>{const selected=button.dataset.game===active;button.setAttribute('aria-selected',String(selected));button.tabIndex=selected?0:-1;});$('entryMetric').textContent=String(plans[active].length);$('progressMetric').textContent=`${Math.round(num/game.limit*100)}%`;$('countLabel').textContent=`${num} / ${game.limit}`;$('progressLabel').textContent=`${num} von ${game.limit}`;$('progressBar').style.width=`${Math.min(100,num/game.limit*100)}%`;$('moduleLink').href=REPO+game.module;$('exportBtn').disabled=!plans[active].length;renderEntries();renderChecks();}
+$('gameTabs').addEventListener('click',event=>{const b=event.target.closest('[data-game]');if(!b)return;active=b.dataset.game;renderRoles();render();announce(`${current().name} ausgewählt.`);});
+$('gameTabs').addEventListener('keydown',event=>{if(!['ArrowRight','ArrowLeft','Home','End'].includes(event.key))return;const buttons=[...document.querySelectorAll('[data-game]')],i=buttons.findIndex(b=>b.dataset.game===active);let index=event.key==='Home'?0:event.key==='End'?buttons.length-1:(i+(event.key==='ArrowRight'?1:-1)+buttons.length)%buttons.length;buttons[index].click();buttons[index].focus();event.preventDefault();});
+$('addForm').addEventListener('submit',event=>{event.preventDefault();const name=$('entryName').value.trim().replace(/\s+/g,' '),role=$('entryRole').value,qty=Number($('entryQty').value);if(!name||name.length>100||!Number.isInteger(qty)||qty<1){announce('Bitte einen gültigen Namen und eine positive ganze Anzahl eingeben.','error');return;}if(!current().roles.some(r=>r[0]===role)){announce('Ungültiger Typ.','error');return;}if(!canAdd(name,role,qty)){announce('Dieser Eintrag überschreitet eine Basisregel. Prüfe Kapazität, Rolle oder Kopiengrenze.','error');return;}
+const entry=plans[active].find(e=>normalize(e.name)===normalize(name));if(entry)entry.qty+=qty;else plans[active].push({name,role,qty});persist();render();$('entryName').value='';$('entryName').focus();announce(`${name} hinzugefügt.`);});
+$('resetBtn').addEventListener('click',()=>{if(!plans[active].length){announce('Der Entwurf ist bereits leer.');return;}if(!window.confirm(`Alle Einträge für ${current().name} löschen?`))return;plans[active]=[];persist();render();announce('Entwurf zurückgesetzt.');});
+$('exportBtn').addEventListener('click',()=>{if(!plans[active].length)return;const payload={schemaVersion:1,game:active,gameName:current().name,source:'local-user-draft',verifiedMeta:false,verifiedLegality:false,exportedAt:new Date().toISOString(),entries:plans[active].map(e=>({...e}))};const url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));const link=document.createElement('a');link.href=url;link.download=`cryogamehelp-omega-${active}.json`;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);announce('Lokalen Entwurf als JSON exportiert.');});
+renderRoles();render();if(!saved)announce('Lokaler Speicher ist blockiert. Die Demo funktioniert ohne dauerhafte Speicherung.','error');
+</script>
+</body>
+</html>
