@@ -113,6 +113,7 @@ test('Legends checklist persists across reload, language changes, and reset', as
  await expect(page.locator('#learningStatus')).toHaveText('2 / 3 steps complete');
  await expect(page.locator('#learningMeter')).toHaveJSProperty('value',2);
  await expect(page.locator('[data-learning-step="0"]')).toHaveClass(/is-complete/);
+ await expect(page.locator('[data-learning-step="2"]')).toHaveClass(/is-complete/);
  await page.reload();
  await page.locator('[data-guide="legends-core"]').first().click();
  await expect(page.locator('[data-progress-step="0"]')).toBeChecked();
@@ -125,6 +126,8 @@ test('Legends checklist persists across reload, language changes, and reset', as
  await page.locator('[data-action="reset-learning"]').click();
  await expect(page.locator('#learningStatus')).toHaveText('0 / 3 Schritte abgeschlossen');
  await expect(page.locator('[data-progress-step="0"]')).not.toBeChecked();
+ await expect(page.locator('[data-learning-step="0"]')).not.toHaveClass(/is-complete/);
+ await expect(page.locator('[data-learning-step="2"]')).not.toHaveClass(/is-complete/);
  await page.reload();
  await page.locator('[data-guide="legends-core"]').first().click();
  await expect(page.locator('#learningStatus')).toHaveText('0 / 3 Schritte abgeschlossen');
@@ -142,4 +145,21 @@ test('Legends checklist ignores malformed and out-of-range localStorage values',
  await page.reload();
  await page.locator('[data-guide="legends-core"]').first().click();
  await expect(page.locator('#learningStatus')).toHaveText('0 / 3 steps complete');
+});
+
+test('Legends visual step completion responds to check and uncheck without reloading',async({page})=>{
+ await page.goto('/?lang=en');
+ await page.locator('[data-guide="legends-core"]').first().click();
+ const row=page.locator('[data-learning-step="1"]');
+ const input=page.locator('[data-progress-step="1"]');
+ await expect(row).not.toHaveClass(/is-complete/);
+ await input.check();
+ await expect(row).toHaveClass(/is-complete/);
+ await expect(row.locator('.learning-toggle span')).toHaveText('Step completed');
+ await expect(page.locator('#learningStatus')).toHaveText('1 / 3 steps complete');
+ await input.uncheck();
+ await expect(row).not.toHaveClass(/is-complete/);
+ await expect(row.locator('.learning-toggle span')).toHaveText('Mark step complete');
+ await expect(page.locator('#learningStatus')).toHaveText('0 / 3 steps complete');
+ await expect(page.locator('#learningMeter')).toHaveJSProperty('value',0);
 });
