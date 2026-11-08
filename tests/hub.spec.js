@@ -327,6 +327,7 @@ test('Pocket deck JSON roundtrip exports and imports with safe counts',async({pa
  await expect(page.locator('.deck-entry')).toHaveCount(2);
  await expect(page.locator('#planSummary')).toContainText('3');
  await page.reload();
+ await page.locator('[data-builder="pocket"]').click();
  await expect(page.locator('.deck-entry')).toHaveCount(2);
 });
 
