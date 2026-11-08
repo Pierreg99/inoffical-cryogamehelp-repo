@@ -45,9 +45,24 @@ for (const game of games) {
   const entry = item ? {...item} : {id:e.id,name:e.name.slice(0,80),type:e.type,names:{},image:null};
   const max = game.id === 'live' && entry.type === 'energy' ? game.target : game.limit;
   entry.qty = Math.max(0,Math.min(Math.floor(Number(e.qty)||0),max,game.target-used)); used += entry.qty;
+  if(game.id==='db' && ['battle','bench'].includes(e.role)) entry.role=e.role;
   return entry;
  }).filter(e => e.qty > 0 && !(game.id === 'pocket' && e.type === 'energy'));
+ if(game.id==='db') {
+  const counts={battle:0,bench:0};
+  plans.db=plans.db.map((e,index)=>{
+   let role=e.role || (index<3?'battle':'bench');
+   if(counts[role]>=3) role=role==='battle'?'bench':'battle';
+   counts[role]++;
+   return {...e,role};
+  });
+ }
 }
+const rawLegendsNotes=read('legends-notes-v1',{});
+let legendsNotes={
+ tag:typeof rawLegendsNotes?.tag==='string'?rawLegendsNotes.tag.slice(0,80):'',
+ zAbility:typeof rawLegendsNotes?.zAbility==='string'?rawLegendsNotes.zAbility.slice(0,240):''
+};
 let activeGame = 'db', filter = 'all', query = '', pickerQuery = '', savedOnly = false;
 let toastTimer, observer;
 const t = key => translations[lang][key] || key;
@@ -137,7 +152,28 @@ function renderPlanner() {
  document.querySelectorAll('[data-builder]').forEach(b=>{b.classList.toggle('active',b.dataset.builder===activeGame);b.setAttribute('aria-pressed',String(b.dataset.builder===activeGame));});
  const types=game.id==='db'?['unit']:game.id==='go'?['pokemon']:game.id==='pocket'?['pokemon','trainer']:['pokemon','trainer','energy'];
  $('#customForm select').innerHTML=types.map(type=>`<option value="${type}">${t(type)}</option>`).join('');
- if(game.id==='db'||game.id==='go') {
+ if(game.id==='db') {
+  const group=(role,label)=>{
+   const members=entries.filter(e=>e.role===role),other=role==='battle'?'bench':'battle';
+   const canMove=entries.filter(e=>e.role===other).length<3;
+   return `<section class="legends-team-group" data-team-group="${role}" aria-label="${t(label)}">
+    <div class="legends-team-heading"><h4>${t(label)}</h4><span>${members.length} / 3</span></div>
+    <div class="team-slots">${Array.from({length:3},(_,i)=>{
+     const e=members[i];
+     return e ? `<div class="team-slot filled"><span class="slot-index">0${i+1}</span>
+       <button class="slot-remove" data-remove="${esc(e.id)}" aria-label="${t('remove')}: ${esc(entryName(e))}">${icon('close')}</button>
+       ${e.image?image(e.image,''):icon('games')}<strong>${esc(entryName(e))}</strong>
+       <button class="team-move" data-team-move="${esc(e.id)}" data-team-to="${other}" ${canMove?'':'disabled'} aria-label="${t('moveTo')} ${t(other==='battle'?'battleRole':'benchRole')}: ${esc(entryName(e))}">${t('moveTo')} ${t(other==='battle'?'battleRole':'benchRole')}</button></div>`
+       : `<div class="team-slot empty"><span class="slot-index">0${i+1}</span>${icon('plus')}<small>${t('emptySlot')}</small></div>`;
+    }).join('')}</div></section>`;
+  };
+  $('#planEntries').innerHTML=`<div class="legends-team-groups">${group('battle','battleRole')}${group('bench','benchRole')}</div>
+   <div class="legends-team-notes">
+    <label>${t('teamTagNote')}<input type="text" maxlength="80" data-legends-note="tag" value="${esc(legendsNotes.tag)}"></label>
+    <label>${t('zAbilityNote')}<textarea rows="3" maxlength="240" data-legends-note="zAbility">${esc(legendsNotes.zAbility)}</textarea></label>
+    <p>${t('legendsNotesHint')}</p>
+   </div>`;
+ } else if(game.id==='go') {
   const expanded=entries.flatMap(e=>Array.from({length:e.qty},()=>e));
   $('#planEntries').innerHTML=`<div class="team-slots">${Array.from({length:6},(_,i)=>{
    const e=expanded[i];return e?`<div class="team-slot filled"><span class="slot-index">0${i+1}</span><button class="slot-remove" data-remove="${esc(e.id)}" aria-label="${t('remove')}: ${esc(entryName(e))}">${icon('close')}</button>${e.image?image(e.image,''):icon('games')}<strong>${esc(entryName(e))}</strong></div>`:`<div class="team-slot empty"><span class="slot-index">0${i+1}</span>${icon('plus')}<small>${t('emptySlot')}</small></div>`;
@@ -159,7 +195,11 @@ function persistPlan() {store('plans',plans);renderPlanner();}
 function addEntry(entry) {
  if(!canAdd(entry)){toast(t('limit'));return;}
  const entries=plans[activeGame], same=entries.find(e=>e.id===entry.id);
- if(same) same.qty++;else entries.push({...entry,qty:1});
+ if(same) same.qty++;
+ else if(activeGame==='db'){
+  const role=entries.filter(e=>e.role==='battle').length<3?'battle':'bench';
+  entries.push({...entry,qty:1,role});
+ } else entries.push({...entry,qty:1});
  persistPlan();toast(t('added'));
 }
 function openDialog(html) {
@@ -247,6 +287,14 @@ $('#app').addEventListener('change',e=>{
  updateLearningUI(id);
  renderGuides();
 });
+$('#app').addEventListener('input',e=>{
+ const field=e.target.closest('[data-legends-note]');
+ if(!field || activeGame!=='db' || !['tag','zAbility'].includes(field.dataset.legendsNote)) return;
+ const key=field.dataset.legendsNote;
+ legendsNotes[key]=field.value.slice(0,key==='tag'?80:240);
+ store('legends-notes-v1',legendsNotes);
+ $('#storageStatus').innerHTML=icon(storageOK?'check':'shield')+t(storageOK?'savedLocal':'storageError');
+});
 $('#app').addEventListener('click',e=>{
  const el=e.target.closest('button,a');if(!el)return;
  if(el.dataset.nav) {if(el.dataset.nav==='guides'){savedOnly=false;renderGuides();}closeMenu();}
@@ -263,6 +311,12 @@ $('#app').addEventListener('click',e=>{
  if(el.dataset.add) {addEntry(currentGame().items.find(i=>i.id===el.dataset.add));return;}
  if(el.dataset.increase) {addEntry(plans[activeGame].find(i=>i.id===el.dataset.increase));return;}
  if(el.dataset.remove) {const entries=plans[activeGame],item=entries.find(i=>i.id===el.dataset.remove);if(item){item.qty--;plans[activeGame]=entries.filter(i=>i.qty>0);persistPlan();toast(t('removed'));}return;}
+ if(el.dataset.teamMove && activeGame==='db') {
+  const target=el.dataset.teamTo, entry=plans.db.find(e=>e.id===el.dataset.teamMove);
+  if(!entry || !['battle','bench'].includes(target) || entry.role===target) return;
+  if(plans.db.filter(e=>e.role===target).length>=3){toast(t('teamGroupFull'));return;}
+  entry.role=target;persistPlan();return;
+ }
  switch(el.dataset.action) {
   case 'menu': openMenu();break;
   case 'menu-close': closeMenu();break;
@@ -277,10 +331,18 @@ $('#app').addEventListener('click',e=>{
    }
    break;
   }
-  case 'reset': plans[activeGame]=[];persistPlan();toast(t('resetDone'));break;
+  case 'reset':
+   plans[activeGame]=[];
+   if(activeGame==='db'){legendsNotes={tag:'',zAbility:''};store('legends-notes-v1',legendsNotes);}
+   persistPlan();toast(t('resetDone'));break;
   case 'export': {
-   const game=currentGame(),text=[t('downloadTitle'),game.name,t(game.id+'Rule'),' ',...plans[activeGame].map(i=>`${i.qty} × ${entryName(i)} (${t(i.type)})`),' ',t('plannerNote')].join('\n');
-   const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download=`cryogamehelp-${activeGame}-${lang}.txt`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast(t('exportDone'));break;
+   const game=currentGame();
+   const rows=plans[activeGame].map(e=>`${e.qty} × ${entryName(e)} (${t(e.type)})${activeGame==='db' ? ` [${t(e.role==='bench'?'benchRole':'battleRole')}]` : ''}`);
+   const notes=activeGame==='db' ? [`${t('teamTagNote')}: ${legendsNotes.tag}`,`${t('zAbilityNote')}: ${legendsNotes.zAbility}`] : [];
+   const text=[t('downloadTitle'),game.name,t(game.id+'Rule'),' ',...rows,' ',...notes,' ',t('plannerNote')].join('\n');
+   const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'})),a=document.createElement('a');
+   a.href=url;a.download=`cryogamehelp-${activeGame}-${lang}.txt`;a.click();
+   setTimeout(()=>URL.revokeObjectURL(url),1000);toast(t('exportDone'));break;
   }
   case 'close': $('#detailDialog').close();break;
   case 'credits': openDialog(`<div class="dialog-body"><p class="eyebrow">CRYOGAMEHELP</p><h2 id="dialogTitle">${t('creditsHeading')}</h2><p>${t('creditsIntro')}</p><p>${t('creditsOwners')}</p><div class="credit-links">${link('https://dble.bn-ent.net/en/','Dragon Ball Legends')}${link('https://tcgpocket.pokemon.com/en-us/','Pokémon TCG Pocket')}${link('https://www.pokemon.com/','Pokémon')}${link('https://apps.apple.com/us/app/pok%C3%A9mon-tcg-live/id1557962344','Pokémon TCG Live · App Store')}${link('assets/sources.json',t('sourceManifest'))}</div></div>`);break;

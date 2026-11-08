@@ -249,3 +249,58 @@ test('browser storage failures are shown without false persistence claims',async
  await page.locator('[data-guide="pocket-collection"]').first().click();
  await expect(page.locator('#learningStatus')).toHaveText('0 / 3 steps complete');
 });
+
+test('Legends Strategy Lab creates 3 battle and 3 bench members with role switching',async({page})=>{
+ await page.goto('/?lang=en');
+ for(const id of ['goku','vegeta','frieza','broly']) await page.locator(`[data-add="${id}"]`).click();
+ await expect(page.locator('[data-team-group="battle"] .team-slot.filled')).toHaveCount(3);
+ await expect(page.locator('[data-team-group="bench"] .team-slot.filled')).toHaveCount(1);
+ await expect(page.locator('[data-team-move="broly"]')).toBeDisabled();
+ await page.locator('[data-remove="frieza"]').click();
+ await page.locator('[data-team-move="broly"]').click();
+ await expect(page.locator('[data-team-group="battle"] .team-slot.filled')).toHaveCount(3);
+ await expect(page.locator('[data-team-group="bench"] .team-slot.filled')).toHaveCount(0);
+ for(const id of ['cell','android17','frieza']) await page.locator(`[data-add="${id}"]`).click();
+ await expect(page.locator('[data-team-group="bench"] .team-slot.filled')).toHaveCount(3);
+ await page.reload();
+ await expect(page.locator('[data-team-group="battle"] .team-slot.filled')).toHaveCount(3);
+ await expect(page.locator('[data-team-group="bench"] .team-slot.filled')).toHaveCount(3);
+ const roleList=await page.evaluate(()=>JSON.parse(localStorage.getItem('cryo-plans')).db.map(e=>e.role));
+ expect(roleList.filter(r=>r==='battle')).toHaveLength(3);
+ expect(roleList.filter(r=>r==='bench')).toHaveLength(3);
+});
+test('Legends local notes are escaped, persisted, exported and cleared',async({page})=>{
+ await page.goto('/?lang=de');
+ await page.locator('[data-add="goku"]').click();
+ await page.locator('[data-legends-note="tag"]').fill('<img src=x onerror=alert(1)>');
+ await page.locator('[data-legends-note="zAbility"]').fill('Synthetischer Teamhinweis, nicht validiert');
+ await page.reload();
+ await expect(page.locator('[data-legends-note="tag"]')).toHaveValue('<img src=x onerror=alert(1)>');
+ await expect(page.locator('[data-legends-note="zAbility"]')).toHaveValue('Synthetischer Teamhinweis, nicht validiert');
+ await expect(page.locator('img[src="x"]')).toHaveCount(0);
+ const event=page.waitForEvent('download');
+ await page.locator('[data-action="export"]').click();
+ const download=await event;
+ expect(download.suggestedFilename()).toBe('cryogamehelp-db-de.txt');
+ const {readFile}=await import('node:fs/promises');
+ const data=await readFile(await download.path(),'utf8');
+ expect(data).toContain('Kampfkern');
+ expect(data).toContain('Synthetischer Teamhinweis');
+ await page.locator('[data-action="reset"]').click();
+ await expect(page.locator('[data-legends-note="tag"]')).toHaveValue('');
+ await expect(page.locator('[data-legends-note="zAbility"]')).toHaveValue('');
+ await expect(page.locator('[data-team-group="battle"] .team-slot.filled')).toHaveCount(0);
+});
+test('legacy six-slot team order migrates to 3 battle and bench without data loss',async({page})=>{
+ await page.goto('/?lang=en');
+ await page.evaluate(()=>localStorage.setItem('cryo-plans',JSON.stringify({db:[
+  {id:'goku',name:'Super Saiyan Goku',type:'unit',qty:1},
+  {id:'vegeta',name:'Super Saiyan Vegeta',type:'unit',qty:1},
+  {id:'frieza',name:'Frieza',type:'unit',qty:1},
+  {id:'broly',name:'Broly',type:'unit',qty:1}
+ ]})));
+ await page.reload();
+ await expect(page.locator('[data-team-group="battle"] .team-slot.filled')).toHaveCount(3);
+ await expect(page.locator('[data-team-group="bench"] .team-slot.filled')).toHaveCount(1);
+ await expect(page.locator('[data-team-group="bench"]')).toContainText('Broly');
+});
