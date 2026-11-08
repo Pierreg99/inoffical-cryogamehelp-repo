@@ -304,3 +304,59 @@ test('legacy six-slot team order migrates to 3 battle and bench without data los
  await expect(page.locator('[data-team-group="bench"] .team-slot.filled')).toHaveCount(1);
  await expect(page.locator('[data-team-group="bench"]')).toContainText('Broly');
 });
+
+test('Pocket deck JSON roundtrip exports and imports with safe counts',async({page})=>{
+ await page.goto('/?lang=en');
+ await page.locator('[data-builder="pocket"]').click();
+ await page.locator('[data-add="pikachu-ex"]').click();
+ await page.locator('[data-add="pikachu-ex"]').click();
+ await page.locator('[data-add="potion"]').click();
+ await expect(page.locator('.deck-breakdown')).toContainText('3');
+ const dl=page.waitForEvent('download');
+ await page.locator('[data-action="export-deck-json"]').click();
+ const file=await dl;
+ expect(file.suggestedFilename()).toBe('cryogamehelp-pocket-deck.json');
+ const {readFile}=await import('node:fs/promises');
+ const exported=JSON.parse(await readFile(await file.path(),'utf8'));
+ expect(exported).toMatchObject({format:'cryogamehelp-deck',version:1,game:'pocket'});
+ expect(exported.entries).toHaveLength(2);
+ await page.locator('[data-action="reset"]').click();
+ await expect(page.locator('.deck-entry')).toHaveCount(0);
+ await page.locator('#deckFileInput').setInputFiles({name:'pocket.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(exported))});
+ await expect(page.locator('.deck-entry')).toHaveCount(2);
+ await expect(page.locator('#planSummary')).toContainText('3');
+ await page.reload();
+ await expect(page.locator('.deck-entry')).toHaveCount(2);
+});
+
+test('Deck JSON import rejects incompatible games and invalid or oversized inputs',async({page})=>{
+ await page.goto('/?lang=en');
+ await page.locator('[data-builder="pocket"]').click();
+ const load=async data=>page.locator('#deckFileInput').setInputFiles({name:'input.json',mimeType:'application/json',buffer:Buffer.from(typeof data==='string'?data:JSON.stringify(data))});
+ const base={format:'cryogamehelp-deck',version:1,game:'pocket'};
+ await load({...base,entries:[{id:'potion',name:'Potion',type:'trainer',qty:3}]});
+ await expect(page.locator('.deck-entry')).toHaveCount(0);
+ await expect(page.locator('#toast')).toContainText('rejected');
+ await load({...base,entries:[{id:'pikachu-ex',name:'Pikachu ex',type:'pokemon',qty:1},{id:'pikachu-ex',name:'Other',type:'pokemon',qty:1}]});
+ await expect(page.locator('.deck-entry')).toHaveCount(0);
+ await load({...base,game:'live',entries:[]});
+ await expect(page.locator('.deck-entry')).toHaveCount(0);
+ await load('not-json');
+ await expect(page.locator('.deck-entry')).toHaveCount(0);
+ await load(' '.repeat(65537));
+ await expect(page.locator('.deck-entry')).toHaveCount(0);
+});
+
+test('Live deck JSON supports basic Energy while escaping custom names',async({page})=>{
+ await page.goto('/?lang=en');
+ await page.locator('[data-builder="live"]').click();
+ const payload={format:'cryogamehelp-deck',version:1,game:'live',entries:[
+  {id:'fire-energy',name:'Basic Fire Energy',type:'energy',qty:40},
+  {id:'custom-malicious',name:'<img src=x onerror=alert(1)>',type:'trainer',qty:1}
+ ]};
+ await page.locator('#deckFileInput').setInputFiles({name:'live.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(payload))});
+ await expect(page.locator('.deck-entry')).toHaveCount(2);
+ await expect(page.locator('.deck-breakdown')).toContainText('40');
+ await expect(page.locator('.deck-entry-name').last()).toContainText('<img src=x');
+ await expect(page.locator('img[src="x"]')).toHaveCount(0);
+});

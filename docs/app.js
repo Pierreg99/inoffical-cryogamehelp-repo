@@ -182,6 +182,15 @@ function renderPlanner() {
   $('#planEntries').innerHTML=entries.length?`<div class="deck-list">${entries.map(e=>`<div class="deck-entry"><span class="item-art">${e.image?image(e.image,''):icon(e.type==='energy'?'bolt':'book')}</span><span class="deck-entry-name"><strong>${esc(entryName(e))}</strong><small>${t(e.type)}</small></span><div class="quantity"><button data-remove="${esc(e.id)}" aria-label="${t('remove')}: ${esc(entryName(e))}">${icon('minus')}</button><b>${e.qty}</b><button data-increase="${esc(e.id)}" ${canAdd(e)?'':'disabled'} aria-label="${t('add')}: ${esc(entryName(e))}">${icon('plus')}</button></div></div>`).join('')}</div>`:`<div class="empty-plan">${icon('grid')}<p>${t('emptyPlan')}</p></div>`;
  }
  $('#planSummary').innerHTML=`<div class="progress-heading"><span><b>${count}</b> / ${game.target} ${t(game.target===6?'teamCount':'deckCount')}</span><span>${entries.length} ${t('unique')}</span></div><progress max="${game.target}" value="${count}" aria-label="${t('plan')}"></progress><p>${icon(count===game.target?'check':'grid')}${t(count===game.target?'complete':'incomplete')}</p>`;
+ if(game.id==='pocket'||game.id==='live') {
+  const byType=type=>entries.filter(e=>e.type===type).reduce((n,e)=>n+e.qty,0);
+  $('#planSummary').insertAdjacentHTML('beforeend',`<div class="deck-io">
+   <p class="deck-breakdown">${t('pokemon')}: ${byType('pokemon')} · ${t('trainer')}: ${byType('trainer')} · ${t('energy')}: ${byType('energy')}</p>
+   <p>${t(count===game.target?'deckSizeReady':'deckSizeIncomplete')} ${t('deckRuleWarning')}</p>
+   <div class="deck-io-controls"><button class="button secondary" type="button" data-action="export-deck-json" ${entries.length?'':'disabled'}>${t('exportDeckJSON')}</button>
+    <label class="deck-json-upload">${t('importDeckJSON')}<input id="deckFileInput" type="file" accept=".json,application/json" aria-label="${t('importDeckJSON')}"></label></div>
+  </div>`);
+ }
  $('#storageStatus').innerHTML=icon(storageOK?'check':'shield')+t(storageOK?'savedLocal':'storageError');
  $('[data-action="export"]').disabled=!entries.length;
  renderPicker();
@@ -190,6 +199,36 @@ function canAdd(entry) {
  const g=currentGame(), entries=plans[g.id], count=entries.reduce((n,e)=>n+e.qty,0), same=entries.find(e=>e.id===entry.id);
  const limit=g.id==='live'&&entry.type==='energy'?g.target:g.limit;
  return count<g.target && (!same||same.qty<limit);
+}
+function validateDeckImport(data, game) {
+ if(!data || data.format!=='cryogamehelp-deck' || data.version!==1 || data.game!==game.id ||
+  !Array.isArray(data.entries) || data.entries.length>game.target) return null;
+ const usedIds=new Set(), usedNames=new Set(), entries=[];
+ let count=0;
+ for(const raw of data.entries) {
+  if(!raw || typeof raw.id!=='string' || typeof raw.name!=='string' ||
+   typeof raw.type!=='string' || !Number.isInteger(raw.qty) ||
+   raw.id.length<1 || raw.id.length>160 || raw.name.trim().length<1 || raw.name.length>80 ||
+   raw.qty<1 || !['pokemon','trainer','energy'].includes(raw.type) ||
+   (game.id==='pocket' && raw.type==='energy')) return null;
+  const known=game.items.find(e=>e.id===raw.id);
+  if(known && known.type!==raw.type) return null;
+  const name=known?known.name:raw.name.trim();
+  const normalized=name.toLocaleLowerCase('en');
+  if(usedIds.has(raw.id)||usedNames.has(normalized)) return null;
+  const max=game.id==='live' && raw.type==='energy' ? game.target : game.limit;
+  if(raw.qty>max) return null;
+  count+=raw.qty;
+  if(count>game.target) return null;
+  usedIds.add(raw.id);usedNames.add(normalized);
+  entries.push({...known || {id:raw.id,name,type:raw.type,names:{},image:null},qty:raw.qty});
+ }
+ return entries;
+}
+function downloadLocalFile(filename,text,type) {
+ const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');
+ a.href=url;a.download=filename;a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 function persistPlan() {store('plans',plans);renderPlanner();}
 function addEntry(entry) {
@@ -287,6 +326,21 @@ $('#app').addEventListener('change',e=>{
  updateLearningUI(id);
  renderGuides();
 });
+$('#app').addEventListener('change',async e=>{
+ const input=e.target;
+ if(input.id!=='deckFileInput' || !['pocket','live'].includes(activeGame) || !input.files?.length) return;
+ const gameId=activeGame, game=currentGame(), file=input.files[0];
+ try {
+  if(file.size<1 || file.size>65536) throw new Error('size');
+  const parsed=JSON.parse(await file.text());
+  if(activeGame!==gameId) return;
+  const imported=validateDeckImport(parsed,game);
+  if(!imported) throw new Error('format');
+  plans[gameId]=imported;persistPlan();toast(t('deckImportDone'));
+ } catch {
+  if(activeGame===gameId) {toast(t('deckImportError'));input.value='';}
+ }
+});
 $('#app').addEventListener('input',e=>{
  const field=e.target.closest('[data-legends-note]');
  if(!field || activeGame!=='db' || !['tag','zAbility'].includes(field.dataset.legendsNote)) return;
@@ -335,6 +389,13 @@ $('#app').addEventListener('click',e=>{
    plans[activeGame]=[];
    if(activeGame==='db'){legendsNotes={tag:'',zAbility:''};store('legends-notes-v1',legendsNotes);}
    persistPlan();toast(t('resetDone'));break;
+  case 'export-deck-json': {
+   if(!['pocket','live'].includes(activeGame)) break;
+   const data={format:'cryogamehelp-deck',version:1,game:activeGame,entries:
+    plans[activeGame].map(e=>({id:e.id,name:e.name,type:e.type,qty:e.qty}))};
+   downloadLocalFile(`cryogamehelp-${activeGame}-deck.json`,JSON.stringify(data,null,2),'application/json;charset=utf-8');
+   toast(t('deckExportDone'));break;
+  }
   case 'export': {
    const game=currentGame();
    const rows=plans[activeGame].map(e=>`${e.qty} × ${entryName(e)} (${t(e.type)})${activeGame==='db' ? ` [${t(e.role==='bench'?'benchRole':'battleRole')}]` : ''}`);
