@@ -57,3 +57,25 @@ test('320px keyboard controls have no horizontal overflow',async({page})=>{
  await expect(page.locator('#imageInput')).toBeEnabled();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
+
+test('revoking consent while header is pending prevents late preview',async({page})=>{
+ await page.goto('/screenshot-review.html');
+ await page.evaluate(()=>{
+  const original=Blob.prototype.slice;
+  Blob.prototype.slice=function(...args){
+   const result=original.apply(this,args),reader=result.arrayBuffer.bind(result);
+   result.arrayBuffer=()=>new Promise((resolve,reject)=>setTimeout(()=>reader().then(resolve,reject),150));
+   return result;
+  };
+ });
+ await page.locator('#consent').check();
+ const png=await page.screenshot({type:'png'});
+ await page.locator('#imageInput').setInputFiles({name:'delayed.png',mimeType:'image/png',buffer:png});
+ await page.locator('#consent').uncheck();
+ await page.waitForTimeout(220);
+ await expect(page.locator('#preview')).toBeHidden();
+ await expect(page.locator('#previewImage')).not.toHaveAttribute('src',/./);
+ await expect(page.locator('#exportBtn')).toBeDisabled();
+ await expect(page.locator('#imageInput')).toBeDisabled();
+ await expect(page.locator('#feedback')).toContainText('entfernt');
+});
