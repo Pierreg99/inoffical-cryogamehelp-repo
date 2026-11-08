@@ -1,101 +1,54 @@
 <div align="center">
+<img src="assets/readme-banner.svg" alt="CRYOGAMEHELP banner" width="100%">
 
-<img src="./assets/readme-banner.svg" alt="inoffical-cryogamehelp-repo" width="100%">
+# CRYOGAMEHELP
+**Independent guides, teams, decks and strategies for mobile games**
 
-# inoffical-cryogamehelp-repo
+[Open website](https://pierreg99.github.io/inoffical-cryogamehelp-repo/) · [Omega Review Lab](https://pierreg99.github.io/inoffical-cryogamehelp-repo/omega-lab.html) · [Website documentation](docs/README.md) · [Vision 3.0 roadmap](docs/VISION3_ROADMAP.md)
 
-Eigenes Repository. GitHub hat noch keine Beschreibung gesetzt.
-
-[![branch](https://img.shields.io/badge/branch-main-7EB8C9?style=flat-square)](https://github.com/Pierreg99/inoffical-cryogamehelp-repo)
-[![sichtbarkeit](https://img.shields.io/badge/sichtbarkeit-öffentlich-141414?style=flat-square&labelColor=0A0A0A)](https://github.com/Pierreg99/inoffical-cryogamehelp-repo)
-[![sprache](https://img.shields.io/badge/sprache-JavaScript-2A2A28?style=flat-square&labelColor=0A0A0A)](https://github.com/Pierreg99/inoffical-cryogamehelp-repo)
-
+[![Website checks](https://github.com/Pierreg99/inoffical-cryogamehelp-repo/actions/workflows/pages.yml/badge.svg)](https://github.com/Pierreg99/inoffical-cryogamehelp-repo/actions/workflows/pages.yml)
 </div>
 
-<table>
-<tr>
-<td width="58%" valign="top">
+## Four supported games
 
-### Bestand
-
-Keine Beschreibung im Repo-Metadatum. Dieses README erfindet deshalb keine Funktionen, Releases oder Laufzeiten.
-
-Der Default-Branch `main` ist die Fläche, die zählt. Was nicht in diesem Baum liegt, ist kein Feature dieses Repos.
-
-</td>
-<td width="42%" valign="top">
-
-### Fakten
-
-| Feld | Wert |
+| Game | Features |
 | --- | --- |
-| Owner | Pierreg99 |
-| Branch | `main` |
-| Sichtbarkeit | öffentlich |
-| Sprache | JavaScript |
-| Archiv | nein |
+| **Dragon Ball Legends** | PvP guides, 3 battle + 3 bench strategy planning, manually entered team notes |
+| **Pokémon TCG Pocket** | 20-card deck planning and versioned validated deck JSON import/export |
+| **Pokémon TCG Live** | 60-card deck planning, simplified copy limits and versioned JSON import/export |
+| **Pokémon GO** | Raid-team and progression planning |
 
-</td>
-</tr>
-</table>
+The main website provides **English, German and French**, eight editorial guides, browser-local bookmarks and independently tracked self-reported guide progress. No account, paid API, or verified live-meta feed is required.
 
-## Lesen
+## Omega Build Review Lab (experimental)
 
-1. Default-Branch öffnen.
-2. Nur Dateien in diesem Baum als Beleg nehmen.
-3. Issues und Diskussionen nur nutzen, wenn sie im Repo eingeschaltet sind.
+An optional **German-only** standalone workspace with four profiles, structural validation hints, original Precision-Neon UI, accessible input controls and JSON export. **It does not share local plans automatically with the main planner**, provide current rankings, or verify competitive game legality. [Details](docs/OMEGA_REVIEW.md).
 
-## Grenze
+## Local development
 
-Keine Qualitätszahl, kein Paketstand und keine Runtime, die nicht als Datei in diesem Repo steht.
-
-<p align="center"><sub>Fläche nach Cryo Core Lite v1.5 · Tokens #0A0A0A / #141414 / #7EB8C9</sub></p>
-
-
-<details>
-<summary>Bisheriger README-Text</summary>
-
-<p align="center"><a href="https://pierreg99.github.io/inoffical-cryogamehelp-repo/"><img src="docs/assets/games/legends-cover.webp" width="800" alt="Dragon Ball Legends — official game artwork"></a></p>
-
-<h1 align="center">CRYOGAMEHELP</h1>
-<p align="center"><strong>Your next level starts here.</strong><br>Independent game guides, teams, decks, and strategies.</p>
-<p align="center"><a href="https://pierreg99.github.io/inoffical-cryogamehelp-repo/"><strong>OPEN THE GAME HELP WEBSITE →</strong></a></p>
-<p align="center"><a href="README_DE.md">Deutsch</a> · <a href="README_EN.md">English</a> · <a href="README_FR.md">Français</a> · <a href="docs/README.md">Website development</a> · <a href="LICENSE.md">License</a> · <a href="docs/assets/README.md">Image credits</a></p>
-
-## Four games. One place to improve.
-
-| Game | What you can learn | Repository module |
-|---|---|---|
-| **Dragon Ball Legends** | Battle cores, bench support, switching, equipment, resource planning | [Legends guides](DB_Legends/In_Game/) |
-| **Pokémon TCG Pocket** | 20-card decks, collection goals, consistent battle plans | [Pocket guides](GAMES/Pokemon_TCG_Pocket/) |
-| **Pokémon TCG Live** | 60-card decks, format checks, crafting, practice | [Live guides](GAMES/Pokemon_TCG_Live/) |
-| **Pokémon GO** | Raid preparation, moves, GO Battle League, progression | [GO guides](GAMES/Pokemon_GO/) |
-
-## Ready to use
-
-The [website](https://pierreg99.github.io/inoffical-cryogamehelp-repo/) includes a fully translated **English / German / French** interface, eight practical guides, authentic game images and screenshots, search, category filters, saved guides, and independent plans for each game.
-
-Build a six-member team or a 20-/60-card deck, add your own entries, edit quantities, and export the result. Plans and preferences stay in your browser on the current device. The planner helps organize ideas; exact card editions, format legality, abilities, and team synergy still need review in game.
-
-## Run or contribute
+Requirements: Node.js 22+ and npm.
 
 ```sh
 npm ci
 npm start
+# Open http://localhost:4173
+npm run check
+npx playwright install chromium
+npm test
 ```
 
-Open **http://localhost:4173**. For content, translation, asset, and test instructions, see [the website README](docs/README.md). The live website is hosted on GitHub Pages. GitHub Actions checks the responsive layouts and publishes `docs/` on every push to `main`. See [deployment details](docs/README.md#deployment).
+GitHub Actions runs desktop/mobile browser tests before Pages publication. Review the [current workflow results](https://github.com/Pierreg99/inoffical-cryogamehelp-repo/actions) rather than assuming a permanent pass.
 
-Contributions are welcome: improve a guide, add a source, correct a translation, or report a problem through [GitHub Issues](https://github.com/Pierreg99/inoffical-cryogamehelp-repo/issues).
+## Repository navigation
 
-## Documentation and research
+- [Production web app](docs/) — site, local planners, languages, optional Omega Lab
+- [Dragon Ball Legends](DB_Legends/) — guides and strategy notes
+- [Game modules](GAMES/) — Pokémon TCG Pocket, Live and GO
+- [Tests](tests/) — browser regressions, layout and Omega Lab checks
+- [Publisher imagery sources](docs/assets/sources.json) — image credits and licensing context
 
-The original game modules, diagrams, equipment notes, and [research reports](reports/) remain available. Time-sensitive research keeps its original snapshot date and should be checked against current in-game information. Website guides explain evergreen principles and do not claim to be live meta rankings.
+**Evidence policy:** Strategy guidance is editorial, not an official tier ranking. Card printings, game mechanics, patches and synergy need independently checked current sources.
 
-**Shared structure:** Overview → Guides → Builds → Meta → Progression → Events → Assets → Reports.
+## Rights
 
-## Credits and rights
-
-CRYOGAMEHELP is an **unofficial fan project**, independent of game publishers. Dragon Ball and Pokémon names, artwork, screenshots, and trademarks belong to their respective rights holders. Third-party game images are not relicensed under MIT; [every image source is recorded](docs/assets/sources.json). Original code and repository documentation use the [MIT license](LICENSE.md). Self-hosted fonts include their SIL Open Font License notices.
-
-</details>
+Unofficial fan project, not affiliated with the publishers. Dragon Ball and Pokémon game names, images, logos and screenshots belong to their respective rights holders. The [MIT license](LICENSE.md) does not relicense third-party game assets. Consult [image credits](docs/assets/README.md).
