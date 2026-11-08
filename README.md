@@ -52,3 +52,8 @@ GitHub Actions runs desktop/mobile browser tests before Pages publication. Revie
 ## Rights
 
 Unofficial fan project, not affiliated with the publishers. Dragon Ball and Pokémon game names, images, logos and screenshots belong to their respective rights holders. The [MIT license](LICENSE.md) does not relicense third-party game assets. Consult [image credits](docs/assets/README.md).
+
+
+## Privacy and release readiness
+
+The optional [Screenshot Review](docs/screenshot-review.html) accepts local images after opt-in, allows manual annotations and exports text-only JSON. It is **not** a connected AI assistant. \`npm run release:audit\` verifies image source metadata, local assets and font notices. Final rights, accessibility and release approval are human gates: [Release checklist](docs/RELEASE_GATE.md).

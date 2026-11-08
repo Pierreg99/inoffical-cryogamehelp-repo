@@ -89,6 +89,7 @@ function render() {
    <a class="nav-link" href="#builder" data-nav="builder">${icon('grid')}<span>${t('builder')}</span></a>
    <a class="nav-link" href="#guides" data-action="saved">${icon('bookmark')}<span>${t('saved')}</span><small id="savedCount">${bookmarks.length}</small></a>
    <a class="nav-link" href="omega-lab.html" aria-label="Omega Build Review Lab (Deutsch, experimentell)">${icon("grid")}<span>Omega Lab <small>DE</small></span></a>
+   <a class="nav-link" href="screenshot-review.html" aria-label="Screenshot Review (Deutsch, manuelle lokale Prüfung)">${icon("shield")}<span>Screenshot Review <small>DE</small></span></a>
   </nav>
   <div class="sidebar-bottom"><div class="community-card">${icon('bolt')}<strong>${t('community')}</strong><p>${t('communityText')}</p>${link(REPO,t('viewRepo'))}</div><span class="sidebar-foot">CRYOGAMEHELP <span>↗ 2026</span></span></div>
  </aside>
