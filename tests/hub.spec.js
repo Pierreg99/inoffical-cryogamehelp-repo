@@ -311,7 +311,8 @@ test('Pocket deck JSON roundtrip exports and imports with safe counts',async({pa
  await page.locator('[data-add="pikachu-ex"]').click();
  await page.locator('[data-add="pikachu-ex"]').click();
  await page.locator('[data-add="potion"]').click();
- await expect(page.locator('.deck-breakdown')).toContainText('3');
+ await expect(page.locator('.deck-breakdown')).toContainText('Pokémon: 2');
+ await expect(page.locator('.deck-breakdown')).toContainText('Trainer: 1');
  const dl=page.waitForEvent('download');
  await page.locator('[data-action="export-deck-json"]').click();
  const file=await dl;
