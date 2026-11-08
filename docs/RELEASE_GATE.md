@@ -8,6 +8,7 @@
 npm ci
 npm run check
 npm run release:audit
+npm run test:audit
 npx playwright install --with-deps chromium
 npm test
 \`\`\`
@@ -27,3 +28,7 @@ npm test
 - [ ] Veröffentlichung, Tag und ggf. neue externe Dienste **explizit durch einen Menschen** freigeben.
 
 P5 ist ein ausschließlich lokaler Screenshot-Notizworkflow ohne AI-Modell, Upload oder serverseitige Speicherung. Eine echte KI-Anbindung erfordert neue geprüfte Einwilligungs-, Quellen-, Lösch- und Sicherheitsmechanismen.
+
+## Negative Tests des Metadaten-Gates
+
+`npm run test:audit` startet das Prüfskript in isolierten temporären Verzeichnissen und kontrolliert Pass- und Fehlerfälle: nicht vorhandene, ungenannte oder doppelte Bilder, ungültige HTTPS-Adressen, unmögliche Abrufdaten, fehlende Rechte- und Schriftlizenzen. Dies ist ein reproduzierbarer Strukturtest; externe Quellseiten und tatsächliche Bildrechte werden nicht automatisch geprüft.

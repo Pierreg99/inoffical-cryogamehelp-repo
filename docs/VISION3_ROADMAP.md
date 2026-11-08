@@ -1,7 +1,7 @@
 # CRYOGAMEHELP — Vision 3.0 Delivery Roadmap
 
 **Status:** Approved project direction; staged implementation, not a claim that proposed features exist.
-**Reviewed current main:** `7f75b0334b6844a62128c6de619c38f897419ec1`, 8 evergreen guides, 4 supported games, EN/DE/FR website, browser-local team/deck plans and Playwright tests.
+**Reviewed current main:** `cac070ba8d188692a4fc2e2f897771233ed4c8d2`, 8 evergreen guides, 4 supported games, EN/DE/FR website, browser-local team/deck plans and Playwright tests.
 **Primary users:** mobile players looking up a guide, organizing a team or deck, and revisiting progress without an account.
 
 ## Scope and constraints
@@ -21,8 +21,8 @@
 | P2 · Strategy Lab | Split Dragon Ball Legends planning into 3 battle slots + 3 bench slots with manual tag/Z-Ability notes | Accessible role moves, saved manual notes, six-slot limits, old team migration and text export; current synergies remain unverified | **Merged PR #8**, verified on main |
 | P3 · Deck Lab | Deck validation hints for Pocket and Live, plus safe JSON import/export with a schema version | 20/60 sizes, type breakdown, validated local 64 KB JSON import/export, duplicate and copy-limit rejection, browser tests; current format legality not verified | **Merged PR #9**, verified on main |
 | P4 · Visual Quality | Context-driven responsive UI refinement and keyboard/touch QA | Clear navigation, 44×44 px touch controls, focus visibility, 200% zoom, empty/error states, reduced-motion alternative; contrast and browser evidence recorded | **Merged PR #10**, Omega Lab experimental; manual a11y review outstanding |
-| P5 · Optional AI Assist | Privacy-conscious screenshot/strategy assistant design after data rights and model/runtime selection | Explicit upload/consent and data deletion, evidence-linked outputs, no secret keys in client JS, human confirmation for uncertain interpretations | **Local screenshot review implemented in feature PR**; no AI model or upload; CI pending |
-| P6 · Release | Versioned release notes and publisher-asset audit | CI green, smoke tests, issue triage, attribution verified and explicit release approval | **Automated metadata gate implemented in feature PR**; rights and release approval pending |
+| P5 · Optional AI Assist | Privacy-conscious screenshot/strategy assistant design after data rights and model/runtime selection | Explicit upload/consent and data deletion, evidence-linked outputs, no secret keys in client JS, human confirmation for uncertain interpretations | **Merged PR #11**, local manual Screenshot Review; no live AI model or upload |
+| P6 · Release | Versioned release notes and publisher-asset audit | CI green, smoke tests, issue triage, attribution verified and explicit release approval | **Merged PR #11**, metadata checks in main CI; human rights and release approval pending |
 
 ## P0: resolved regression and root cause
 
@@ -73,9 +73,14 @@ Compare the new CI result with the exact head SHA. Record failures precisely; a 
 2. **P1–P4 merged:** exact main CI passed; publisher rights and manual screenreader review remain separate gates.
 3. **Release** only after rights and quality gates, with explicit sign-off.
 
-Last updated: 2026-11-08. P1/P2 have green browser CI; P3 is implemented in a review branch, pending CI and release approval.
+Last updated: 2026-11-08. P1–P5 code and P6 metadata gate are merged through PR #11; current main CI succeeded. Human rights, actual-device, screenreader and release approval remain open.
 
 ## P5/P6 evidence
 
 - [Screenshot review](screenshot-review.html): local opt-in, manual notes only, no model or image upload. [Privacy boundaries](SCREENSHOT_REVIEW.md).
 - [Release metadata audit](RELEASE_GATE.md): manifest/file checks in CI, but **not** publisher permission or release approval.
+
+## P5/P6 security-hardening review
+
+- Externalized Screenshot Review CSS/JS and restricted browser CSP; no new AI inference or network connection.
+- Release audit rejects malformed HTTPS URLs and impossible dates, and a new standalone negative-test suite checks failure behavior. Subject to this review branch's CI before merge.
