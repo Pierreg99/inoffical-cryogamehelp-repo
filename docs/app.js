@@ -17,12 +17,23 @@ let theme = read('theme','dark') === 'light' ? 'light' : 'dark';
 let bookmarks = read('bookmarks',[]);
 if (!Array.isArray(bookmarks)) bookmarks = [];
 bookmarks = bookmarks.filter(id => guides.some(g => g.id === id));
-// Checklist state stays separate from game team and deck plans.
-const legendsStepCount = guides.find(g => g.id === 'legends-core')?.en.steps.length ?? 0;
-const storedLegendsProgress = read('legends-progress', []);
-const legendsProgress = new Set(Array.isArray(storedLegendsProgress)
- ? storedLegendsProgress.filter(n => Number.isInteger(n) && n >= 0 && n < legendsStepCount)
- : []);
+// Per-guide learning is browser-local, self-reported and versioned.
+// Read the old Legends-only key until a new versioned record is first saved.
+const savedGuideProgress = read('guide-progress-v1', null);
+const validGuideRecord = savedGuideProgress?.version === 1 &&
+ savedGuideProgress.guides && typeof savedGuideProgress.guides === 'object' &&
+ !Array.isArray(savedGuideProgress.guides);
+const guideProgress = Object.fromEntries(guides.map(guide => {
+ const raw = validGuideRecord ? savedGuideProgress.guides[guide.id]
+  : guide.id === 'legends-core' ? read('legends-progress', []) : [];
+ return [guide.id, new Set(Array.isArray(raw)
+  ? raw.filter(index => Number.isInteger(index) && index >= 0 && index < guide.en.steps.length)
+  : [])];
+}));
+function persistGuideProgress() {
+ store('guide-progress-v1', {version:1,guides:Object.fromEntries(
+  guides.map(g=>[g.id,[...guideProgress[g.id]].sort((a,b)=>a-b)]))});
+}
 let plans = read('plans',{});
 if (!plans || typeof plans !== 'object' || Array.isArray(plans)) plans = {};
 // Only restore well-formed, bounded plans from browser storage.
@@ -111,7 +122,8 @@ function renderGuides() {
  $('#guidesHeading').textContent=t(savedOnly?'savedHeading':'guideHeading');
  $('#guideGrid').innerHTML = filtered.length ? filtered.map(g=>{
   const game = games.find(x=>x.id===g.game), saved=bookmarks.includes(g.id);
-  return `<article class="guide-card" style="--game-color:${game.color}"><button class="guide-image ${['pocket-pikachu','pocket-charizard','live-battle'].includes(g.image)?'guide-image--portrait':''}" data-guide="${g.id}" aria-label="${t('readGuide')}: ${esc(g[lang].title)}">${image(g.image,'')}<span class="guide-game">${game.name}</span></button><button class="bookmark-button ${saved?'is-saved':''}" data-save="${g.id}" aria-label="${t(saved?'unsaveGuide':'saveGuide')}: ${esc(g[lang].title)}" aria-pressed="${saved}">${icon('bookmark')}</button><div class="guide-copy"><div class="guide-meta"><span>${t(g.category)}</span><small>${g.minutes} ${t('minute')}</small></div><h3><button data-guide="${g.id}">${esc(g[lang].title)}</button></h3><p>${esc(g[lang].intro)}</p><button class="text-button" data-guide="${g.id}">${t('readGuide')}${icon('arrow')}</button></div></article>`;
+   const completed=guideProgress[g.id].size, total=g[lang].steps.length;
+  return `<article class="guide-card" style="--game-color:${game.color}"><button class="guide-image ${['pocket-pikachu','pocket-charizard','live-battle'].includes(g.image)?'guide-image--portrait':''}" data-guide="${g.id}" aria-label="${t('readGuide')}: ${esc(g[lang].title)}">${image(g.image,'')}<span class="guide-game">${game.name}</span></button><button class="bookmark-button ${saved?'is-saved':''}" data-save="${g.id}" aria-label="${t(saved?'unsaveGuide':'saveGuide')}: ${esc(g[lang].title)}" aria-pressed="${saved}">${icon('bookmark')}</button><div class="guide-copy"><div class="guide-meta"><span>${t(g.category)}</span><small>${g.minutes} ${t('minute')}</small></div>${completed ? `<p class="guide-progress-badge">${icon('check')}${completed} / ${total} ${t('stepsComplete')}</p>` : ''}<h3><button data-guide="${g.id}">${esc(g[lang].title)}</button></h3><p>${esc(g[lang].intro)}</p><button class="text-button" data-guide="${g.id}">${t('readGuide')}${icon('arrow')}</button></div></article>`;
  }).join('') : `<div class="empty-state">${icon('bookmark')}<p>${t(savedOnly?'savedEmpty':'noGuides')}</p></div>`;
 }
 function renderPicker() {
@@ -161,29 +173,32 @@ function openGame(id) {
  openDialog(`<div class="dialog-game-art game-${game.id}" style="--game-color:${game.color}">${gameArtwork(game)}</div><div class="dialog-body"><p class="eyebrow">${t(game.id+'Label')}</p><h2 id="dialogTitle">${game.name}</h2><p>${t(game.id+'Desc')}</p><h3>${t('learn')}</h3><div class="dialog-guide-links">${guides.filter(g=>g.game===id).map(g=>`<button data-guide="${g.id}">${esc(g[lang].title)}${icon('arrow')}</button>`).join('')}</div><h3>${t('screenshots')}</h3><div class="screenshot-gallery">${game.gallery.map((name,i)=>`<a href="assets/games/${name}.webp" target="_blank" rel="noopener noreferrer" aria-label="${t('screenshots')}: ${game.name} ${i+1}">${image(name,game.name+' — '+t('screenshots'))}</a>`).join('')}</div><div class="dialog-actions"><button class="button primary" data-plan="${id}">${t('openBuilder')}${icon('arrow')}</button>${link(game.official,t('openOfficial'),'button secondary')}</div>${link(repoModule(game),t('openModule'),'source-link')}<p class="small-note">${t('sourceLanguage')}</p></div>`);
 }
 function openGuide(id) {
- const guide=guides.find(g=>g.id===id), game=games.find(g=>g.id===guide.game), copy=guide[lang];
- const isLegends=id==='legends-core', completed=legendsProgress.size, total=copy.steps.length;
- const learningPanel=isLegends ? `<div class="learning-panel" data-learning-panel="legends-core">
+ const guide=guides.find(g=>g.id===id);
+ if(!guide) return;
+ const game=games.find(g=>g.id===guide.game), copy=guide[lang], progress=guideProgress[id];
+ const completed=progress.size, total=copy.steps.length;
+ const learningPanel=`<div class="learning-panel" data-learning-panel="${esc(id)}">
   <div class="learning-heading"><strong>${t('learningProgress')}</strong><span id="learningStatus" role="status" aria-live="polite">${completed} / ${total} ${t('stepsComplete')}</span></div>
   <progress id="learningMeter" max="${total}" value="${completed}" aria-label="${t('learningProgress')}"></progress>
   <button class="text-button" type="button" data-action="reset-learning" ${completed?'':'disabled'}>${t('resetLearning')}</button>
   <p class="learning-note">${t(storageOK?'learningSavedNote':'learningStorageError')}</p>
- </div>` : '';
- const steps=copy.steps.map(([title,body],i)=>`<section ${isLegends ? `data-learning-step="${i}" class="${legendsProgress.has(i)?'is-complete':''}"` : ''}><span>0${i+1}</span><div><h3>${esc(title)}</h3><p>${esc(body)}</p>${isLegends ? `<label class="learning-toggle"><input type="checkbox" data-progress-step="${i}" ${legendsProgress.has(i)?'checked':''} aria-label="${t('markStepDone')}: ${esc(title)}"><span>${t(legendsProgress.has(i)?'stepDone':'markStepDone')}</span></label>` : ''}</div></section>`).join('');
+ </div>`;
+ const steps=copy.steps.map(([title,body],i)=>`<section data-learning-step="${i}" class="${progress.has(i)?'is-complete':''}"><span>0${i+1}</span><div><h3>${esc(title)}</h3><p>${esc(body)}</p><label class="learning-toggle"><input type="checkbox" data-progress-step="${i}" ${progress.has(i)?'checked':''} aria-label="${t('markStepDone')}: ${esc(title)}"><span>${t(progress.has(i)?'stepDone':'markStepDone')}</span></label></div></section>`).join('');
  if($('#detailDialog').open) $('#detailDialog').close();
  openDialog(`<div class="dialog-body guide-detail"><p class="eyebrow">${game.name} · ${guide.minutes} ${t('minute')}</p><h2 id="dialogTitle">${esc(copy.title)}</h2><p class="dialog-intro">${esc(copy.intro)}</p>${learningPanel}<div class="guide-steps">${steps}</div><div class="guide-source"><h4>${t('source')}</h4><p>${t('guideSource')}</p>${link(game.official,t('openOfficial'))}${link(repoModule(game),t('openModule'))}</div><div class="dialog-actions"><button class="button primary" data-plan="${game.id}">${t('openBuilder')}${icon('arrow')}</button><button class="button secondary" data-save="${guide.id}" aria-pressed="${bookmarks.includes(id)}">${icon('bookmark')}${t(bookmarks.includes(id)?'unsaveGuide':'saveGuide')}</button></div></div>`);
 }
-function updateLearningUI() {
- const panel=$('#detailDialog [data-learning-panel="legends-core"]');
- if(!panel) return;
- const completed=legendsProgress.size;
- $('#learningStatus').textContent=`${completed} / ${legendsStepCount} ${t('stepsComplete')}`;
+function updateLearningUI(id) {
+ const panel=$('#detailDialog [data-learning-panel]');
+ if(!panel || panel.dataset.learningPanel!==id) return;
+ const progress=guideProgress[id];
+ if(!progress) return;
+ const completed=progress.size, total=guides.find(g=>g.id===id)[lang].steps.length;
+ $('#learningStatus').textContent=`${completed} / ${total} ${t('stepsComplete')}`;
  $('#learningMeter').value=completed;
  panel.querySelector('[data-action="reset-learning"]').disabled=completed===0;
  panel.querySelector('.learning-note').textContent=t(storageOK?'learningSavedNote':'learningStorageError');
- // The checklist lives in .guide-steps, not inside the sibling .learning-panel.
  $('#detailDialog .guide-steps').querySelectorAll('[data-progress-step]').forEach(input=>{
-  input.checked=legendsProgress.has(Number(input.dataset.progressStep));
+  input.checked=progress.has(Number(input.dataset.progressStep));
   input.closest('[data-learning-step]').classList.toggle('is-complete',input.checked);
   input.parentElement.querySelector('span').textContent=t(input.checked?'stepDone':'markStepDone');
  });
@@ -223,12 +238,14 @@ function bind() {
 }
 $('#app').addEventListener('change',e=>{
  const input=e.target.closest('[data-progress-step]');
- if(!input || !$('#detailDialog').open || !$('#detailDialog [data-learning-panel="legends-core"]')) return;
- const index=Number(input.dataset.progressStep);
- if(!Number.isInteger(index)||index<0||index>=legendsStepCount) return;
- if(input.checked) legendsProgress.add(index); else legendsProgress.delete(index);
- store('legends-progress',[...legendsProgress].sort((a,b)=>a-b));
- updateLearningUI();
+ const panel=$('#detailDialog [data-learning-panel]');
+ if(!input || !$('#detailDialog').open || !panel || !input.closest('.guide-steps')) return;
+ const id=panel.dataset.learningPanel, guide=guides.find(g=>g.id===id), index=Number(input.dataset.progressStep);
+ if(!guide || !Number.isInteger(index) || index<0 || index>=guide[lang].steps.length) return;
+ if(input.checked) guideProgress[id].add(index); else guideProgress[id].delete(index);
+ persistGuideProgress();
+ updateLearningUI(id);
+ renderGuides();
 });
 $('#app').addEventListener('click',e=>{
  const el=e.target.closest('button,a');if(!el)return;
@@ -253,7 +270,13 @@ $('#app').addEventListener('click',e=>{
   case 'saved': savedOnly=true;renderGuides();closeMenu();break;
   case 'all-guides': savedOnly=false;query='';$('#globalSearch').value='';renderGames();renderGuides();break;
   case 'clear-search': query='';filter='all';render();break;
-  case 'reset-learning': legendsProgress.clear();store('legends-progress',[]);updateLearningUI();break;
+  case 'reset-learning': {
+   const id=el.closest('[data-learning-panel]')?.dataset.learningPanel;
+   if(id && guideProgress[id]) {
+    guideProgress[id].clear();persistGuideProgress();updateLearningUI(id);renderGuides();
+   }
+   break;
+  }
   case 'reset': plans[activeGame]=[];persistPlan();toast(t('resetDone'));break;
   case 'export': {
    const game=currentGame(),text=[t('downloadTitle'),game.name,t(game.id+'Rule'),' ',...plans[activeGame].map(i=>`${i.qty} × ${entryName(i)} (${t(i.type)})`),' ',t('plannerNote')].join('\n');

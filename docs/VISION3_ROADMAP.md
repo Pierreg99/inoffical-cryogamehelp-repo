@@ -16,21 +16,21 @@
 
 | Phase | Deliverable | Evidence and acceptance | State |
 | --- | --- | --- | --- |
-| P0 · Repair | Fix Legends checklist visual completion update | A check/uncheck changes the row class, label, progress and localStorage. Existing EN/DE/FR and 320–1440 px browser tests remain green. | **In this review branch**; CI pending |
-| P1 · Learning | Expand structured guide progress to other evergreen guides, scoped by guide ID | Independent per-guide progress, clear reset, migration tests, no cross-guide state leakage and graceful storage-denied behavior | Proposed |
+| P0 · Repair | Fix Legends checklist visual completion update | A check/uncheck changes the row class, label, progress and localStorage. Existing EN/DE/FR and 320–1440 px browser tests remain green. | **Verified on main** `370b920` ([CI](https://github.com/Pierreg99/inoffical-cryogamehelp-repo/actions/runs/42432261524)) |
+| P1 · Learning | Expand structured guide progress to other evergreen guides, scoped by guide ID | Independent per-guide progress, clear reset, migration tests, no cross-guide state leakage and graceful storage-denied behavior | **Implemented on review branch**, CI pending |
 | P2 · Strategy Lab | Split Dragon Ball Legends planning into 3 battle slots + 3 bench slots with manual tag/Z-Ability notes | Accessible editing, six-slot limits, import/export and transparent unsupported/unknown synergy warnings. No fabricated kit or ranking claims | Proposed |
 | P3 · Deck Lab | Deck validation hints for Pocket and Live, plus safe JSON import/export with a schema version | 20/60 deck size, duplicate guidance, invalid file rejection, roundtrip tests; current format legality remains unverified without sourced data | Proposed |
 | P4 · Visual Quality | Context-driven responsive UI refinement and keyboard/touch QA | Clear navigation, 44×44 px touch controls, focus visibility, 200% zoom, empty/error states, reduced-motion alternative; contrast and browser evidence recorded | Proposed |
 | P5 · Optional AI Assist | Privacy-conscious screenshot/strategy assistant design after data rights and model/runtime selection | Explicit upload/consent and data deletion, evidence-linked outputs, no secret keys in client JS, human confirmation for uncertain interpretations | Research only |
 | P6 · Release | Versioned release notes and publisher-asset audit | CI green, smoke tests, issue triage, attribution verified and explicit release approval | Not released |
 
-## Current P0: regression and root cause
+## P0: resolved regression and root cause
 
 The workflow run [42426195045](https://github.com/Pierreg99/inoffical-cryogamehelp-repo/actions/runs/42426195045) showed **32 passed and 2 failed** browser cases, both from the same Legends progress test running on desktop and mobile.
 
 The progress counter increased, but `[data-learning-step="0"]` never received `is-complete`. The implementation searched for `[data-progress-step]` **inside** `.learning-panel`, while the inputs are rendered in the sibling `.guide-steps`. The proposed fix scopes checkbox updates to the dialog's `.guide-steps`. A new test checks transitions in both directions.
 
-This is based on real runner evidence; successful CI for the new branch must be checked separately. The prior PR #5 was merged while its tests were red, so this repair is intentionally a new reviewable PR.
+Runner evidence confirmed the defect. Follow-up PR #6 corrected it and was merged as `370b920`; the `main` CI completed successfully. P1 needs its own independent CI verification.
 
 ## Vision design acceptance
 
@@ -69,8 +69,8 @@ Compare the new CI result with the exact head SHA. Record failures precisely; a 
 
 ## Deliverables and decision gates
 
-1. **P0 Ready for review** when static checks and both browser projects pass on the fix PR's head SHA.
-2. **P1/P2 approval** only after user-visible prototype and regression plan; do not silently replace the existing stable team planner.
+1. **P0 verified:** complete browser tests passed on the `main` merge commit.
+2. **P1 review gate:** verify new code on the exact head SHA, including persistence, migration, malformed state and denied storage; P2 remains separately proposed.
 3. **Release** only after rights and quality gates, with explicit sign-off.
 
-Last updated: 2026-11-08. This is a development plan; future checkpoints are not asserted as complete.
+Last updated: 2026-11-08. P1 is implemented on a review branch; successful CI or release are not implied.

@@ -493,3 +493,12 @@ dialog::backdrop { background: #080910cc; backdrop-filter: blur(5px); }
 .learning-toggle { display: inline-flex; align-items: center; gap: .65rem; min-height: 2.75rem; margin-top: .75rem; cursor: pointer; color: var(--text); font-size: .875rem; font-weight: 600; }
 .learning-toggle input { width: 1.15rem; height: 1.15rem; flex: 0 0 auto; accent-color: var(--green); cursor: pointer; }
 @media (max-width: 480px) { .learning-panel { padding: 1rem; } }
+
+/* Guide progress preview: legible and unobtrusive in narrow and wide cards. */
+.guide-progress-badge {
+ display: inline-flex; flex-wrap: wrap; align-items: center; gap: .45rem;
+ align-self: flex-start; padding: .3rem .6rem; margin: .1rem 0 .65rem;
+ border: 1px solid var(--border); border-radius: .45rem;
+ background: var(--panel-alt); color: var(--text); font-size: .75rem; font-weight: 600; line-height: 1.5;
+}
+.guide-progress-badge .icon { width: .9rem; height: .9rem; color: var(--green); flex-shrink: 0; }

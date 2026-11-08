@@ -10,7 +10,7 @@ The production website is the self-contained `docs/` directory, published with G
 - Separate team/deck plans per game, editable quantities, custom entries, and text export.
 - Six-member Legends/GO raid plans; 20-card Pocket and 60-card Live deck targets with basic copy limits.
 - Browser-local saving, color theme preferences, responsive navigation, keyboard access, native dialogs, and reduced motion support.
-- Dragon Ball Legends `legends-core` guide: interactive 3-step learning checklist with progress meter and reset, saved as `cryo-legends-progress` only on this browser (not a live gameplay verifier).
+- All eight guides feature independent three-step learning checklists, progress previews and reset controls. Versioned browser-only storage (`cryo-guide-progress-v1`) preserves older Legends progress. Completion is self-reported, never a verified gameplay result.
 - Locally hosted WebP images and fonts; no external service is needed for the website to run.
 
 ## Preview and checks
@@ -34,7 +34,7 @@ The browser suite covers all languages, search/filter combinations, bookmarks, s
 
 - `data.js`: game metadata, starter entries, guides in all three languages.
 - `i18n.js`: interface strings.
-- `app.js`: interactions, storage, rendering.
+- `app.js`: interactions, storage, rendering; per-guide progress schema `{version:1,guides:{[guideId]:number[]}}`, validation and legacy Legends import.
 - `styles.css`: visual design and breakpoints.
 - `assets/sources.json`: original URLs and attribution for third-party imagery.
 
