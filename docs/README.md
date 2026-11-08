@@ -8,7 +8,7 @@ The production website is the self-contained `docs/` directory, published with G
 - Four game modules with real publisher artwork, screenshots, and source links.
 - Combined game search and category filters, searchable guides, persistent bookmarks.
 - Separate team/deck plans per game, editable quantities, custom entries, and text export.
-- Six-member Legends/GO raid plans; 20-card Pocket and 60-card Live deck targets with basic copy limits.
+- Six-member Legends/GO raid plans; Legends adds 3 battle + 3 bench slots with manual move controls and notes. GO retains its raid layout. Pocket/Live retain 20/60-card limits.
 - Browser-local saving, color theme preferences, responsive navigation, keyboard access, native dialogs, and reduced motion support.
 - All eight guides feature independent three-step learning checklists, progress previews and reset controls. Versioned browser-only storage (`cryo-guide-progress-v1`) preserves older Legends progress. Completion is self-reported, never a verified gameplay result.
 - Locally hosted WebP images and fonts; no external service is needed for the website to run.
@@ -34,9 +34,11 @@ The browser suite covers all languages, search/filter combinations, bookmarks, s
 
 - `data.js`: game metadata, starter entries, guides in all three languages.
 - `i18n.js`: interface strings.
-- `app.js`: interactions, storage, rendering; per-guide progress schema `{version:1,guides:{[guideId]:number[]}}`, validation and legacy Legends import.
+- `app.js`: interactions, storage, rendering; guide progress uses schema `{version:1,guides:{[guideId]:number[]}}`. Legends roles are saved in the existing `cryo-plans` entries and manual notes in `cryo-legends-notes-v1`.
 - `styles.css`: visual design and breakpoints.
 - `assets/sources.json`: original URLs and attribution for third-party imagery.
+
+Legends assigns the first three added units to battle and the next three to the bench. Move buttons allow changing groups if the destination has capacity. Legacy teams retain their units and default to the original order. Manual team-tag and Z-Ability notes are local and included in text export. This does not check character abilities, synergies, or the current meta.
 
 The planner is a planning aid, not a complete database or legality checker. Exact card printings, formats, abilities, equipment, and competitive recommendations must be checked against current in-game rules. Website guides are evergreen guidance; repository research snapshots retain their original dates.
 

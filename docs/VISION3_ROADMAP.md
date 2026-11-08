@@ -18,7 +18,7 @@
 | --- | --- | --- | --- |
 | P0 · Repair | Fix Legends checklist visual completion update | A check/uncheck changes the row class, label, progress and localStorage. Existing EN/DE/FR and 320–1440 px browser tests remain green. | **Verified on main** `370b920` ([CI](https://github.com/Pierreg99/inoffical-cryogamehelp-repo/actions/runs/42432261524)) |
 | P1 · Learning | Expand structured guide progress to other evergreen guides, scoped by guide ID | Independent per-guide progress, clear reset, migration tests, no cross-guide state leakage and graceful storage-denied behavior | **Implemented on review branch**, CI pending |
-| P2 · Strategy Lab | Split Dragon Ball Legends planning into 3 battle slots + 3 bench slots with manual tag/Z-Ability notes | Accessible editing, six-slot limits, import/export and transparent unsupported/unknown synergy warnings. No fabricated kit or ranking claims | Proposed |
+| P2 · Strategy Lab | Split Dragon Ball Legends planning into 3 battle slots + 3 bench slots with manual tag/Z-Ability notes | Accessible role moves, saved manual notes, six-slot limits, old team migration and text export; current synergies remain unverified | **Implemented in stacked PR**, CI pending; JSON import/export is future work |
 | P3 · Deck Lab | Deck validation hints for Pocket and Live, plus safe JSON import/export with a schema version | 20/60 deck size, duplicate guidance, invalid file rejection, roundtrip tests; current format legality remains unverified without sourced data | Proposed |
 | P4 · Visual Quality | Context-driven responsive UI refinement and keyboard/touch QA | Clear navigation, 44×44 px touch controls, focus visibility, 200% zoom, empty/error states, reduced-motion alternative; contrast and browser evidence recorded | Proposed |
 | P5 · Optional AI Assist | Privacy-conscious screenshot/strategy assistant design after data rights and model/runtime selection | Explicit upload/consent and data deletion, evidence-linked outputs, no secret keys in client JS, human confirmation for uncertain interpretations | Research only |
@@ -73,4 +73,4 @@ Compare the new CI result with the exact head SHA. Record failures precisely; a 
 2. **P1 review gate:** verify new code on the exact head SHA, including persistence, migration, malformed state and denied storage; P2 remains separately proposed.
 3. **Release** only after rights and quality gates, with explicit sign-off.
 
-Last updated: 2026-11-08. P1 is implemented on a review branch; successful CI or release are not implied.
+Last updated: 2026-11-08. P1 CI is green; P2 is submitted as a stacked review PR, not released.
