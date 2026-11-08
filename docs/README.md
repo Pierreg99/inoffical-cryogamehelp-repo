@@ -57,3 +57,9 @@ The workflow publishes the self-contained `docs/` directory at the repository’
 [Open the standalone Omega Review Lab](omega-lab.html). This optional German-language page complements, **does not replace or synchronize with**, the multilingual main planner. It supports four game profiles, simplified structural hints, local entry editing and JSON export with explicit `verifiedMeta: false` and `verifiedLegality: false`. Drafts stay in the separate `cryogamehelp-omega-lab-v1` browser storage key. This page does not validate current in-game rules.
 
 It uses an original abstract Precision-Neon design rather than new third-party images. Playwright test coverage is in `tests/omega-lab.spec.js`; see [scope and evidence](OMEGA_REVIEW.md).
+
+## P5/P6: lokaler Screenshot-Review und Release-Gate
+
+[Deutscher Screenshot Review](screenshot-review.html) — optional, lokale Bildvorschau nach Einwilligung, nur manuelle Texteingaben, JSON ohne Bilddaten. Kein AI-Modell oder Upload. [Sicherheitsgrenzen](SCREENSHOT_REVIEW.md).
+
+\`npm run release:audit\` validiert das Publisher-Bildquellenverzeichnis mit allen lokalen WebP-Spielgrafiken sowie Font-Lizenzhinweisen. [Manuelle Release-Hürden](RELEASE_GATE.md). Credits allein liefern keine Nutzungserlaubnis.
