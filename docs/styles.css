@@ -520,3 +520,13 @@ dialog::backdrop { background: #080910cc; backdrop-filter: blur(5px); }
 .legends-team-notes input, .legends-team-notes textarea { width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box; padding: .65rem .7rem; border: 1px solid var(--border); border-radius: .45rem; background: var(--panel); color: var(--text); font: inherit; font-size: 1rem; }
 .legends-team-notes textarea { resize: vertical; min-height: 5rem; }
 .legends-team-notes p { font-size: .8rem; line-height: 1.6; color: var(--muted); }
+
+/* Pocket/Live JSON deck import/export: local, explicit, and touch-friendly. */
+.deck-io { margin-top: 1.25rem; padding: 1rem; border: 1px solid var(--border); border-radius: .65rem; background: var(--panel-alt); }
+.deck-io p { color: var(--muted); font-size: .875rem; line-height: 1.6; margin: .5rem 0; }
+.deck-io .deck-breakdown { font-variant-numeric: tabular-nums; color: var(--text); font-weight: 600; }
+.deck-io-controls { display: grid; gap: .8rem; grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: .8rem; }
+.deck-io-controls > button { min-height: 2.75rem; width: 100%; white-space: normal; }
+.deck-json-upload { display: grid; gap: .35rem; min-width: 0; font-size: .875rem; font-weight: 600; }
+.deck-json-upload input { display: block; width: 100%; max-width: 100%; min-width: 0; font: inherit; font-size: .875rem; }
+@media(max-width: 600px){ .deck-io-controls {grid-template-columns:1fr;} }

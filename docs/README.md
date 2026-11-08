@@ -7,7 +7,7 @@ The production website is the self-contained `docs/` directory, published with G
 - Complete English, German, and French interfaces and eight practical guides.
 - Four game modules with real publisher artwork, screenshots, and source links.
 - Combined game search and category filters, searchable guides, persistent bookmarks.
-- Separate team/deck plans per game, editable quantities, custom entries, and text export.
+- Separate team/deck plans per game, editable quantities, custom entries, and text export. Pocket/Live additionally support versioned local JSON import/export with input-size, schema, per-name copy and deck-size checks; this is not a live game legality check.
 - Six-member Legends/GO raid plans; Legends adds 3 battle + 3 bench slots with manual move controls and notes. GO retains its raid layout. Pocket/Live retain 20/60-card limits.
 - Browser-local saving, color theme preferences, responsive navigation, keyboard access, native dialogs, and reduced motion support.
 - All eight guides feature independent three-step learning checklists, progress previews and reset controls. Versioned browser-only storage (`cryo-guide-progress-v1`) preserves older Legends progress. Completion is self-reported, never a verified gameplay result.
@@ -34,7 +34,7 @@ The browser suite covers all languages, search/filter combinations, bookmarks, s
 
 - `data.js`: game metadata, starter entries, guides in all three languages.
 - `i18n.js`: interface strings.
-- `app.js`: interactions, storage, rendering; guide progress uses schema `{version:1,guides:{[guideId]:number[]}}`. Legends roles are saved in the existing `cryo-plans` entries and manual notes in `cryo-legends-notes-v1`.
+- `app.js`: interactions, storage, rendering; guide progress uses schema `{version:1,guides:{[guideId]:number[]}}`. Legends roles are stored in `cryo-plans` and notes in `cryo-legends-notes-v1`. Deck JSON uses `format:'cryogamehelp-deck', version:1, game:'pocket'|'live', entries:[{id,name,type,qty}]`, with a 64 KB browser file-input cap.
 - `styles.css`: visual design and breakpoints.
 - `assets/sources.json`: original URLs and attribution for third-party imagery.
 
