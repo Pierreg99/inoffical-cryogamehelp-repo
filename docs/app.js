@@ -181,7 +181,8 @@ function updateLearningUI() {
  $('#learningMeter').value=completed;
  panel.querySelector('[data-action="reset-learning"]').disabled=completed===0;
  panel.querySelector('.learning-note').textContent=t(storageOK?'learningSavedNote':'learningStorageError');
- panel.querySelectorAll('[data-progress-step]').forEach(input=>{
+ // The checklist lives in .guide-steps, not inside the sibling .learning-panel.
+ $('#detailDialog .guide-steps').querySelectorAll('[data-progress-step]').forEach(input=>{
   input.checked=legendsProgress.has(Number(input.dataset.progressStep));
   input.closest('[data-learning-step]').classList.toggle('is-complete',input.checked);
   input.parentElement.querySelector('span').textContent=t(input.checked?'stepDone':'markStepDone');
